@@ -9,11 +9,12 @@ import {
   Input,
   InputLeftAddon,
   InputGroup,
+  VStack,
 } from "native-base";
 
 function Login() {
   return (
-    <Box p="4">
+    <VStack p="4" bg="white" flex="1" space="4">
       <Text fontSize="16" fontWeight="semibold">
         Enter your mobile number
       </Text>
@@ -44,7 +45,7 @@ function Login() {
               base: "80%",
               md: "100%",
             }}
-            placeholder="9876543210"
+            placeholder="10 Digit number"
           />
         </InputGroup>
 
@@ -54,7 +55,7 @@ function Login() {
         If you continue, you may receive an SMS for verification. Message and
         data rates may apply
       </Text>
-    </Box>
+    </VStack>
   );
 }
 

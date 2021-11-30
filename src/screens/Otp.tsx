@@ -1,5 +1,6 @@
 import {
   ArrowBackIcon,
+  ArrowForwardIcon,
   Badge,
   Box,
   Button,
@@ -13,9 +14,9 @@ import React from "react";
 
 function Otp() {
   return (
-    <Box p="4">
+    <VStack p="4" bg="white" flex="1" space="4">
       <Box>
-        <Text fontSize="md" fontWeight="semibold">
+        <Text fontSize="md" fontWeight="bold">
           Enter the 4 digit code sent to you at 098862 53706
           {/* {Number should be present dynamically} */}
         </Text>
@@ -33,16 +34,24 @@ function Otp() {
         flexDir="row"
         justifyContent="space-between"
         //   mt="auto"
-        mt="400"
+        mt="auto"
+        mb="6"
       >
         <IconButton
           icon={<ArrowBackIcon />}
           bg="gray.200"
           rounded="full"
         ></IconButton>
-        <Button>Next</Button>
+        <Button
+          bg="gray.200"
+          rounded="full"
+          _text={{ fontSize: "14" }}
+          endIcon={<ArrowForwardIcon size="xs" />}
+        >
+          Next
+        </Button>
       </Box>
-    </Box>
+    </VStack>
   );
 }
 

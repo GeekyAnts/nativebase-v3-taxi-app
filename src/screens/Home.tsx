@@ -18,8 +18,10 @@ import {
 } from "native-base";
 
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-function Home() {
+function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   return (
     <VStack p="4" space="4" bg="white" flex="1">
       <HStack>
@@ -62,7 +64,7 @@ function Home() {
           </Badge>
 
           <Text fontWeight="semibold" fontSize="md" mt="auto">
-            Ride
+            Rentals
           </Text>
         </Box>
         <Box flex="1" bg="trueGray.200" rounded="lg" h="100" p="2">
@@ -71,10 +73,13 @@ function Home() {
           </Text>
         </Box>
       </HStack>
+
       <HStack bg="trueGray.200" p="2" alignItems="center">
-        <Text fontWeight="semibold" fontSize="xl">
-          Where to?
-        </Text>
+        <Pressable onPress={() => navigation.navigate("pickup")}>
+          <Text fontWeight="semibold" fontSize="xl">
+            Where to?
+          </Text>
+        </Pressable>
         <Divider
           thickness="2"
           bg="trueGray.300"
@@ -92,6 +97,7 @@ function Home() {
           Now
         </Button>
       </HStack>
+
       <HStack mt="4" space="2" alignItems="center">
         <Circle bg="trueGray.200" p="2" mr="3">
           <FontAwesome name="star" size={18} color="black" />
@@ -108,6 +114,20 @@ function Home() {
         Around you
       </Heading>
       {/* show map here */}
+      <Box h="200" rounded="lg" overflow="hidden">
+        <MapView
+          style={{
+            flex: 1,
+          }}
+          provider={PROVIDER_GOOGLE}
+          region={{
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121,
+            latitude: 22.718435,
+            longitude: 75.855217,
+          }}
+        ></MapView>
+      </Box>
     </VStack>
   );
 }

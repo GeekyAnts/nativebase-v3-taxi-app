@@ -1,19 +1,5 @@
 import React from "react";
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
-  VStack,
-  Code,
-  Box,
-} from "native-base";
-import NativeBaseIcon from "./components/NativeBaseIcon";
+import { NativeBaseProvider, Box } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigator from "./src/navigators/Navigator";
 import { TaxiTheme } from "./src/theme";
@@ -31,7 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <NativeBaseProvider theme={TaxiTheme}>
-        <Box safeAreaTop flex={1}>
+        <Box safeArea flex={1}>
           <Navigator />
         </Box>
       </NativeBaseProvider>
