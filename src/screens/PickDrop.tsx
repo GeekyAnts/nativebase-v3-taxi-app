@@ -42,6 +42,9 @@ function PickDrop({
   navigation: NativeStackNavigationProp<any>;
 }) {
   const [dropPoints, setDropPoints] = useState(1);
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+
   return (
     <Box bg="white" flex="1">
       <Box p="4">
@@ -71,16 +74,21 @@ function PickDrop({
           </VStack>
           <VStack space="2" flex="1">
             <Input
+              isRequired
               placeholder="From?"
               _focus={{
                 bg: "muted.200",
               }}
+              value={origin}
+              onChange={(event: any) => setOrigin(event.target.value)}
             />
             <Input
               placeholder={dropPoints === 1 ? "Where to?" : ""}
               _focus={{
                 bg: "muted.200",
               }}
+              value={destination}
+              onChange={(event: any) => setDestination(event.target.value)}
             />
             {Array.apply(0, Array(dropPoints - 1)).map(function (x, i) {
               return <InputPoint key={i} />;
@@ -124,11 +132,17 @@ function PickDrop({
         </MapView>
         <Button
           onPress={() => navigation.navigate("chooseTaxi")}
+          // onPress={() => {
+          //   console.log(origin);
+          //   console.log(destination);
+          // }}
           bg="black"
+          _pressed={{ bg: "gray.800" }}
           position="absolute"
           bottom="10"
           left="5%"
           right="5%"
+          isDisabled={origin == "" || destination == "" ? true : false}
         >
           Done
         </Button>

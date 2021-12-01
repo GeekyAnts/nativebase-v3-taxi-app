@@ -1,3 +1,4 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
   ArrowBackIcon,
   ArrowForwardIcon,
@@ -12,19 +13,47 @@ import {
 } from "native-base";
 import React from "react";
 
-function Otp() {
+function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   return (
     <VStack p="4" bg="white" flex="1" space="4">
       <Box>
         <Text fontSize="md" fontWeight="bold">
-          Enter the 4 digit code sent to you at 098862 53706
+          Enter the 4 digit code sent to your mobile number
           {/* {Number should be present dynamically} */}
         </Text>
         <HStack my="4" space="3">
-          <Input width="10" h="10" bg="gray.100" />
-          <Input width="10" h="10" bg="gray.100" />
-          <Input width="10" h="10" bg="gray.100" />
-          <Input width="10" h="10" bg="gray.100" />
+          <Input
+            variant="underlined"
+            width="10"
+            h="10"
+            bg="gray.100"
+            maxLength={1}
+            textAlign="center"
+          />
+          <Input
+            variant="underlined"
+            width="10"
+            h="10"
+            bg="gray.100"
+            maxLength={1}
+            textAlign="center"
+          />
+          <Input
+            variant="underlined"
+            width="10"
+            h="10"
+            bg="gray.100"
+            maxLength={1}
+            textAlign="center"
+          />
+          <Input
+            variant="underlined"
+            width="10"
+            h="10"
+            bg="gray.100"
+            maxLength={1}
+            textAlign="center"
+          />
         </HStack>
         <HStack>
           <Badge rounded="xl">I haven't received a code (0:07)</Badge>
@@ -40,13 +69,18 @@ function Otp() {
         <IconButton
           icon={<ArrowBackIcon />}
           bg="gray.200"
+          _pressed={{ bg: "gray.300" }}
           rounded="full"
+          onPress={() => navigation.navigate("Login")}
         ></IconButton>
         <Button
           bg="gray.200"
+          _pressed={{ bg: "gray.300" }}
           rounded="full"
+          px="4"
           _text={{ fontSize: "14" }}
           endIcon={<ArrowForwardIcon size="xs" />}
+          onPress={() => navigation.navigate("home")}
         >
           Next
         </Button>

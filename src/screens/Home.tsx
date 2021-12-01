@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Actionsheet,
   Badge,
   Box,
   Button,
-  Center,
   ChevronDownIcon,
   ChevronRightIcon,
   Circle,
@@ -15,12 +14,13 @@ import {
   IconButton,
   Image,
   Pressable,
+  Slide,
   Text,
   useDisclose,
   VStack,
 } from "native-base";
 
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import UberGo from "../../assets/UberGo.png";
@@ -28,25 +28,61 @@ import UberPremier from "../../assets/Uber_premier.png";
 
 function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const { isOpen, onOpen, onClose } = useDisclose();
+  const [isSlideOpen, setSlideOpen] = useState(false);
+
   return (
     <VStack p="4" space="4" bg="white" flex="1">
       <HStack>
-        <Pressable>
+        <Pressable onPress={() => setSlideOpen(true)}>
           <HamburgerIcon />
         </Pressable>
+        {/* <Slide
+          in={isSlideOpen}
+          placement="left"
+          width="75%"
+          height="100%"
+          // bg={useColorModeValue("white", "blueGray.900")}
+        >
+          <Box flex="1" width="100%" h="100%" bg="red.400"></Box>
+        </Slide> */}
+        <Slide in={isSlideOpen} placement="left">
+          <Box
+            p="2"
+            mt="10"
+            _text={{
+              color: "orange.600",
+            }}
+            bg="orange.200"
+            zIndex="50"
+          >
+            Due to government restrictions around COVID- 19, you may experience
+            a delay in your delivery.
+          </Box>
+        </Slide>
       </HStack>
-      <Box
+      {/* <Box
         w="100%"
         bg="slateGreen.100"
         flexDir="row"
         justifyContent="space-between"
         rounded="lg"
         p="4"
+      > */}
+      <HStack
+        bg="slateGreen.100"
+        rounded="lg"
+        p="4"
+        alignItems="center"
+        // justifyContent="space-between"
       >
-        <Text color="white" fontSize="lg">
+        <Text color="light.300" fontSize="lg" fontWeight="semibold" w="50%">
           20% off on first 5 rides
         </Text>
-      </Box>
+
+        <Box ml="auto">
+          <Ionicons name="pricetag" size={68} color="lightgreen" />
+        </Box>
+      </HStack>
       <HStack space="6" mt="2">
         <Box
           flex="1"

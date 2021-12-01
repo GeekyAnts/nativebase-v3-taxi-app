@@ -12,8 +12,9 @@ import {
   Text,
   VStack,
 } from "native-base";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { FontAwesome } from "@expo/vector-icons";
+import MapViewDirections from "react-native-maps-directions";
 
 const initialVehicles = [
   {
@@ -39,6 +40,13 @@ const initialVehicles = [
   },
 ];
 
+const coordinates = [
+  { latitude: 22.906263633852848, longitude: 77.6012477730121 },
+  { latitude: 22.910938686053615, longitude: 77.60184408715048 },
+];
+
+const GOOGLE_MAPS_API_KEY = "AIzaSyBkySSVv9v6296KjPic-3F8YzIp9Mv7QQE";
+
 function ChooseTaxi({
   navigation,
 }: {
@@ -61,51 +69,84 @@ function ChooseTaxi({
             latitude: 22.718435,
             longitude: 75.855217,
           }}
-        ></MapView>
+        >
+          <Marker
+            coordinate={{
+              latitude: 22.7092,
+              longitude: 75.854,
+            }}
+          ></Marker>
+          <Marker
+            coordinate={{
+              latitude: 22.7202,
+              longitude: 75.8615,
+            }}
+          ></Marker>
+          <MapViewDirections
+            lineDashPattern={[0]}
+            origin={coordinates[0]}
+            destination={coordinates[1]}
+            apikey={GOOGLE_MAPS_API_KEY}
+            strokeWidth={3}
+            strokeColor="hotpink"
+          />
+        </MapView>
         {/* Draggable */}
       </Box>
       <HStack justifyContent="center" mt="6" mb="2">
-        <Text>20% promotion applied</Text>
+        <Text fontWeight="semibold">20% promotion applied</Text>
       </HStack>
-      <VStack>
-        {vehicles.map((vehicle, idx) => {
-          return (
-            <Pressable onPress={() => setSelectedVehicle(vehicle.name)}>
-              <HStack
-                bg={selectedVehicle === vehicle.name ? "warmGray.200" : "white"}
-                p="2"
-                space="4"
-                alignItems="center"
+      <ScrollView h="100">
+        <VStack>
+          {vehicles.map((vehicle, idx) => {
+            return (
+              <Pressable
+                onPress={() => setSelectedVehicle(vehicle.name)}
+                key={idx}
               >
-                <Image source={vehicle.image} width="70" height="70" />
-                <VStack>
-                  <Text fontWeight="bold">{vehicle.name}</Text>
-                  <Text>{vehicle.timing}</Text>
-                  {vehicle.name === "Moto" ? (
-                    <Text color="darkBlue.500">Good value</Text>
-                  ) : (
-                    <></>
-                  )}
-                </VStack>
-                {/* tilted pencil icon with  ml="auto" */}
-                <VStack ml="auto">
-                  <Text fontSize="md" fontWeight="bold">
-                    ₹ {vehicle.amount}
-                  </Text>
-                  <Text
-                    ml="2"
-                    color="gray.500"
-                    fontWeight="semibold"
-                    strikeThrough
-                  >
-                    ₹ {vehicle.oldAmount}
-                  </Text>
-                </VStack>
-              </HStack>
-            </Pressable>
-          );
-        })}
-      </VStack>
+                <HStack
+                  bg={
+                    selectedVehicle === vehicle.name ? "warmGray.200" : "white"
+                  }
+                  p="2"
+                  space="4"
+                  alignItems="center"
+                >
+                  <Image
+                    source={vehicle.image}
+                    width="70"
+                    height="70"
+                    alt={vehicle.name}
+                  />
+                  <VStack>
+                    <Text fontWeight="bold">{vehicle.name}</Text>
+                    <Text>{vehicle.timing}</Text>
+                    {vehicle.name === "Moto" ? (
+                      <Text color="darkBlue.500">Good value</Text>
+                    ) : (
+                      <></>
+                    )}
+                  </VStack>
+                  {/* tilted pencil icon with  ml="auto" */}
+                  <VStack ml="auto">
+                    <Text fontSize="md" fontWeight="bold">
+                      ₹ {vehicle.amount}
+                    </Text>
+                    <Text
+                      ml="2"
+                      color="gray.500"
+                      fontWeight="semibold"
+                      strikeThrough
+                    >
+                      ₹ {vehicle.oldAmount}
+                    </Text>
+                  </VStack>
+                </HStack>
+              </Pressable>
+            );
+          })}
+        </VStack>
+      </ScrollView>
       <Divider mt="0" />
       <HStack p="4" alignItems="center" space="4">
         {/* card image */}
