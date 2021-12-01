@@ -17,21 +17,21 @@ import { FontAwesome } from "@expo/vector-icons";
 
 const initialVehicles = [
   {
-    name: "Moto",
+    name: "Bike",
     timing: "5:58pm",
     amount: "28.00",
     oldAmount: "35.00",
     image: require("../../assets/Moto.png"),
   },
   {
-    name: "UberGo",
+    name: "Car",
     timing: "6:00pm",
     amount: "171.61",
     oldAmount: "214.51",
     image: require("../../assets/UberGo.png"),
   },
   {
-    name: "UberAuto",
+    name: "TookTook",
     timing: "5:58pm",
     amount: "57.73",
     oldAmount: "72.16",
@@ -77,12 +77,7 @@ function ChooseTaxi({
                 space="4"
                 alignItems="center"
               >
-                <Image
-                  source={{ uri: vehicle.image }}
-                  //   source={{ uri: initialVehicles[0].image }}
-                  width="70"
-                  height="70"
-                />
+                <Image source={vehicle.image} width="70" height="70" />
                 <VStack>
                   <Text fontWeight="bold">{vehicle.name}</Text>
                   <Text>{vehicle.timing}</Text>
