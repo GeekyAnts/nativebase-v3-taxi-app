@@ -12,7 +12,7 @@ import {
   Text,
   VStack,
 } from "native-base";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { FontAwesome } from "@expo/vector-icons";
 import MapViewDirections from "react-native-maps-directions";
 
@@ -41,8 +41,8 @@ const initialVehicles = [
 ];
 
 const coordinates = [
-  { latitude: 22.906263633852848, longitude: 77.6012477730121 },
-  { latitude: 22.910938686053615, longitude: 77.60184408715048 },
+  { latitude: 12.9698, longitude: 77.75 },
+  { latitude: 12.9121, longitude: 77.6446 },
 ];
 
 const GOOGLE_MAPS_API_KEY = "AIzaSyBkySSVv9v6296KjPic-3F8YzIp9Mv7QQE";
@@ -66,8 +66,8 @@ function ChooseTaxi({
           region={{
             latitudeDelta: 0.015,
             longitudeDelta: 0.0121,
-            latitude: 22.718435,
-            longitude: 75.855217,
+            latitude: 12.9698,
+            longitude: 77.75,
           }}
         >
           <Marker
@@ -75,7 +75,11 @@ function ChooseTaxi({
               latitude: 22.7092,
               longitude: 75.854,
             }}
-          ></Marker>
+          >
+            <Callout>
+              <Text>I am here</Text>
+            </Callout>
+          </Marker>
           <Marker
             coordinate={{
               latitude: 22.7202,
@@ -83,7 +87,7 @@ function ChooseTaxi({
             }}
           ></Marker>
           <MapViewDirections
-            lineDashPattern={[0]}
+            // lineDashPattern={[0]}
             origin={coordinates[0]}
             destination={coordinates[1]}
             apikey={GOOGLE_MAPS_API_KEY}

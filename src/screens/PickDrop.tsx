@@ -4,7 +4,6 @@ import {
   Button,
   Center,
   ChevronDownIcon,
-  Circle,
   HStack,
   IconButton,
   Input,
@@ -13,7 +12,11 @@ import {
   VStack,
 } from "native-base";
 import React, { useState } from "react";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, {
+  Marker,
+  PROVIDER_GOOGLE,
+  Circle as MapCircle,
+} from "react-native-maps";
 import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
@@ -44,6 +47,10 @@ function PickDrop({
   const [dropPoints, setDropPoints] = useState(1);
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
+  const [pin, setPin] = useState({
+    latitude: 12.9698,
+    longitude: 77.75,
+  });
 
   return (
     <Box bg="white" flex="1">
@@ -113,20 +120,26 @@ function PickDrop({
           region={{
             latitudeDelta: 0.015,
             longitudeDelta: 0.0121,
-            latitude: 22.718435,
-            longitude: 75.855217,
+            latitude: 12.9698,
+            longitude: 77.75,
           }}
         >
           <Marker
-            coordinate={{
-              latitude: 22.7092,
-              longitude: 75.854,
+            coordinate={pin}
+            pinColor="black"
+            draggable={true}
+            onDragEnd={(e) => {
+              setPin({
+                latitude: e.nativeEvent.coordinate.latitude,
+                longitude: e.nativeEvent.coordinate.longitude,
+              });
             }}
           ></Marker>
+          <MapCircle center={pin} radius={50}></MapCircle>
           <Marker
             coordinate={{
-              latitude: 22.7202,
-              longitude: 75.8615,
+              latitude: 12.9121,
+              longitude: 77.6446,
             }}
           ></Marker>
         </MapView>
