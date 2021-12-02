@@ -49,7 +49,7 @@ function Sidebar({
           <Avatar bg="gray.300">GG</Avatar>
           <VStack>
             <Text fontSize="md" fontWeight="bold" color="white">
-              Gaurab Guha
+              Gaurav Guha
             </Text>
             <Text fontSize="xs" color="trueGray.400">
               5.00

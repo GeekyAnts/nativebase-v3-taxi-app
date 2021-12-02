@@ -55,7 +55,7 @@ function ChooseTaxi({
   const [vehicles, setVehicles] = useState(initialVehicles);
   const [selectedVehicle, setSelectedVehicle] = useState(vehicles[0].name);
   return (
-    <Box bg="white" flex="1">
+    <Box bg="white" flex="1" safeArea pb="2">
       {/* <ScrollView> */}
       <Box h="40%" overflow="hidden">
         <MapView
@@ -154,10 +154,11 @@ function ChooseTaxi({
       <Divider mt="0" />
       <HStack p="4" alignItems="center" space="4">
         {/* card image */}
-        <FontAwesome name="credit-card" size={24} color="black" />
+        {/* <FontAwesome name="credit-card" size={24} color="black" />*/}
         <Text fontSize="md" fontWeight="bold">
-          Add payment method
+          Cash
         </Text>
+
         <ChevronRightIcon size="sm" ml="auto" />
       </HStack>
       <Button bg="black" mx="4">

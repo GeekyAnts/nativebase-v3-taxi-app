@@ -214,8 +214,8 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               region={{
                 latitudeDelta: 0.015,
                 longitudeDelta: 0.0121,
-                latitude: 22.718435,
-                longitude: 75.855217,
+                latitude: 12.9698,
+                longitude: 77.75,
               }}
             ></MapView>
           </Box>
