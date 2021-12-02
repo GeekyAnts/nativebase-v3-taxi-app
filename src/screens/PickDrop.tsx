@@ -53,7 +53,7 @@ function PickDrop({
   });
 
   return (
-    <Box bg="white" flex="1">
+    <Box bg="white" flex="1" safeAreaTop>
       <Box p="4">
         <HStack alignItems="center">
           <Pressable onPress={() => navigation.navigate("home")}>

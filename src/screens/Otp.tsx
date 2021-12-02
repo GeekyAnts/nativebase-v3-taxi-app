@@ -11,9 +11,13 @@ import {
   Text,
   VStack,
 } from "native-base";
-import React from "react";
+import React, { useRef } from "react";
 
 function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
+  const secondInput = useRef();
+  const thirdInput = useRef();
+  const fourthInput = useRef();
+
   return (
     <VStack p="4" bg="white" flex="1" space="4" safeArea>
       <Box>
@@ -29,6 +33,11 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             bg="gray.100"
             maxLength={1}
             textAlign="center"
+            onChange={() => {
+              // @ts-ignore
+              secondInput.current.focus();
+            }}
+            autoFocus
           />
           <Input
             variant="underlined"
@@ -37,6 +46,11 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             bg="gray.100"
             maxLength={1}
             textAlign="center"
+            ref={secondInput}
+            onChange={() => {
+              // @ts-ignore
+              thirdInput.current.focus();
+            }}
           />
           <Input
             variant="underlined"
@@ -45,6 +59,11 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             bg="gray.100"
             maxLength={1}
             textAlign="center"
+            ref={thirdInput}
+            onChange={() => {
+              // @ts-ignore
+              fourthInput.current.focus();
+            }}
           />
           <Input
             variant="underlined"
@@ -53,6 +72,8 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             bg="gray.100"
             maxLength={1}
             textAlign="center"
+            ref={fourthInput}
+            onChange={() => navigation.navigate("home")}
           />
         </HStack>
         <HStack>

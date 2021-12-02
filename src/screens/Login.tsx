@@ -4,11 +4,7 @@ import {
   Box,
   Text,
   HStack,
-  Select,
-  CheckIcon,
   Input,
-  InputLeftAddon,
-  InputGroup,
   VStack,
   Button,
   ArrowForwardIcon,
@@ -110,7 +106,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             </Actionsheet.Content>
           </Actionsheet>
 
-          <InputGroup
+          {/* <InputGroup
             h="39"
             // w={{
             //   base: "70%",
@@ -128,7 +124,22 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               keyboardType="numeric"
               maxLength={10}
             />
-          </InputGroup>
+          </InputGroup> */}
+          <Input
+            w={{
+              base: "80%",
+              md: "100%",
+            }}
+            placeholder="10 Digit number"
+            keyboardType="numeric"
+            maxLength={10}
+            InputLeftElement={
+              <Text px="1">{country === "US" ? "+1" : "+91"}</Text>
+            }
+            _focus={{
+              borderColor: "black",
+            }}
+          />
           {/* <Input flex="1" /> */}
         </HStack>
         <Text fontSize="xs" color="muted.400">
