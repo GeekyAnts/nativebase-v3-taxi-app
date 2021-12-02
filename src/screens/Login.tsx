@@ -12,33 +12,110 @@ import {
   VStack,
   Button,
   ArrowForwardIcon,
+  IconButton,
+  ArrowBackIcon,
+  Image,
+  ChevronDownIcon,
+  Pressable,
+  useDisclose,
+  Actionsheet,
 } from "native-base";
 
 function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const [country, setCountry] = useState("India");
+  const { isOpen, onOpen, onClose } = useDisclose();
   return (
-    <Box p="4" bg="white" flex="1">
+    <Box p="4" bg="white" flex="1" safeArea>
       <VStack space="4">
         <Text fontSize="16" fontWeight="semibold">
           Enter your mobile number
         </Text>
-        <HStack space="2">
-          <Select
+        <HStack space="2" alignItems="center">
+          {/* <Select
             minWidth="100"
             accessibilityLabel="Choose Service"
             placeholder="Choose Service"
             onValueChange={(value) => setCountry(value)}
             h="39"
           >
-            <Select.Item label="India" value="India" />
+            <Select.Item label="India" value="India"></Select.Item>
             <Select.Item label="US" value="US" />
-          </Select>
+          </Select> */}
+          <Pressable
+            height="34"
+            bg="trueGray.100"
+            flexDir="row"
+            // alignItems="center"
+            onPress={onOpen}
+            p="1"
+          >
+            {country === "US" ? (
+              <Image
+                source={require("../../assets/us-flag-rect.png")}
+                key="US"
+                width="34"
+                h="100%"
+                py="1"
+                bg="white"
+              />
+            ) : (
+              <Image
+                source={require("../../assets/india-flag-rect.png")}
+                key="India"
+                width="34"
+                h="100%"
+                py="1"
+                bg="white"
+              />
+            )}
+
+            <ChevronDownIcon size="sm" color="gray.400" />
+          </Pressable>
+          <Actionsheet isOpen={isOpen} onClose={onClose}>
+            <Actionsheet.Content>
+              <Actionsheet.Item
+                onPress={() => {
+                  onClose();
+                  setCountry("India");
+                }}
+              >
+                <HStack space="4" alignItems="center">
+                  <Image
+                    source={require("../../assets/india-flag-rect.png")}
+                    width="34"
+                    h="30"
+                    py="1"
+                    bg="white"
+                  />
+                  <Text fontSize="md">India</Text>
+                </HStack>
+              </Actionsheet.Item>
+              <Actionsheet.Item
+                onPress={() => {
+                  onClose();
+                  setCountry("US");
+                }}
+              >
+                <HStack space="4" alignItems="center">
+                  <Image
+                    source={require("../../assets/us-flag-rect.png")}
+                    width="34"
+                    h="30"
+                    py="1"
+                    bg="white"
+                  />
+                  <Text fontSize="md">US</Text>
+                </HStack>
+              </Actionsheet.Item>
+            </Actionsheet.Content>
+          </Actionsheet>
+
           <InputGroup
             h="39"
-            w={{
-              base: "70%",
-              md: "285",
-            }}
+            // w={{
+            //   base: "70%",
+            //   md: "285",
+            // }}
             color="gray.600"
           >
             <InputLeftAddon children={country === "US" ? "+1" : "+91"} />
@@ -59,11 +136,22 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           data rates may apply
         </Text>
       </VStack>
-      <Box mt="auto" mb="10">
+      <HStack mt="auto" mb="10" justifyContent="space-between">
+        <IconButton
+          icon={<ArrowBackIcon />}
+          bg="gray.200"
+          _pressed={{ bg: "gray.300" }}
+          rounded="full"
+          onPress={() => navigation.navigate("welcome")}
+        ></IconButton>
         <Button
-          bg="gray.800"
-          _pressed={{ bg: "gray.900" }}
-          ml="auto"
+          // bg="gray.800"
+          // _pressed={{ bg: "gray.900" }}
+          bg="black"
+          _pressed={{
+            bg: "trueGray.800",
+          }}
+          // ml="auto"
           size="md"
           rounded="full"
           px="4"
@@ -74,7 +162,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         >
           Next
         </Button>
-      </Box>
+      </HStack>
     </Box>
   );
 }

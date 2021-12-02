@@ -15,7 +15,7 @@ import React from "react";
 
 function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   return (
-    <VStack p="4" bg="white" flex="1" space="4">
+    <VStack p="4" bg="white" flex="1" space="4" safeArea>
       <Box>
         <Text fontSize="md" fontWeight="bold">
           Enter the 4 digit code sent to your mobile number
@@ -74,8 +74,12 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           onPress={() => navigation.navigate("Login")}
         ></IconButton>
         <Button
-          bg="gray.200"
-          _pressed={{ bg: "gray.300" }}
+          // bg="gray.800"
+          // _pressed={{ bg: "gray.900" }}
+          bg="black"
+          _pressed={{
+            bg: "trueGray.800",
+          }}
           rounded="full"
           px="4"
           _text={{ fontSize: "14" }}

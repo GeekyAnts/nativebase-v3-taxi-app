@@ -10,7 +10,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <NativeBaseProvider theme={TaxiTheme}>
-        <Box safeArea flex={1}>
+        <Box flex={1}>
           <Navigator />
         </Box>
       </NativeBaseProvider>
