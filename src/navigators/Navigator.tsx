@@ -7,6 +7,7 @@ import Home from "../screens/Home";
 import PickDrop from "../screens/PickDrop";
 import ChooseTaxi from "../screens/ChooseTaxi";
 import Welcome from "../screens/Welcome";
+import EnRoute from "../screens/EnRoute";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,8 +21,9 @@ function Navigator() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="OTP" component={Otp} />
       <Stack.Screen name="home" component={Home} />
-      <Stack.Screen name="pickup" component={PickDrop} />
+      <Stack.Screen name="pickDrop" component={PickDrop} />
       <Stack.Screen name="chooseTaxi" component={ChooseTaxi} />
+      <Stack.Screen name="enroute" component={EnRoute} />
     </Stack.Navigator>
   );
 }
