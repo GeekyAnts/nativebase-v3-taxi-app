@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
+  ArrowBackIcon,
   Box,
   Button,
   ChevronRightIcon,
@@ -56,6 +57,15 @@ function ChooseTaxi({
   const [selectedVehicle, setSelectedVehicle] = useState(vehicles[0].name);
   return (
     <Box bg="white" flex="1" safeArea pb="2">
+      <Pressable
+        onPress={() => navigation.navigate("pickDrop")}
+        position="absolute"
+        top="16"
+        left="1"
+        zIndex="1"
+      >
+        <ArrowBackIcon size="8" color="black" />
+      </Pressable>
       {/* <ScrollView> */}
       <Box h="40%" overflow="hidden">
         <MapView
@@ -161,7 +171,12 @@ function ChooseTaxi({
 
         <ChevronRightIcon size="sm" ml="auto" />
       </HStack>
-      <Button bg="black" mx="4">
+      <Button
+        bg="black"
+        mx="4"
+        onPress={() => navigation.navigate("enroute")}
+        _pressed={{ bg: "gray.700" }}
+      >
         <Text color="white" fontSize="lg">
           Confirm {selectedVehicle}
         </Text>

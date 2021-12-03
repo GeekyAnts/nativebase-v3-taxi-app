@@ -57,9 +57,9 @@ function Sidebar({
           </VStack>
         </HStack>
         <Pressable
-          _pressed={{
-            bg: "warmGray.300",
-          }}
+          // _pressed={{
+          //   bg: "gray.900",
+          // }}
           flexDir="row"
           justifyContent="space-between"
         >
