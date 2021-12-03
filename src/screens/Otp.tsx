@@ -14,9 +14,9 @@ import {
 import React, { useRef } from "react";
 
 function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
-  const secondInput = useRef();
-  const thirdInput = useRef();
-  const fourthInput = useRef();
+  const secondInput = useRef<HTMLDivElement>(null);
+  const thirdInput = useRef<HTMLDivElement>();
+  const fourthInput = useRef<HTMLDivElement>();
 
   return (
     <VStack p="4" bg="white" flex="1" space="4" safeArea>
@@ -34,8 +34,7 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             maxLength={1}
             textAlign="center"
             onChange={() => {
-              // @ts-ignore
-              secondInput.current.focus();
+              secondInput.current?.focus();
             }}
             autoFocus
           />
@@ -48,8 +47,7 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             textAlign="center"
             ref={secondInput}
             onChange={() => {
-              // @ts-ignore
-              thirdInput.current.focus();
+              thirdInput.current?.focus();
             }}
           />
           <Input
@@ -61,8 +59,7 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             textAlign="center"
             ref={thirdInput}
             onChange={() => {
-              // @ts-ignore
-              fourthInput.current.focus();
+              fourthInput.current?.focus();
             }}
           />
           <Input
