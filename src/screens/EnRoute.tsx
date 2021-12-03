@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Box, Button, HStack, Text } from "native-base";
+import { Box, Button, HStack, Modal, Text, VStack } from "native-base";
 import MapView, {
   Marker,
   Circle as MapCircle,
@@ -20,6 +20,7 @@ function EnRoute({
 }: {
   navigation: NativeStackNavigationProp<any>;
 }) {
+  const [showModal, setShowModal] = useState(false);
   return (
     <Box bg="white" flex="1" safeArea>
       <Box borderWidth="1" borderColor="warmGray.300" p="4" shadow="8">
@@ -50,14 +51,15 @@ function EnRoute({
           strokeColor="hotpink"
         />
       </MapView>
-      <Box my="2" p="4">
-        <Box width="100%" mb="6">
+      <VStack my="2" p="4" space="4">
+        <Box width="100%">
           <HStack justifyContent="space-between">
             <Text fontSize="md">Driver's name</Text>
 
             <Rating number={4} />
           </HStack>
         </Box>
+        <Text>Arriving in 5 min</Text>
         <HStack space="2">
           <Button bg="black" flex="1" _pressed={{ bg: "gray.700" }}>
             Contact
@@ -66,12 +68,45 @@ function EnRoute({
             bg="black"
             _pressed={{ bg: "gray.700" }}
             flex="1"
-            onPress={() => navigation.navigate("chooseTaxi")}
+            onPress={() => setShowModal(true)}
           >
             Cancel
           </Button>
         </HStack>
-      </Box>
+      </VStack>
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
+        <Modal.Content maxWidth="350">
+          {/* <Modal.CloseButton /> */}
+          <Modal.Header>Cancel Ride</Modal.Header>
+          <Modal.Body>
+            <Text>Are you sure, you want to cancel the ride?</Text>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              bg="black"
+              _pressed={{ bg: "gray.700" }}
+              flex="1"
+              onPress={() => {
+                setShowModal(false);
+              }}
+              mr="4"
+            >
+              No
+            </Button>
+            <Button
+              //   colorScheme="red"
+              bg="danger.600"
+              _pressed={{ bg: "danger.700" }}
+              flex="1"
+              onPress={() => {
+                navigation.navigate("chooseTaxi");
+              }}
+            >
+              Yes
+            </Button>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
     </Box>
   );
 }
