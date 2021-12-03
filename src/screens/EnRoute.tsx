@@ -51,7 +51,7 @@ function EnRoute({
         />
       </MapView>
       <Box my="2" p="4">
-        <Box width="100%" h="100">
+        <Box width="100%" mb="6">
           <HStack justifyContent="space-between">
             <Text fontSize="md">Driver's name</Text>
 

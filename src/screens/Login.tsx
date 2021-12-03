@@ -48,18 +48,20 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             {country === "US" ? (
               <Image
                 source={require("../../assets/us-flag-rect.png")}
+                alt="indian flag"
                 key="US"
                 width="34"
-                h="100%"
+                h="25"
                 py="1"
                 bg="white"
               />
             ) : (
               <Image
                 source={require("../../assets/india-flag-rect.png")}
+                alt="us flag"
                 key="India"
                 width="34"
-                h="100%"
+                h="25"
                 py="1"
                 bg="white"
               />
@@ -78,8 +80,9 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 <HStack space="4" alignItems="center">
                   <Image
                     source={require("../../assets/india-flag-rect.png")}
+                    alt="indian flag"
                     width="34"
-                    h="30"
+                    h="25"
                     py="1"
                     bg="white"
                   />
@@ -95,8 +98,9 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 <HStack space="4" alignItems="center">
                   <Image
                     source={require("../../assets/us-flag-rect.png")}
+                    alt="us flag"
                     width="34"
-                    h="30"
+                    h="25"
                     py="1"
                     bg="white"
                   />
@@ -156,11 +160,9 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           onPress={() => navigation.navigate("welcome")}
         ></IconButton>
         <Button
-          // bg="gray.800"
-          // _pressed={{ bg: "gray.900" }}
           bg="black"
           _pressed={{
-            bg: "trueGray.800",
+            bg: "trueGray.700",
           }}
           // ml="auto"
           size="md"
