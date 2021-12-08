@@ -40,12 +40,11 @@ function Sidebar({
     <Box>
       <VStack
         bg="black"
-        p="4"
-        space="8"
+        space="4"
         pt="16"
-        // divider={<Divider thickness="0.2" />}
+        divider={<Divider thickness="0.2" />}
       >
-        <HStack alignItems="center" space="3">
+        <HStack alignItems="center" space="3" px="4">
           <Avatar bg="gray.300">GG</Avatar>
           <VStack>
             <Text fontSize="md" fontWeight="bold" color="white">
@@ -56,7 +55,13 @@ function Sidebar({
             </Text>
           </VStack>
         </HStack>
-        <Pressable flexDir="row" justifyContent="space-between">
+        <Pressable
+          px="4"
+          pb="5"
+          pt="1"
+          flexDir="row"
+          justifyContent="space-between"
+        >
           <Text color="warmGray.100" fontSize="md">
             Messages
           </Text>

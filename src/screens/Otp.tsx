@@ -11,22 +11,30 @@ import {
   Text,
   VStack,
 } from "native-base";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
+  const firstInput = useRef<HTMLDivElement>(null);
   const secondInput = useRef<HTMLDivElement>(null);
   const thirdInput = useRef<HTMLDivElement>();
+  const [filled, setFilled] = useState(true);
   const fourthInput = useRef<HTMLDivElement>();
+
+  useEffect(() => {
+    firstInput.current?.focus();
+  }, []);
 
   return (
     <VStack p="4" bg="white" flex="1" space="4" safeArea>
       <Box>
-        <Text fontSize="md" fontWeight="bold">
+        <Text fontSize="md">
           Enter the 4 digit code sent to your mobile number
           {/* {Number should be present dynamically} */}
         </Text>
         <HStack my="4" space="3">
           <Input
+            fontSize="sm"
+            keyboardType="numeric"
             variant="underlined"
             width="10"
             h="10"
@@ -36,9 +44,11 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             onChange={() => {
               secondInput.current?.focus();
             }}
-            autoFocus
+            ref={firstInput}
           />
           <Input
+            fontSize="sm"
+            keyboardType="numeric"
             variant="underlined"
             width="10"
             h="10"
@@ -51,6 +61,8 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             }}
           />
           <Input
+            fontSize="sm"
+            keyboardType="numeric"
             variant="underlined"
             width="10"
             h="10"
@@ -63,6 +75,8 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             }}
           />
           <Input
+            fontSize="sm"
+            keyboardType="numeric"
             variant="underlined"
             width="10"
             h="10"
@@ -70,10 +84,13 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             maxLength={1}
             textAlign="center"
             ref={fourthInput}
-            onChange={() => navigation.navigate("home")}
+            onChange={() => {
+              setFilled(false);
+              navigation.navigate("home");
+            }}
           />
         </HStack>
-        <HStack>
+        <HStack my="2">
           <Badge rounded="xl">I haven't received a code (0:07)</Badge>
         </HStack>
       </Box>
@@ -85,7 +102,7 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         mb="6"
       >
         <IconButton
-          icon={<ArrowBackIcon />}
+          icon={<ArrowBackIcon size="sm" />}
           bg="gray.200"
           _pressed={{ bg: "gray.300" }}
           rounded="full"
@@ -94,6 +111,7 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         <Button
           // bg="gray.800"
           // _pressed={{ bg: "gray.900" }}
+          isDisabled={filled}
           bg="black"
           _pressed={{
             bg: "trueGray.800",

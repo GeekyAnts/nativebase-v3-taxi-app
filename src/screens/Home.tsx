@@ -20,42 +20,24 @@ import {
   VStack,
 } from "native-base";
 
-import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, Ionicons, Feather } from "@expo/vector-icons";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import UberGo from "../../assets/UberGo.png";
 import UberPremier from "../../assets/Uber_premier.png";
+import Moto from "../../assets/Moto.png";
 import Sidebar from "../components/Sidebar";
+import { useWindowDimensions } from "react-native";
+import ContentWithSlide from "../components/ContentWithSlide";
 
 function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const { isOpen, onOpen, onClose } = useDisclose();
   const [isSlideOpen, setSlideOpen] = useState(false);
+  const { height, width } = useWindowDimensions();
 
   return (
-    <Box
-      // p="4" space="4"
-      bg="white"
-      flex="1"
-      safeAreaTop
-    >
-      <Slide
-        in={isSlideOpen}
-        placement="left"
-        zIndex="990"
-        // mt="16"
-        bg="white"
-        minW="300"
-        height="100%"
-        duration={300}
-        // position="absolute"
-        // top="0"
-        // bottom="-10"
-        // flex="1"
-      >
-        <Sidebar navigation={navigation} />
-      </Slide>
-
-      <Pressable onPress={() => setSlideOpen(false)} zIndex="-1">
+    <Box bg="white" flex="1" width="100%" safeAreaTop>
+      <Pressable onPress={() => setSlideOpen(false)}>
         <VStack
           space="4"
           p="4"
@@ -68,7 +50,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           </HStack>
           <HStack
             bg="slateGreen.100"
-            rounded="lg"
+            rounded="xl"
             p="4"
             alignItems="center"
             // justifyContent="space-between"
@@ -80,16 +62,9 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               <Ionicons name="pricetag" size={68} color="lightgreen" />
             </Box>
           </HStack>
-          <HStack space="6" mt="2">
-            <Box
-              flex="1"
-              bg="trueGray.200"
-              rounded="lg"
-              // h="100"
-              p="2"
-              position="relative"
-            >
-              <Badge
+          <HStack mt="2">
+            <VStack flex="1" p="2" position="relative" space="2">
+              {/* <Badge
                 rounded="full"
                 bg="green.600"
                 _text={{ color: "white", fontSize: "sm" }}
@@ -100,42 +75,54 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 right="30%"
               >
                 20% off
-              </Badge>
-              <Image
-                source={UberGo}
-                alt="Alternate Text"
-                // size="md"
-                width="20"
-                height="20"
-                ml="auto"
-              />
-              <Text fontWeight="semibold" fontSize="md" mt="auto">
+              </Badge> */}
+              <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                <Image
+                  source={UberGo}
+                  alt="Alternate Text"
+                  // size="md"
+                  width="20"
+                  height="20"
+                />
+              </Box>
+              <Text fontWeight="semibold" fontSize="md" textAlign="center">
                 Rentals
               </Text>
-            </Box>
-            <Box
-              flex="1"
-              bg="trueGray.200"
-              rounded="lg"
-              p="2"
-              // h="100"
-            >
-              <Image
-                source={UberPremier}
-                alt="Alternate Text"
-                // size="md"
-                width="20"
-                height="20"
-                ml="auto"
-              />
-              <Text fontWeight="semibold" fontSize="md" mt="auto">
+            </VStack>
+
+            <VStack flex="1" p="2" space="2">
+              <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                <Image
+                  source={UberPremier}
+                  alt="Alternate Text"
+                  // size="md"
+                  width="20"
+                  height="20"
+                />
+              </Box>
+              <Text fontWeight="semibold" fontSize="md" textAlign="center">
                 Intercity
               </Text>
-            </Box>
+            </VStack>
+            <VStack flex="1" p="2" space="2">
+              <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                <Image
+                  source={Moto}
+                  alt="Alternate Text"
+                  // size="md"
+                  width="20"
+                  height="20"
+                />
+                {/* <Feather name="Moto" size={60} color="black" /> */}
+              </Box>
+              <Text fontWeight="semibold" fontSize="md" textAlign="center">
+                Moped
+              </Text>
+            </VStack>
           </HStack>
           <HStack bg="trueGray.200" p="2" alignItems="center">
-            <Pressable onPress={() => navigation.navigate("pickup")} flex="1">
-              <Text fontWeight="semibold" fontSize="xl">
+            <Pressable onPress={() => navigation.navigate("pickDrop")} flex="1">
+              <Text fontSize="xl" pl="2">
                 Where to?
               </Text>
             </Pressable>
@@ -164,7 +151,9 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             <Actionsheet isOpen={isOpen} onClose={onClose}>
               <Actionsheet.Content>
                 <Box w="100%" px={4} alignItems="center">
-                  <Heading p="4">Schedule a Ride</Heading>
+                  <Heading p="4" fontWeight="normal">
+                    Schedule a Ride
+                  </Heading>
                 </Box>
                 <Divider thickness="2" />
                 <Actionsheet.Item justifyContent="center">
@@ -174,7 +163,8 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 <Actionsheet.Item justifyContent="center">
                   11:05am - 11:15 am
                 </Actionsheet.Item>
-                <Box w="100%" px={4}>
+                <Divider />
+                <Box w="100%" px={4} mt="2">
                   <Button
                     // colorScheme="black"
                     // variant="unstyled"
@@ -202,10 +192,10 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               <ChevronRightIcon ml="auto" size="sm" color="gray.400" />
             </Pressable>
           </HStack>
-          <Heading my="4" size="md">
+          <Heading my="4" size="md" fontWeight="semibold">
             Around you
           </Heading>
-          <Box h="200" rounded="lg" overflow="hidden">
+          <Box h="200" w="100%" rounded="lg" overflow="hidden">
             <MapView
               style={{
                 flex: 1,
@@ -221,6 +211,19 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           </Box>
         </VStack>
       </Pressable>
+      <Slide in={isSlideOpen} placement="left" w={width} h="100">
+        <HStack w="100%" h="100%">
+          <Box w={{ base: "80%", lg: "25%" }} bg="white">
+            <Sidebar navigation={navigation} />
+          </Box>
+          <Pressable
+            w={{ base: "20%", lg: "75%" }}
+            onPress={() => setSlideOpen(false)}
+            opacity="0.5"
+            bg="black"
+          ></Pressable>
+        </HStack>
+      </Slide>
     </Box>
   );
 }

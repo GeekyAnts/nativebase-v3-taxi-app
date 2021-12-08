@@ -19,6 +19,8 @@ import MapView, {
 } from "react-native-maps";
 import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Platform } from "react-native";
+import WebPickDrop from "../components/WebPickDrop";
 
 const CirclePoint = () => {
   return (
@@ -35,6 +37,8 @@ const InputPoint = () => {
       _focus={{
         bg: "muted.200",
       }}
+      variant="unstyled"
+      placeholder="Enter stop"
     />
   );
 };
@@ -65,7 +69,7 @@ function PickDrop({
               size={24}
               color="gray"
             />
-            <Text>For me</Text>
+            <Text>For Me</Text>
             <ChevronDownIcon size="sm" />
           </HStack>
         </HStack>
@@ -82,7 +86,9 @@ function PickDrop({
           <VStack space="2" flex="1">
             <Input
               isRequired
+              variant="unstyled"
               placeholder="From?"
+              bg="muted.100"
               _focus={{
                 bg: "muted.200",
               }}
@@ -90,6 +96,8 @@ function PickDrop({
               onChange={(event: any) => setOrigin(event.target.value)}
             />
             <Input
+              variant="unstyled"
+              bg="muted.100"
               placeholder={dropPoints === 1 ? "Where to?" : ""}
               _focus={{
                 bg: "muted.200",
@@ -111,51 +119,20 @@ function PickDrop({
         </HStack>
       </Box>
 
-      <Box flex="1" position="relative">
-        <MapView
-          style={{
-            flex: 1,
-          }}
-          provider={PROVIDER_GOOGLE}
-          region={{
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-            latitude: 12.9698,
-            longitude: 77.75,
-          }}
-        >
-          <Marker
-            coordinate={pin}
-            pinColor="black"
-            draggable={true}
-            onDragEnd={(e) => {
-              setPin({
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude,
-              });
-            }}
-          ></Marker>
-          <MapCircle center={pin} radius={50}></MapCircle>
-          <Marker
-            coordinate={{
-              latitude: 12.9121,
-              longitude: 77.6446,
-            }}
-          ></Marker>
-        </MapView>
+      <Box flex="1" position="relative" shadow="5">
+        <ResponsiveMap />
+
         <Button
           onPress={() => navigation.navigate("chooseTaxi")}
-          // onPress={() => {
-          //   console.log(origin);
-          //   console.log(destination);
-          // }}
           bg="black"
           _pressed={{ bg: "gray.800" }}
           position="absolute"
           bottom="10"
           left="5%"
           right="5%"
-          isDisabled={origin == "" || destination == "" ? true : false}
+          display={origin == "" || destination == "" ? "none" : "flex"}
+          _text={{ fontSize: "md" }}
+          py="3"
         >
           Done
         </Button>
@@ -163,5 +140,54 @@ function PickDrop({
     </Box>
   );
 }
+
+const ResponsiveMap = Platform.select({
+  native: () => {
+    const [pin, setPin] = useState({
+      latitude: 12.9698,
+      longitude: 77.75,
+    });
+    return (
+      <MapView
+        style={{
+          flex: 1,
+        }}
+        provider={PROVIDER_GOOGLE}
+        region={{
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+          latitude: 12.9698,
+          longitude: 77.75,
+        }}
+      >
+        <Marker
+          coordinate={pin}
+          pinColor="black"
+          draggable={true}
+          onDragEnd={(e) => {
+            setPin({
+              latitude: e.nativeEvent.coordinate.latitude,
+              longitude: e.nativeEvent.coordinate.longitude,
+            });
+          }}
+        ></Marker>
+        <MapCircle center={pin} radius={50}></MapCircle>
+        <Marker
+          coordinate={{
+            latitude: 12.9121,
+            longitude: 77.6446,
+          }}
+        ></Marker>
+      </MapView>
+    );
+  },
+  default: () => {
+    return (
+      <Box w="100%">
+        <WebPickDrop />
+      </Box>
+    );
+  },
+});
 
 export default PickDrop;

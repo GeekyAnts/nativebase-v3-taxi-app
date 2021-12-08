@@ -19,28 +19,23 @@ function Welcome({
 }) {
   return (
     <Box flex="1" bg="darkBlue.500">
-      <VStack alignItems="center" mt="48" space="10">
-        <Text
-          fontSize="4xl"
-          //   fontWeight="semibold"
-          color="white"
-          // textAlign="center"
-        >
-          My Taxi
-        </Text>
+      <VStack alignItems="center" mt="48">
         <Image
-          source={require("../../assets/logo.jpeg")}
-          width="200"
+          source={require("../../assets/taxi.png")}
+          alt="logo"
+          width="700"
           h="200"
-          rounded="lg"
         />
+        <Text fontSize="4xl" fontWeight="extrabold" color="white">
+          MY TAXI
+        </Text>
         <Text
-          fontSize="4xl"
-          fontWeight="semibold"
+          fontSize="2xl"
+          // fontWeight="semibold"
           color="white"
           // textAlign="center"
         >
-          Move safely
+          MOVE SAFELY
         </Text>
       </VStack>
       <Box mt="auto" mb="10" alignItems="center">
@@ -51,7 +46,7 @@ function Welcome({
           }}
           flexDir="row"
           width="80%"
-          p="2"
+          p="3"
           alignItems="center"
           rounded="sm"
           onPress={() => navigation.navigate("Login")}
