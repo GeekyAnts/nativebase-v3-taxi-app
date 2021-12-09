@@ -21,7 +21,15 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const [country, setCountry] = useState("India");
   const { isOpen, onOpen, onClose } = useDisclose();
   return (
-    <Box p="4" bg="white" flex="1" safeArea>
+    <Box
+      p="4"
+      bg="white"
+      flex="1"
+      safeArea
+      maxW="768"
+      w="100%"
+      alignSelf="center"
+    >
       <VStack space="4">
         <Text fontSize="md">Enter your mobile number</Text>
         <HStack space="1" alignItems="center">
@@ -71,7 +79,14 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
 
             <ChevronDownIcon size="sm" color="gray.400" />
           </Pressable>
-          <Actionsheet isOpen={isOpen} onClose={onClose}>
+          <Actionsheet
+            isOpen={isOpen}
+            onClose={onClose}
+            hideDragIndicator
+            nativeID="qwer"
+            maxW="768"
+            alignSelf="center"
+          >
             <Actionsheet.Content>
               <Actionsheet.Item
                 onPress={() => {
@@ -141,10 +156,10 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         ></IconButton>
         <Button
           bg="black"
+          colorScheme="trueGray"
           _pressed={{
             bg: "trueGray.700",
           }}
-          // ml="auto"
           size="md"
           rounded="full"
           px="4"
