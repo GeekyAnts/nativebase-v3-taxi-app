@@ -19,7 +19,7 @@ import { FontAwesome } from "@expo/vector-icons";
 const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
 const MAP_SCRIPT_WITH_API_KEY = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
 
-export default function WebChooseTaxi() {
+export default function WebEnRoute() {
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapContainerRef = useRef<HTMLElement>(null);
 
@@ -188,7 +188,7 @@ export default function WebChooseTaxi() {
           flex="1"
           space={{ base: "4", md: "0" }}
           px={{ base: "0", md: "10", lg: "0" }}
-          pb={{ base: "4", md: "8" }}
+          // pb={{ base: "4", md: "8" }}
           rounded={{ md: "lg" }}
           borderWidth={{ base: "0", md: "1" }}
           _light={{

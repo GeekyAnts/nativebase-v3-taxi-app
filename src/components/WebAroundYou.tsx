@@ -16,7 +16,7 @@ import {
 
 import { FontAwesome } from "@expo/vector-icons";
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyBkySSVv9v6296KjPic-3F8YzIp9Mv7QQE";
+const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
 const MAP_SCRIPT_WITH_API_KEY = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
 
 export default function WebAroundYou() {

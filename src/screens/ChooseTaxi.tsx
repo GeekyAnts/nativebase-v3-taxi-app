@@ -48,7 +48,7 @@ const coordinates = [
   { latitude: 12.9121, longitude: 77.6446 },
 ];
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyBkySSVv9v6296KjPic-3F8YzIp9Mv7QQE";
+const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
 
 function ChooseTaxi({
   navigation,
