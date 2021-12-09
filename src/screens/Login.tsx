@@ -15,6 +15,7 @@ import {
   Pressable,
   useDisclose,
   Actionsheet,
+  Menu,
 } from "native-base";
 
 function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
@@ -32,18 +33,8 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
     >
       <VStack space="4">
         <Text fontSize="md">Enter your mobile number</Text>
-        <HStack space="1" alignItems="center">
-          {/* <Select
-            minWidth="100"
-            accessibilityLabel="Choose Service"
-            placeholder="Choose Service"
-            onValueChange={(value) => setCountry(value)}
-            h="39"
-          >
-            <Select.Item label="India" value="India"></Select.Item>
-            <Select.Item label="US" value="US" />
-          </Select> */}
-          <Pressable
+        <HStack space="3" alignItems="center">
+          {/* <Pressable
             height="34"
             width="77"
             bg="trueGray.100"
@@ -125,7 +116,91 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 </HStack>
               </Actionsheet.Item>
             </Actionsheet.Content>
-          </Actionsheet>
+          </Actionsheet> */}
+
+          {/* =========================================== */}
+          <Menu
+            w="190"
+            trigger={(triggerProps) => {
+              return (
+                <Pressable
+                  height="37"
+                  width="77"
+                  bg="trueGray.100"
+                  alignItems="center"
+                  justifyContent="center"
+                  py="1"
+                  pl="2"
+                  pr="1"
+                  accessibilityLabel="More options menu"
+                  flexDir="row"
+                  {...triggerProps}
+                >
+                  {country === "US" ? (
+                    <Image
+                      source={require("../../assets/us-flag-rect.png")}
+                      alt="US flag"
+                      key="US"
+                      width="33"
+                      h="21"
+                      bg="white"
+                      mr="1"
+                    />
+                  ) : (
+                    <Image
+                      source={require("../../assets/india-flag.png")}
+                      alt="indian flag"
+                      key="India"
+                      width="30"
+                      h="21"
+                      bg="white"
+                      mr="1"
+                    />
+                  )}
+
+                  <ChevronDownIcon size="sm" color="gray.400" />
+                </Pressable>
+              );
+            }}
+          >
+            <Menu.Item
+              onPress={() => {
+                onClose();
+                setCountry("India");
+              }}
+            >
+              <HStack space="4" alignItems="center">
+                <Image
+                  source={require("../../assets/india-flag.png")}
+                  alt="indian flag"
+                  width="33"
+                  h="21"
+                  p="1"
+                  bg="white"
+                />
+                <Text fontSize="md">India</Text>
+              </HStack>
+            </Menu.Item>
+            <Menu.Item
+              onPress={() => {
+                onClose();
+                setCountry("US");
+              }}
+            >
+              <HStack space="4" alignItems="center">
+                <Image
+                  source={require("../../assets/us-flag-rect.png")}
+                  alt="us flag"
+                  width="33"
+                  h="21"
+                  p="1"
+                  bg="white"
+                />
+                <Text fontSize="md">US</Text>
+              </HStack>
+            </Menu.Item>
+          </Menu>
+          {/* =========================================== */}
 
           <Input
             flex="1"
