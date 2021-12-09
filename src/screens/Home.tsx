@@ -62,20 +62,8 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               <Ionicons name="pricetag" size={68} color="lightgreen" />
             </Box>
           </HStack>
-          <HStack mt="2">
-            <VStack flex="1" p="2" position="relative" space="2">
-              {/* <Badge
-                rounded="full"
-                bg="green.600"
-                _text={{ color: "white", fontSize: "sm" }}
-                mx="auto"
-                position="absolute"
-                top="-10"
-                left="30%"
-                right="30%"
-              >
-                20% off
-              </Badge> */}
+          <HStack mt="2" space="3">
+            <VStack flex="1" position="relative" space="2">
               <Box bg="trueGray.200" alignItems="center" rounded="lg">
                 <Image
                   source={UberGo}
@@ -90,7 +78,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               </Text>
             </VStack>
 
-            <VStack flex="1" p="2" space="2">
+            <VStack flex="1" space="2">
               <Box bg="trueGray.200" alignItems="center" rounded="lg">
                 <Image
                   source={UberPremier}
@@ -104,7 +92,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 Intercity
               </Text>
             </VStack>
-            <VStack flex="1" p="2" space="2">
+            <VStack flex="1" space="2">
               <Box bg="trueGray.200" alignItems="center" rounded="lg">
                 <Image
                   source={Moto}
@@ -164,7 +152,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   11:05am - 11:15 am
                 </Actionsheet.Item>
                 <Divider />
-                <Box w="100%" px={4} mt="2">
+                <Box w="100%" px={4} mt="5">
                   <Button
                     // colorScheme="black"
                     // variant="unstyled"

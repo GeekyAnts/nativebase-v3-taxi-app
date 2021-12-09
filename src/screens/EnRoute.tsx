@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Box, Button, HStack, Modal, Text, VStack } from "native-base";
+import {
+  Box,
+  Button,
+  Divider,
+  HStack,
+  Icon,
+  Modal,
+  Pressable,
+  Text,
+  VStack,
+} from "native-base";
 import MapView, {
   Marker,
   Circle as MapCircle,
   PROVIDER_GOOGLE,
 } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 
 const coordinates = [
   { latitude: 12.9698, longitude: 77.75 },
@@ -76,33 +86,55 @@ function EnRoute({
       </VStack>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">
-          {/* <Modal.CloseButton /> */}
           <Modal.Header>Cancel Ride</Modal.Header>
           <Modal.Body>
-            <Text>Are you sure, you want to cancel the ride?</Text>
+            <VStack divider={<Divider />} space="2">
+              <Text color="gray.600">
+                Are you sure, you want to cancel the ride?
+              </Text>
+
+              <HStack alignItems="center" space="1">
+                <Icon
+                  as={Ionicons}
+                  name="location-outline"
+                  color="gray.600"
+                  size="sm"
+                />
+                <Text>Wrong pickup location?</Text>
+                <Pressable ml="auto">
+                  <Text color="blue.500" fontSize="xs">
+                    EDIT PICKUP
+                  </Text>
+                </Pressable>
+              </HStack>
+            </VStack>
           </Modal.Body>
           <Modal.Footer>
             <Button
-              bg="black"
-              _pressed={{ bg: "gray.700" }}
+              // bg="black"
+              // _pressed={{ bg: "gray.700" }}
+              colorScheme="gray"
+              variant="outline"
               flex="1"
               onPress={() => {
                 setShowModal(false);
               }}
               mr="4"
             >
-              No
+              NO
             </Button>
             <Button
               //   colorScheme="red"
-              bg="danger.600"
-              _pressed={{ bg: "danger.700" }}
+              // bg="danger.600"
+              // _pressed={{ bg: "danger.700" }}
+              bg="black"
+              _pressed={{ bg: "gray.700" }}
               flex="1"
               onPress={() => {
                 navigation.navigate("chooseTaxi");
               }}
             >
-              Yes
+              YES, CANCEL
             </Button>
           </Modal.Footer>
         </Modal.Content>

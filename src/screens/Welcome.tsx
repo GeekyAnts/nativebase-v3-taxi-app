@@ -11,6 +11,7 @@ import {
   VStack,
 } from "native-base";
 import React from "react";
+const logo = require("../../assets/taxi.png");
 
 function Welcome({
   navigation,
@@ -19,18 +20,20 @@ function Welcome({
 }) {
   return (
     <Box flex="1" bg="darkBlue.500">
-      <VStack alignItems="center" mt="48">
+      <VStack alignItems="center" flex="1" justifyContent="center">
         <Image
-          source={require("../../assets/taxi.png")}
+          // source={logo}
+          source={logo}
           alt="logo"
-          width="700"
-          h="200"
+          // size="sm"
+          width="155"
+          h="62"
         />
-        <Text fontSize="4xl" fontWeight="extrabold" color="white">
+        <Text fontSize="3xl" fontWeight="extrabold" color="white">
           MY TAXI
         </Text>
         <Text
-          fontSize="2xl"
+          fontSize="xl"
           // fontWeight="semibold"
           color="white"
           // textAlign="center"
@@ -38,14 +41,14 @@ function Welcome({
           MOVE SAFELY
         </Text>
       </VStack>
-      <Box mt="auto" mb="10" alignItems="center">
+      <Box mb="10" alignItems="center">
         <Pressable
           bg="black"
           _pressed={{
             bg: "trueGray.800",
           }}
           flexDir="row"
-          width="80%"
+          width="90%"
           p="3"
           alignItems="center"
           rounded="sm"
