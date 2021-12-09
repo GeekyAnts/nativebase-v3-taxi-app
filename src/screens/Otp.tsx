@@ -25,7 +25,16 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   }, []);
 
   return (
-    <VStack p="4" bg="white" flex="1" space="4" safeArea>
+    <VStack
+      p="4"
+      bg="white"
+      flex="1"
+      space="4"
+      safeArea
+      maxW="768"
+      w="100%"
+      alignSelf="center"
+    >
       <Box>
         <Text fontSize="md">
           Enter the 4 digit code sent to your mobile number
@@ -111,10 +120,11 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         <Button
           // bg="gray.800"
           // _pressed={{ bg: "gray.900" }}
+          colorScheme="trueGray"
           isDisabled={filled}
           bg="black"
           _pressed={{
-            bg: "trueGray.800",
+            bg: "trueGray.700",
           }}
           rounded="full"
           px="4"
