@@ -24,7 +24,8 @@ import { AntDesign, FontAwesome, Ionicons, Feather } from "@expo/vector-icons";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Sidebar from "../components/Sidebar";
-import { useWindowDimensions } from "react-native";
+import { Platform, useWindowDimensions } from "react-native";
+import WebAroundYou from "../components/WebAroundYou";
 
 const UberGo = require("../../assets/UberGo.png");
 const UberPremier = require("../../assets/Uber_premier.png");
@@ -37,183 +38,211 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
 
   return (
     <Box bg="white" flex="1" width="100%" safeAreaTop>
-      <Pressable onPress={() => setSlideOpen(false)}>
-        <VStack
-          space="4"
-          p="4"
-          // opacity={isSlideOpen ? 0.1 : 1}
-        >
-          <HStack>
-            <Pressable onPress={() => setSlideOpen(!isSlideOpen)}>
-              <HamburgerIcon />
-            </Pressable>
-          </HStack>
-          <HStack
-            bg="slateGreen.100"
-            rounded="xl"
+      <Box maxW="768" w="100%" alignSelf="center">
+        <Pressable onPress={() => setSlideOpen(false)}>
+          <VStack
+            space="4"
             p="4"
-            alignItems="center"
-            // justifyContent="space-between"
+            // opacity={isSlideOpen ? 0.1 : 1}
           >
-            <Text color="light.300" fontSize="lg" fontWeight="semibold" w="50%">
-              20% off on first 5 rides
-            </Text>
-            <Box ml="auto">
-              <Ionicons name="pricetag" size={68} color="lightgreen" />
-            </Box>
-          </HStack>
-          <HStack mt="2" space="3">
-            <VStack flex="1" position="relative" space="2">
-              <Box bg="trueGray.200" alignItems="center" rounded="lg">
-                <Image
-                  source={UberGo}
-                  alt="Alternate Text"
-                  // size="md"
-                  width="20"
-                  height="20"
-                />
-              </Box>
-              <Text fontWeight="semibold" fontSize="md" textAlign="center">
-                Rentals
-              </Text>
-            </VStack>
-
-            <VStack flex="1" space="2">
-              <Box bg="trueGray.200" alignItems="center" rounded="lg">
-                <Image
-                  source={UberPremier}
-                  alt="Alternate Text"
-                  // size="md"
-                  width="20"
-                  height="20"
-                />
-              </Box>
-              <Text fontWeight="semibold" fontSize="md" textAlign="center">
-                Intercity
-              </Text>
-            </VStack>
-            <VStack flex="1" space="2">
-              <Box bg="trueGray.200" alignItems="center" rounded="lg">
-                <Image
-                  source={Moto}
-                  alt="Alternate Text"
-                  // size="md"
-                  width="20"
-                  height="20"
-                />
-                {/* <Feather name="Moto" size={60} color="black" /> */}
-              </Box>
-              <Text fontWeight="semibold" fontSize="md" textAlign="center">
-                Moped
-              </Text>
-            </VStack>
-          </HStack>
-          <HStack bg="trueGray.200" p="2" alignItems="center">
-            <Pressable onPress={() => navigation.navigate("pickDrop")} flex="1">
-              <Text fontSize="xl" pl="2">
-                Where to?
-              </Text>
-            </Pressable>
-            <Divider
-              thickness="2"
-              bg="trueGray.300"
-              orientation="vertical"
-              // ml="auto"
-              mr="4"
-            />
-            <Button
-              startIcon={
-                <AntDesign name="clockcircle" size={20} color="black" />
-              }
-              endIcon={<ChevronDownIcon size="4" color="black" />}
-              _text={{ color: "black" }}
-              bg="white"
-              rounded="full"
-              onPress={onOpen}
-              _pressed={{
-                bg: "trueGray.200",
-              }}
+            <HStack>
+              <Pressable onPress={() => setSlideOpen(!isSlideOpen)}>
+                <HamburgerIcon />
+              </Pressable>
+            </HStack>
+            <HStack
+              bg="slateGreen.100"
+              rounded="xl"
+              p="4"
+              alignItems="center"
+              // justifyContent="space-between"
             >
-              Now
-            </Button>
-            <Actionsheet isOpen={isOpen} onClose={onClose}>
-              <Actionsheet.Content>
-                <Box w="100%" px={4} alignItems="center">
-                  <Heading p="4" fontWeight="normal">
-                    Schedule a Ride
-                  </Heading>
-                </Box>
-                <Divider thickness="2" />
-                <Actionsheet.Item justifyContent="center">
-                  Wed,1 Dec
-                </Actionsheet.Item>
-                <Divider />
-                <Actionsheet.Item justifyContent="center">
-                  11:05am - 11:15 am
-                </Actionsheet.Item>
-                <Divider />
-                <Box w="100%" px={4} mt="5">
-                  <Button
-                    // colorScheme="black"
-                    // variant="unstyled"
-                    bg="muted.800"
-                    _pressed={{ bg: "muted.900" }}
-                    _text={{
-                      fontSize: "md",
-                      fontWeight: "semibold",
-                    }}
-                  >
-                    Set pickup time
-                  </Button>
-                </Box>
-              </Actionsheet.Content>
-            </Actionsheet>
-          </HStack>
-          <HStack mt="4" space="2" alignItems="center">
-            <Circle bg="trueGray.200" p="2" mr="3">
-              <FontAwesome name="star" size={18} color="black" />
-            </Circle>
-            <Pressable flexDir="row" flex="1" alignItems="center">
-              <Text fontWeight="semibold" fontSize="lg">
-                Choose a saved place
+              <Text
+                color="light.300"
+                fontSize="lg"
+                fontWeight="semibold"
+                w="50%"
+              >
+                20% off on first 5 rides
               </Text>
-              <ChevronRightIcon ml="auto" size="sm" color="gray.400" />
-            </Pressable>
+              <Box ml="auto">
+                <Ionicons name="pricetag" size={68} color="lightgreen" />
+              </Box>
+            </HStack>
+            <HStack mt="2" space="3">
+              <VStack flex="1" position="relative" space="2">
+                <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                  <Image
+                    source={UberGo}
+                    alt="Alternate Text"
+                    // size="md"
+                    width="20"
+                    height="20"
+                  />
+                </Box>
+                <Text fontWeight="semibold" fontSize="md" textAlign="center">
+                  Rentals
+                </Text>
+              </VStack>
+              <VStack flex="1" space="2">
+                <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                  <Image
+                    source={UberPremier}
+                    alt="Alternate Text"
+                    // size="md"
+                    width="20"
+                    height="20"
+                  />
+                </Box>
+                <Text fontWeight="semibold" fontSize="md" textAlign="center">
+                  Intercity
+                </Text>
+              </VStack>
+              <VStack flex="1" space="2">
+                <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                  <Image
+                    source={Moto}
+                    alt="Alternate Text"
+                    // size="md"
+                    width="20"
+                    height="20"
+                  />
+                  {/* <Feather name="Moto" size={60} color="black" /> */}
+                </Box>
+                <Text fontWeight="semibold" fontSize="md" textAlign="center">
+                  Moped
+                </Text>
+              </VStack>
+            </HStack>
+            <HStack bg="trueGray.200" p="2" alignItems="center">
+              <Pressable
+                onPress={() => navigation.navigate("pickDrop")}
+                flex="1"
+              >
+                <Text fontSize="xl" pl="2">
+                  Where to?
+                </Text>
+              </Pressable>
+              <Divider
+                thickness="2"
+                bg="trueGray.300"
+                orientation="vertical"
+                // ml="auto"
+                mr="4"
+              />
+              <Button
+                startIcon={
+                  <AntDesign name="clockcircle" size={20} color="black" />
+                }
+                endIcon={<ChevronDownIcon size="4" color="black" />}
+                _text={{ color: "black" }}
+                bg="white"
+                rounded="full"
+                onPress={onOpen}
+                _pressed={{
+                  bg: "trueGray.200",
+                }}
+              >
+                Now
+              </Button>
+              <Actionsheet isOpen={isOpen} onClose={onClose}>
+                <Actionsheet.Content>
+                  <Box w="100%" px={4} alignItems="center">
+                    <Heading p="4" fontWeight="normal">
+                      Schedule a Ride
+                    </Heading>
+                  </Box>
+                  <Divider thickness="2" />
+                  <Actionsheet.Item justifyContent="center">
+                    Wed,1 Dec
+                  </Actionsheet.Item>
+                  <Divider />
+                  <Actionsheet.Item justifyContent="center">
+                    11:05am - 11:15 am
+                  </Actionsheet.Item>
+                  <Divider />
+                  <Box w="100%" px={4} mt="5">
+                    <Button
+                      // colorScheme="black"
+                      // variant="unstyled"
+                      bg="muted.800"
+                      _pressed={{ bg: "muted.900" }}
+                      _text={{
+                        fontSize: "md",
+                        fontWeight: "semibold",
+                      }}
+                    >
+                      Set pickup time
+                    </Button>
+                  </Box>
+                </Actionsheet.Content>
+              </Actionsheet>
+            </HStack>
+            <HStack mt="4" space="2" alignItems="center">
+              <Circle bg="trueGray.200" p="2" mr="3">
+                <FontAwesome name="star" size={18} color="black" />
+              </Circle>
+              <Pressable flexDir="row" flex="1" alignItems="center">
+                <Text fontWeight="semibold" fontSize="lg">
+                  Choose a saved place
+                </Text>
+                <ChevronRightIcon ml="auto" size="sm" color="gray.400" />
+              </Pressable>
+            </HStack>
+            <Heading my="4" size="md" fontWeight="semibold">
+              Around you
+            </Heading>
+            <Box h="200" w="100%" rounded="lg" overflow="hidden">
+              {/* <MapView
+                style={{
+                  flex: 1,
+                }}
+                provider={PROVIDER_GOOGLE}
+                region={{
+                  latitudeDelta: 0.015,
+                  longitudeDelta: 0.0121,
+                  latitude: 12.9698,
+                  longitude: 77.75,
+                }}
+              ></MapView> */}
+              <ResponsiveMap />
+            </Box>
+          </VStack>
+        </Pressable>
+        <Slide in={isSlideOpen} placement="left" w={width} h="100">
+          <HStack w="100%" h="100%">
+            <Box w={{ base: "80%", lg: "25%" }} bg="white">
+              <Sidebar navigation={navigation} />
+            </Box>
+            <Pressable
+              w={{ base: "20%", lg: "75%" }}
+              onPress={() => setSlideOpen(false)}
+              opacity="0.5"
+              bg="black"
+            ></Pressable>
           </HStack>
-          <Heading my="4" size="md" fontWeight="semibold">
-            Around you
-          </Heading>
-          <Box h="200" w="100%" rounded="lg" overflow="hidden">
-            <MapView
-              style={{
-                flex: 1,
-              }}
-              provider={PROVIDER_GOOGLE}
-              region={{
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,
-                latitude: 12.9698,
-                longitude: 77.75,
-              }}
-            ></MapView>
-          </Box>
-        </VStack>
-      </Pressable>
-      <Slide in={isSlideOpen} placement="left" w={width} h="100">
-        <HStack w="100%" h="100%">
-          <Box w={{ base: "80%", lg: "25%" }} bg="white">
-            <Sidebar navigation={navigation} />
-          </Box>
-          <Pressable
-            w={{ base: "20%", lg: "75%" }}
-            onPress={() => setSlideOpen(false)}
-            opacity="0.5"
-            bg="black"
-          ></Pressable>
-        </HStack>
-      </Slide>
+        </Slide>
+      </Box>
     </Box>
   );
 }
+
+const ResponsiveMap = Platform.select({
+  native: () => (
+    <MapView
+      style={{
+        flex: 1,
+      }}
+      provider={PROVIDER_GOOGLE}
+      region={{
+        latitudeDelta: 0.015,
+        longitudeDelta: 0.0121,
+        latitude: 12.9698,
+        longitude: 77.75,
+      }}
+    ></MapView>
+  ),
+  default: () => <WebAroundYou />,
+});
 
 export default Home;
