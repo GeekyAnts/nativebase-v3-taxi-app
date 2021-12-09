@@ -16,6 +16,8 @@ import {
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { FontAwesome } from "@expo/vector-icons";
 import MapViewDirections from "react-native-maps-directions";
+import { Platform } from "react-native";
+import WebChooseTaxi from "../components/WebChooseTaxi";
 
 const initialVehicles = [
   {
@@ -55,6 +57,7 @@ function ChooseTaxi({
 }) {
   const [vehicles, setVehicles] = useState(initialVehicles);
   const [selectedVehicle, setSelectedVehicle] = useState(vehicles[0].name);
+
   return (
     <Box bg="white" flex="1" safeArea pb="2">
       <Pressable
@@ -67,48 +70,11 @@ function ChooseTaxi({
         <ArrowBackIcon size="8" color="black" />
       </Pressable>
       {/* <ScrollView> */}
-      <Box h="40%" overflow="hidden">
-        <MapView
-          style={{
-            flex: 1,
-          }}
-          provider={PROVIDER_GOOGLE}
-          region={{
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-            latitude: 12.9698,
-            longitude: 77.75,
-          }}
-        >
-          <Marker
-            coordinate={{
-              latitude: 22.7092,
-              longitude: 75.854,
-            }}
-          >
-            <Callout>
-              <Text>I am here</Text>
-            </Callout>
-          </Marker>
-          <Marker
-            coordinate={{
-              latitude: 22.7202,
-              longitude: 75.8615,
-            }}
-          ></Marker>
-          <MapViewDirections
-            // lineDashPattern={[0]}
-            origin={coordinates[0]}
-            destination={coordinates[1]}
-            apikey={GOOGLE_MAPS_API_KEY}
-            strokeWidth={3}
-            strokeColor="hotpink"
-          />
-        </MapView>
-        {/* Draggable */}
+      <Box h="40%" overflow="hidden" shadow="5">
+        <ResponsiveMap />
       </Box>
       <HStack justifyContent="center" mt="6" mb="2">
-        <Text fontWeight="semibold">20% promotion applied</Text>
+        <Text fontWeight="normal">20% promotion applied</Text>
       </HStack>
       <ScrollView h="100">
         <VStack>
@@ -123,6 +89,7 @@ function ChooseTaxi({
                     selectedVehicle === vehicle.name ? "warmGray.200" : "white"
                   }
                   p="2"
+                  pr="4"
                   space="4"
                   alignItems="center"
                 >
@@ -133,9 +100,11 @@ function ChooseTaxi({
                     alt={vehicle.name}
                   />
                   <VStack>
-                    <Text fontWeight="bold">{vehicle.name}</Text>
-                    <Text>{vehicle.timing}</Text>
-                    {vehicle.name === "Moto" ? (
+                    <Text fontSize="md" fontWeight="bold">
+                      {vehicle.name}
+                    </Text>
+                    <Text fontWeight="300">{vehicle.timing}</Text>
+                    {vehicle.name === "Bike" ? (
                       <Text color="darkBlue.500">Good value</Text>
                     ) : (
                       <></>
@@ -165,9 +134,7 @@ function ChooseTaxi({
       <HStack p="4" alignItems="center" space="4">
         {/* card image */}
         {/* <FontAwesome name="credit-card" size={24} color="black" />*/}
-        <Text fontSize="md" fontWeight="bold">
-          Cash
-        </Text>
+        <Text fontSize="md">Cash</Text>
 
         <ChevronRightIcon size="sm" ml="auto" />
       </HStack>
@@ -187,3 +154,52 @@ function ChooseTaxi({
 }
 
 export default ChooseTaxi;
+
+const ResponsiveMap = Platform.select({
+  native: () => (
+    <MapView
+      style={{
+        flex: 1,
+      }}
+      provider={PROVIDER_GOOGLE}
+      region={{
+        latitudeDelta: 0.015,
+        longitudeDelta: 0.0121,
+        latitude: 12.9698,
+        longitude: 77.75,
+        //  latitude: 12.91072,
+        //   longitude: 77.60173,
+      }}
+    >
+      <Marker
+        coordinate={{
+          latitude: 22.7092,
+          longitude: 75.854,
+          // latitude: 12.91072,
+          // longitude: 77.60173,
+        }}
+      >
+        <Callout>
+          <Text>I am here</Text>
+        </Callout>
+      </Marker>
+      <Marker
+        coordinate={{
+          // latitude: 22.7202,
+          // longitude: 75.8615,
+          latitude: 12.90596,
+          longitude: 77.60145,
+        }}
+      ></Marker>
+      <MapViewDirections
+        // lineDashPattern={[0]}
+        origin={coordinates[0]}
+        destination={coordinates[1]}
+        apikey={GOOGLE_MAPS_API_KEY}
+        strokeWidth={3}
+        strokeColor="hotpink"
+      />
+    </MapView>
+  ),
+  default: () => <WebChooseTaxi />,
+});
