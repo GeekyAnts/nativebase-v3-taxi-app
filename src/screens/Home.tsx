@@ -23,12 +23,12 @@ import {
 import { AntDesign, FontAwesome, Ionicons, Feather } from "@expo/vector-icons";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import UberGo from "../../assets/UberGo.png";
-import UberPremier from "../../assets/Uber_premier.png";
-import Moto from "../../assets/Moto.png";
 import Sidebar from "../components/Sidebar";
 import { useWindowDimensions } from "react-native";
-import ContentWithSlide from "../components/ContentWithSlide";
+
+const UberGo = require("../../assets/UberGo.png");
+const UberPremier = require("../../assets/Uber_premier.png");
+const Moto = require("../../assets/Moto.png");
 
 function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const { isOpen, onOpen, onClose } = useDisclose();
