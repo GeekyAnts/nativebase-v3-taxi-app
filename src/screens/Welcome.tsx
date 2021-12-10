@@ -52,30 +52,34 @@ function Welcome({
           MOVE SAFELY
         </Text>
       </VStack>
-      <Box mb="10" alignItems="center">
-        <Pressable
-          bg="black"
-          _pressed={{
-            bg: "trueGray.800",
-          }}
-          flexDir="row"
-          width="90%"
-          p="3"
-          alignItems="center"
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text
-            flex="1"
-            textAlign="center"
-            color="white"
-            fontSize="lg"
-            fontWeight="semibold"
+      {isLargeScreen ? (
+        <></>
+      ) : (
+        <Box mb="10" alignItems="center">
+          <Pressable
+            bg="black"
+            _pressed={{
+              bg: "trueGray.800",
+            }}
+            flexDir="row"
+            width="90%"
+            p="3"
+            alignItems="center"
+            onPress={() => navigation.navigate("Login")}
           >
-            Get started
-          </Text>
-          <ArrowForwardIcon color="white" position="absolute" right="2" />
-        </Pressable>
-      </Box>
+            <Text
+              flex="1"
+              textAlign="center"
+              color="white"
+              fontSize="lg"
+              fontWeight="semibold"
+            >
+              Get started
+            </Text>
+            <ArrowForwardIcon color="white" position="absolute" right="2" />
+          </Pressable>
+        </Box>
+      )}
     </Box>
   );
 }

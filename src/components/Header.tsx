@@ -10,7 +10,17 @@ function Header({
   return (
     <HStack bg="black" p="4">
       {/* <Box ml="auto">Login</Box> */}
-      <Button>Login</Button>
+      <Button
+        ml="auto"
+        onPress={() => navigation.navigate("Login")}
+        // colorScheme="white"
+        bg="white"
+        // borderRadius="0"
+        rounded="full"
+        px="5"
+      >
+        Login
+      </Button>
     </HStack>
   );
 }
