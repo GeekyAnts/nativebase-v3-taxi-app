@@ -34,91 +34,6 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
       <VStack space="4">
         <Text fontSize="md">Enter your mobile number</Text>
         <HStack space="3" alignItems="center">
-          {/* <Pressable
-            height="34"
-            width="77"
-            bg="trueGray.100"
-            flexDir="row"
-            alignItems="center"
-            justifyContent="center"
-            onPress={onOpen}
-            py="1"
-            pl="2"
-            pr="1"
-          >
-            {country === "US" ? (
-              <Image
-                source={require("../../assets/us-flag-rect.png")}
-                alt="US flag"
-                key="US"
-                width="33"
-                h="21"
-                bg="white"
-                mr="1"
-              />
-            ) : (
-              <Image
-                source={require("../../assets/india-flag.png")}
-                alt="indian flag"
-                key="India"
-                width="30"
-                h="21"
-                bg="white"
-                mr="1"
-              />
-            )}
-
-            <ChevronDownIcon size="sm" color="gray.400" />
-          </Pressable>
-          <Actionsheet
-            isOpen={isOpen}
-            onClose={onClose}
-            hideDragIndicator
-            nativeID="qwer"
-            maxW="768"
-            alignSelf="center"
-          >
-            <Actionsheet.Content>
-              <Actionsheet.Item
-                onPress={() => {
-                  onClose();
-                  setCountry("India");
-                }}
-              >
-                <HStack space="4" alignItems="center">
-                  <Image
-                    source={require("../../assets/india-flag.png")}
-                    alt="indian flag"
-                    width="33"
-                    h="21"
-                    p="1"
-                    bg="white"
-                  />
-                  <Text fontSize="md">India</Text>
-                </HStack>
-              </Actionsheet.Item>
-              <Actionsheet.Item
-                onPress={() => {
-                  onClose();
-                  setCountry("US");
-                }}
-              >
-                <HStack space="4" alignItems="center">
-                  <Image
-                    source={require("../../assets/us-flag-rect.png")}
-                    alt="us flag"
-                    width="33"
-                    h="21"
-                    p="1"
-                    bg="white"
-                  />
-                  <Text fontSize="md">US</Text>
-                </HStack>
-              </Actionsheet.Item>
-            </Actionsheet.Content>
-          </Actionsheet> */}
-
-          {/* =========================================== */}
           <Menu
             w="190"
             trigger={(triggerProps) => {
@@ -200,8 +115,6 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               </HStack>
             </Menu.Item>
           </Menu>
-          {/* =========================================== */}
-
           <Input
             flex="1"
             placeholder="10 Digit number"
