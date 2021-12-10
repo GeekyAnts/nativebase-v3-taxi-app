@@ -14,6 +14,7 @@ import {
   IconButton,
   Image,
   Pressable,
+  ScrollView,
   Slide,
   Text,
   useBreakpointValue,
@@ -41,7 +42,13 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
     lg: true,
   });
   return (
-    <Box flex="1" width="100%" safeAreaTop flexDir="row">
+    <Box
+      flex="1"
+      width="100%"
+      safeAreaTop
+      flexDir="row"
+      bg={{ base: "white", lg: "trueGray.100" }}
+    >
       {isLargeScreen ? (
         <Box w="300" bg="white">
           <Sidebar navigation={navigation} />
@@ -50,14 +57,10 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         <></>
       )}
 
-      <Box flex="1">
-        <Box maxW="768" w="100%" alignSelf="center" bg="white">
+      <ScrollView flex="1">
+        <Box maxW="768" w="100%" alignSelf="center" bg="white" h="100%">
           <Pressable onPress={() => setSlideOpen(false)}>
-            <VStack
-              space="4"
-              p="4"
-              // opacity={isSlideOpen ? 0.1 : 1}
-            >
+            <VStack space="4" p="4">
               <HStack>
                 <Pressable
                   onPress={() => setSlideOpen(!isSlideOpen)}
@@ -134,8 +137,9 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 <Pressable
                   onPress={() => navigation.navigate("pickDrop")}
                   flex="1"
+                  _web={{ cursor: "pointer" }}
                 >
-                  <Text fontSize="xl" pl="2">
+                  <Text fontSize="xl" pl="2" fontWeight="600">
                     Where to?
                   </Text>
                 </Pressable>
@@ -143,8 +147,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   thickness="2"
                   bg="trueGray.300"
                   orientation="vertical"
-                  // ml="auto"
-                  mr="4"
+                  mr="2"
                 />
                 <Button
                   startIcon={
@@ -158,6 +161,8 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   _pressed={{
                     bg: "trueGray.200",
                   }}
+                  variant="unstyled"
+                  mx="2"
                 >
                   Now
                 </Button>
@@ -244,7 +249,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             </HStack>
           </Slide>
         </Box>
-      </Box>
+      </ScrollView>
     </Box>
   );
 }

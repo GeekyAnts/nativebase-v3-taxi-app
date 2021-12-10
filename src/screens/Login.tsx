@@ -214,6 +214,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               borderColor: "black",
             }}
             fontSize="sm"
+            h="37"
           />
         </HStack>
         <Text fontSize="xs" color="muted.500">

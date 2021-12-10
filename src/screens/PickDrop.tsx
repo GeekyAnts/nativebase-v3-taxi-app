@@ -9,6 +9,7 @@ import {
   Input,
   Pressable,
   Text,
+  useBreakpointValue,
   VStack,
 } from "native-base";
 import React, { useState } from "react";
@@ -40,6 +41,7 @@ const InputPoint = () => {
         bg: "muted.200",
       }}
       placeholder="Enter stop"
+      maxH="35"
     />
   );
 };
@@ -56,12 +58,17 @@ function PickDrop({
     latitude: 12.9698,
     longitude: 77.75,
   });
+  const isLargeScreen = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
 
   return (
     <Box bg="white" flex="1" safeAreaTop>
-      <Box p="4">
-        {/* ========== */}
-        {/* <HStack>
+      <Box maxWidth="768" w="100%" mx="auto">
+        <Box p="4">
+          {/* ========== */}
+          {/* <HStack>
           <Box>
             <Pressable onPress={() => navigation.navigate("home")}>
               <ArrowBackIcon size="8" color="black" />
@@ -120,101 +127,150 @@ function PickDrop({
           </VStack>
         </HStack> */}
 
-        {/* ========== */}
-        {/* <HStack alignItems="center">
+          {/* ========== */}
+          {/* <HStack alignItems="center">
           <Pressable onPress={() => navigation.navigate("home")}>
             <ArrowBackIcon size="8" color="black" />
           </Pressable> */}
-        <HStack space="2" alignItems="center" justifyContent="center">
-          {/* <MaterialCommunityIcons
+          <HStack space="2" alignItems="center" justifyContent="center">
+            {/* <MaterialCommunityIcons
             name="account-circle"
             size={24}
             color="gray"
           /> */}
-          <Pressable
-            onPress={() => navigation.navigate("home")}
-            position="absolute"
-            left="0"
-          >
-            <ArrowBackIcon size="7" color="black" />
-          </Pressable>
-          <Icon
-            as={MaterialCommunityIcons}
-            name="account-circle"
-            size="8"
-            color="gray.500"
-          />
-          <Text fontSize="md">For Me</Text>
-          <ChevronDownIcon size="sm" />
-        </HStack>
-        {/* </HStack> */}
-        <HStack space="2" mt="4">
-          <VStack alignItems="center" my="auto" mx="2">
-            {Array.apply(0, Array(dropPoints)).map(function (x, i) {
-              return <CirclePoint key={i} />;
-            })}
+            <Pressable
+              onPress={() => navigation.navigate("home")}
+              position="absolute"
+              left="0"
+            >
+              <ArrowBackIcon size="7" color="black" />
+            </Pressable>
+            <Icon
+              as={MaterialCommunityIcons}
+              name="account-circle"
+              size="8"
+              color="gray.500"
+            />
+            <Text fontSize="md">For Me</Text>
+            <ChevronDownIcon size="sm" />
+          </HStack>
+          {/* </HStack> */}
+          <HStack space="2" mt="4">
+            <VStack alignItems="center" my="auto" mx="2">
+              {Array.apply(0, Array(dropPoints)).map(function (x, i) {
+                return <CirclePoint key={i} />;
+              })}
 
-            <Box w="2" h="2" bg="black" />
-          </VStack>
-          <VStack space="2" flex="1">
-            <Input
-              isRequired
-              variant="unstyled"
-              placeholder="From?"
-              bg="muted.100"
-              _focus={{
-                bg: "muted.200",
-              }}
-              value={origin}
-              onChange={(event: any) => {
-                setOrigin(event.target.value);
-              }}
-            />
-            <Input
-              variant="unstyled"
-              bg="muted.100"
-              placeholder={dropPoints === 1 ? "Where to?" : ""}
-              _focus={{
-                bg: "muted.200",
-              }}
-              value={destination}
-              onChange={(event: any) => setDestination(event.target.value)}
-            />
-            {Array.apply(0, Array(dropPoints - 1)).map(function (x, i) {
-              return <InputPoint key={i} />;
-            })}
-          </VStack>
-          <VStack>
-            <IconButton
-              icon={<Entypo name="plus" size={24} color="black" />}
-              mt="auto"
-              onPress={() => setDropPoints(dropPoints + 1)}
-            ></IconButton>
-          </VStack>
-        </HStack>
+              <Box w="2" h="2" bg="black" />
+            </VStack>
+            <VStack space="2" flex="1">
+              <Input
+                isRequired
+                variant="unstyled"
+                placeholder="From?"
+                bg="muted.100"
+                _focus={{
+                  bg: "muted.200",
+                }}
+                value={origin}
+                onChange={(event: any) => {
+                  setOrigin(event.target.value);
+                }}
+                fontSize="md"
+                maxH="35"
+              />
+              <Input
+                variant="unstyled"
+                bg="muted.100"
+                placeholder={dropPoints === 1 ? "Where to?" : ""}
+                _focus={{
+                  bg: "muted.200",
+                }}
+                value={destination}
+                onChange={(event: any) => setDestination(event.target.value)}
+                fontSize="md"
+                maxH="35"
+              />
+              {Array.apply(0, Array(dropPoints - 1)).map(function (x, i) {
+                return <InputPoint key={i} />;
+              })}
+            </VStack>
+            <VStack>
+              <IconButton
+                icon={<Entypo name="plus" size={24} color="black" />}
+                mt="auto"
+                onPress={() => setDropPoints(dropPoints + 1)}
+              ></IconButton>
+            </VStack>
+          </HStack>
+          {isLargeScreen ? (
+            <HStack
+              ml="8"
+              mr="12"
+              justifyContent="space-between"
+              space="2"
+              mt="6"
+            >
+              <Button
+                onPress={() => navigation.navigate("chooseTaxi")}
+                bg="black"
+                _pressed={{ bg: "gray.800" }}
+                alignSelf="center"
+                colorScheme="gray"
+                minW="200"
+              >
+                Done
+              </Button>
+              <Button
+                bg="coolGray.200"
+                _pressed={{ bg: "coolGray.300" }}
+                // colorScheme="coolGray"
+                variant="unstyled"
+                alignSelf="center"
+                minW="200"
+              >
+                Schedule for later
+              </Button>
+            </HStack>
+          ) : (
+            <></>
+          )}
+        </Box>
       </Box>
-
-      <Text>{origin}</Text>
-
-      <Box flex="1" position="relative" shadow="5">
+      <Box flex="1" position="relative" shadow="5" mt={{ base: "0", md: "3" }}>
         <ResponsiveMap />
 
-        <Button
-          onPress={() => navigation.navigate("chooseTaxi")}
-          bg="black"
-          _pressed={{ bg: "gray.800" }}
-          position="absolute"
-          bottom="10"
-          left="5%"
-          right="5%"
-          //="6"
-          w="90%"
-          // display={origin == "" || destination == "" ? "none" : "flex"}
-          // _text={{ fontSize: "md" }}
-          py="3"
-        >
-          Done
-        </Button>
+        {isLargeScreen ? (
+          <></>
+        ) : (
+          <Button
+            onPress={() => navigation.navigate("chooseTaxi")}
+            bg="black"
+            _pressed={{ bg: "gray.800" }}
+            position="absolute"
+            bottom="10"
+            w="90%"
+            display={origin == "" || destination == "" ? "none" : "flex"}
+            py="3"
+            alignSelf="center"
+            _text={{ fontSize: "lg" }}
+            borderRadius="0"
+          >
+            Done
+          </Button>
+          //   <Button
+          //   bg="black"
+          //   mx="4"
+          //   onPress={() => navigation.navigate("enroute")}
+          //   _pressed={{ bg: "gray.700" }}
+          //   py="3"
+
+          // >
+          //   <Text color="white" fontSize="lg">
+          //     Confirm {selectedVehicle}
+          //   </Text>
+          // </Button>
+        )}
       </Box>
     </Box>
   );
@@ -262,7 +318,7 @@ const ResponsiveMap = Platform.select({
   },
   default: () => {
     return (
-      <Box w="100%">
+      <Box w="100%" h="100%">
         <WebPickDrop />
       </Box>
     );
