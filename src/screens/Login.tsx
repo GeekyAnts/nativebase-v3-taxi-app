@@ -206,7 +206,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             flex="1"
             placeholder="10 Digit number"
             keyboardType="numeric"
-            // maxLength={10}
+            maxLength={10}
             InputLeftElement={
               <Text px="1">{country === "US" ? "+1" : "+91"}</Text>
             }
