@@ -139,7 +139,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   flex="1"
                   _web={{ cursor: "pointer" }}
                 >
-                  <Text fontSize="xl" pl="2">
+                  <Text fontSize="xl" pl="2" fontWeight="600">
                     Where to?
                   </Text>
                 </Pressable>
@@ -147,6 +147,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   thickness="2"
                   bg="trueGray.300"
                   orientation="vertical"
+                  mr="2"
                 />
                 <Button
                   startIcon={
@@ -161,7 +162,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                     bg: "trueGray.200",
                   }}
                   variant="unstyled"
-                  ml="2"
+                  mx="2"
                 >
                   Now
                 </Button>

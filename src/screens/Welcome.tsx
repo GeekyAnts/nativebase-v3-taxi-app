@@ -8,9 +8,11 @@ import {
   Image,
   Pressable,
   Text,
+  useBreakpointValue,
   VStack,
 } from "native-base";
 import React from "react";
+import Header from "../components/Header";
 const logo = require("../../assets/taxi.png");
 
 function Welcome({
@@ -18,22 +20,31 @@ function Welcome({
 }: {
   navigation: NativeStackNavigationProp<any>;
 }) {
+  const isLargeScreen = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Box flex="1" bg="darkBlue.500">
+      {isLargeScreen ? <Header navigation={navigation} /> : <></>}
+
       <VStack alignItems="center" flex="1" justifyContent="center">
         <Image
-          // source={logo}
           source={logo}
           alt="logo"
-          // size="sm"
-          width="155"
-          h="62"
+          width={{ base: "155", lg: "250" }}
+          h={{ base: "62", lg: "100" }}
         />
-        <Text fontSize="3xl" fontWeight="extrabold" color="white">
+        <Text
+          fontSize={{ base: "3xl", lg: "5xl" }}
+          fontWeight="700"
+          color="white"
+          mt={{ base: "0", lg: "6" }}
+        >
           MY TAXI
         </Text>
         <Text
-          fontSize="xl"
+          fontSize={{ base: "lg", lg: "3xl" }}
           // fontWeight="semibold"
           color="white"
           // textAlign="center"
@@ -51,7 +62,6 @@ function Welcome({
           width="90%"
           p="3"
           alignItems="center"
-          rounded="sm"
           onPress={() => navigation.navigate("Login")}
         >
           <Text

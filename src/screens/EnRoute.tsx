@@ -35,10 +35,10 @@ function EnRoute({
   const [showModal, setShowModal] = useState(false);
   return (
     <Box bg="white" flex="1" safeArea>
-      <Box borderWidth="1" borderColor="warmGray.300" p="4" shadow="8">
+      <Box borderWidth="1" borderColor="warmGray.300" p="2">
         <Text fontSize="lg">Driver confirmed and en route</Text>
       </Box>
-      <Box flex="1">
+      <Box flex="1" position="relative" shadow="5">
         <ResponsiveMap />
       </Box>
       <Box alignItems="center">
@@ -51,14 +51,22 @@ function EnRoute({
           </Box>
           <Text>Arriving in 5 min</Text>
           <HStack space="2">
-            <Button bg="black" flex="1" _pressed={{ bg: "gray.700" }}>
+            <Button
+              bg="black"
+              flex="1"
+              _pressed={{ bg: "gray.700" }}
+              borderRadius="0"
+            >
               Contact
             </Button>
             <Button
-              bg="black"
-              _pressed={{ bg: "gray.700" }}
+              variant="outline"
+              // bg="black"
+              colorScheme="gray"
+              // _pressed={{ bg: "gray.200" }}
               flex="1"
               onPress={() => setShowModal(true)}
+              borderRadius="0"
             >
               Cancel
             </Button>
@@ -101,6 +109,7 @@ function EnRoute({
                 setShowModal(false);
               }}
               mr="4"
+              borderRadius="0"
             >
               NO
             </Button>
@@ -114,6 +123,7 @@ function EnRoute({
               onPress={() => {
                 navigation.navigate("chooseTaxi");
               }}
+              borderRadius="0"
             >
               YES, CANCEL
             </Button>
@@ -156,7 +166,7 @@ const ResponsiveMap = Platform.select({
 
       <Marker coordinate={coordinates[1]}></Marker>
       <MapViewDirections
-        // lineDashPattern={[0]}
+        lineDashPattern={[0]}
         origin={coordinates[0]}
         destination={coordinates[1]}
         apikey={GOOGLE_MAPS_API_KEY}

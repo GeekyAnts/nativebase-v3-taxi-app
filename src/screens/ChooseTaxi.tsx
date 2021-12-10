@@ -6,6 +6,7 @@ import {
   Button,
   ChevronRightIcon,
   Divider,
+  Fab,
   HStack,
   Image,
   Pressable,
@@ -13,7 +14,12 @@ import {
   Text,
   VStack,
 } from "native-base";
-import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, {
+  Callout,
+  Marker,
+  PROVIDER_GOOGLE,
+  Circle as MapCircle,
+} from "react-native-maps";
 import { FontAwesome } from "@expo/vector-icons";
 import MapViewDirections from "react-native-maps-directions";
 import { Platform } from "react-native";
@@ -59,18 +65,42 @@ function ChooseTaxi({
   const [selectedVehicle, setSelectedVehicle] = useState(vehicles[0].name);
 
   return (
-    <Box bg="white" flex="1" safeArea pb="2">
-      <Pressable
+    <Box bg="white" flex="1" safeAreaBottom pb="2">
+      {/* <Pressable
         onPress={() => navigation.navigate("pickDrop")}
         position="absolute"
         top="16"
-        left="1"
-        zIndex="1"
+        left="3"
+        zIndex="10"
       >
+        <Text>dsdsvcdsv</Text>
         <ArrowBackIcon size="8" color="black" />
-      </Pressable>
+      </Pressable> */}
 
-      <Box h="40%" overflow="hidden" shadow="5" flex="1">
+      <Box overflow="hidden" shadow="5" flex="1" position="relative">
+        {/* <Pressable
+          onPress={() => navigation.navigate("pickDrop")}
+          position="absolute"
+          top="15"
+          left="3"
+          zIndex="10"
+        >
+          <ArrowBackIcon size="8" color="black" />
+        </Pressable> */}
+
+        <Fab
+          onPress={() => navigation.navigate("pickDrop")}
+          _pressed={{ bg: "gray.200" }}
+          position="absolute"
+          top="12"
+          bottom="auto"
+          left="4"
+          size="12"
+          bg="white"
+          icon={<ArrowBackIcon color="black" />}
+          renderInPortal={false}
+        />
+
         <ResponsiveMap />
       </Box>
       <Box maxWidth="768" w="100%" mx="auto" mb={{ base: "1", md: 4 }}>
@@ -144,6 +174,8 @@ function ChooseTaxi({
           mx="4"
           onPress={() => navigation.navigate("enroute")}
           _pressed={{ bg: "gray.700" }}
+          py="3"
+          borderRadius="0"
         >
           <Text color="white" fontSize="lg">
             Confirm {selectedVehicle}
@@ -174,10 +206,8 @@ const ResponsiveMap = Platform.select({
     >
       <Marker
         coordinate={{
-          latitude: 22.7092,
-          longitude: 75.854,
-          // latitude: 12.91072,
-          // longitude: 77.60173,
+          latitude: 12.91072,
+          longitude: 77.60173,
         }}
       >
         <Callout>
@@ -186,18 +216,24 @@ const ResponsiveMap = Platform.select({
       </Marker>
       <Marker
         coordinate={{
-          // latitude: 22.7202,
-          // longitude: 75.8615,
-          latitude: 12.90596,
-          longitude: 77.60145,
+          // latitude: 12.90596,
+          // longitude: 77.60145,
+          latitude: 12.9121,
+          longitude: 77.6446,
         }}
       ></Marker>
+      <MapCircle
+        center={coordinates[0]}
+        radius={40}
+        fillColor="grey"
+        strokeWidth={0}
+      />
       <MapViewDirections
-        // lineDashPattern={[0]}
+        lineDashPattern={[0]}
         origin={coordinates[0]}
         destination={coordinates[1]}
         apikey={GOOGLE_MAPS_API_KEY}
-        strokeWidth={3}
+        strokeWidth={4}
         strokeColor="hotpink"
       />
     </MapView>

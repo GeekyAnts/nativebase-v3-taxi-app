@@ -41,6 +41,7 @@ const InputPoint = () => {
         bg: "muted.200",
       }}
       placeholder="Enter stop"
+      maxH="35"
     />
   );
 };
@@ -175,6 +176,8 @@ function PickDrop({
                 onChange={(event: any) => {
                   setOrigin(event.target.value);
                 }}
+                fontSize="md"
+                maxH="35"
               />
               <Input
                 variant="unstyled"
@@ -185,6 +188,8 @@ function PickDrop({
                 }}
                 value={destination}
                 onChange={(event: any) => setDestination(event.target.value)}
+                fontSize="md"
+                maxH="35"
               />
               {Array.apply(0, Array(dropPoints - 1)).map(function (x, i) {
                 return <InputPoint key={i} />;
@@ -248,9 +253,23 @@ function PickDrop({
             display={origin == "" || destination == "" ? "none" : "flex"}
             py="3"
             alignSelf="center"
+            _text={{ fontSize: "lg" }}
+            borderRadius="0"
           >
             Done
           </Button>
+          //   <Button
+          //   bg="black"
+          //   mx="4"
+          //   onPress={() => navigation.navigate("enroute")}
+          //   _pressed={{ bg: "gray.700" }}
+          //   py="3"
+
+          // >
+          //   <Text color="white" fontSize="lg">
+          //     Confirm {selectedVehicle}
+          //   </Text>
+          // </Button>
         )}
       </Box>
     </Box>
