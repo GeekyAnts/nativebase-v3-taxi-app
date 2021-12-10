@@ -35,7 +35,7 @@ function EnRoute({
   const [showModal, setShowModal] = useState(false);
   return (
     <Box bg="white" flex="1" safeArea>
-      <Box borderWidth="1" borderColor="warmGray.300" p="2">
+      <Box borderColor="warmGray.300" p="2">
         <Text fontSize="lg">Driver confirmed and en route</Text>
       </Box>
       <Box flex="1" position="relative" shadow="5">
