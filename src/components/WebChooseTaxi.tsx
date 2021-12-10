@@ -189,7 +189,7 @@ export default function WebChooseTaxi() {
           space={{ base: "4", md: "0" }}
           // px={{ base: "0", md: "10", lg: "0" }}
           // pb={{ base: "4", md: "8" }}
-          rounded={{ md: "lg" }}
+
           borderWidth={{ base: "0", md: "1" }}
           _light={{
             bg: { md: "white", base: "primary.50" },

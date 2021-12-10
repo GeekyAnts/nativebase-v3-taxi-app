@@ -65,55 +65,54 @@ function ChooseTaxi({
   const [selectedVehicle, setSelectedVehicle] = useState(vehicles[0].name);
 
   return (
-    <Box bg="white" flex="1" safeAreaBottom pb="2">
-      {/* <Pressable
+    <Box
+      bg="white"
+      flex="1"
+      safeAreaBottom
+      flexDir={{ base: "column", lg: "row-reverse" }}
+    >
+      <Fab
         onPress={() => navigation.navigate("pickDrop")}
+        _pressed={{ bg: "gray.200" }}
         position="absolute"
-        top="16"
-        left="3"
-        zIndex="10"
-      >
-        <Text>dsdsvcdsv</Text>
-        <ArrowBackIcon size="8" color="black" />
-      </Pressable> */}
-
+        top={{ base: "12", lg: "3" }}
+        bottom="auto"
+        left="4"
+        size="12"
+        bg="white"
+        icon={<ArrowBackIcon color="black" />}
+        renderInPortal={false}
+        display={{ base: "flex", lg: "none" }}
+      />
       <Box overflow="hidden" shadow="5" flex="1" position="relative">
-        {/* <Pressable
-          onPress={() => navigation.navigate("pickDrop")}
-          position="absolute"
-          top="15"
-          left="3"
-          zIndex="10"
-        >
-          <ArrowBackIcon size="8" color="black" />
-        </Pressable> */}
-
-        <Fab
-          onPress={() => navigation.navigate("pickDrop")}
-          _pressed={{ bg: "gray.200" }}
-          position="absolute"
-          top="12"
-          bottom="auto"
-          left="4"
-          size="12"
-          bg="white"
-          icon={<ArrowBackIcon color="black" />}
-          renderInPortal={false}
-        />
-
         <ResponsiveMap />
       </Box>
-      <Box maxWidth="768" w="100%" mx="auto" mb={{ base: "1", md: 4 }}>
-        <HStack justifyContent="center" mt="6" mb="2">
+      <Box
+        maxWidth="768"
+        w="100%"
+        mx="auto"
+        // mt={{ base: "0", lg: "3" }}
+        mb={{ base: "1", md: 4 }}
+      >
+        <HStack justifyContent="center" mt="6" mb="2" alignItems="center">
+          <Pressable
+            onPress={() => navigation.navigate("pickDrop")}
+            position="absolute"
+            left="4"
+            display={{ base: "none", lg: "flex" }}
+          >
+            <ArrowBackIcon size="7" color="black" />
+          </Pressable>
           <Text fontWeight="normal">20% promotion applied</Text>
         </HStack>
 
-        <VStack>
+        <VStack pr={{ base: "0", lg: "0.5" }} mt={{ base: "0", lg: "5" }}>
           {vehicles.map((vehicle, idx) => {
             return (
               <Pressable
                 onPress={() => setSelectedVehicle(vehicle.name)}
                 key={idx}
+                _web={{ cursor: "pointer" }}
               >
                 <HStack
                   bg={
@@ -163,8 +162,6 @@ function ChooseTaxi({
 
         <Divider mt="0" />
         <HStack p="4" alignItems="center" space="4">
-          {/* card image */}
-          {/* <FontAwesome name="credit-card" size={24} color="black" />*/}
           <Text fontSize="md">Cash</Text>
 
           <ChevronRightIcon size="sm" ml="auto" />

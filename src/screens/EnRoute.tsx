@@ -38,40 +38,52 @@ function EnRoute({
       <Box borderColor="warmGray.300" p="2">
         <Text fontSize="lg">Driver confirmed and en route</Text>
       </Box>
-      <Box flex="1" position="relative" shadow="5">
-        <ResponsiveMap />
-      </Box>
-      <Box alignItems="center">
-        <VStack my="2" p="4" space="4" maxW="768" w="100%">
-          <Box width="100%">
-            <HStack justifyContent="space-between">
-              <Text fontSize="md">Driver's name</Text>
-              <Rating number={4} />
+      <Box flex="1" flexDir={{ base: "column", lg: "row-reverse" }}>
+        <Box flex="1" position="relative" shadow="5">
+          <ResponsiveMap />
+        </Box>
+
+        <Box
+          alignItems="center"
+          _web={{
+            minW: "768",
+          }}
+        >
+          <VStack my="2" p="4" space="4" maxW="768" w="100%">
+            <Box width="100%">
+              <HStack justifyContent="space-between">
+                <Text fontSize="md">Driver's name</Text>
+                <Rating number={4} />
+              </HStack>
+            </Box>
+            <Text>Arriving in 5 min</Text>
+            <HStack space="2">
+              <Button
+                bg="black"
+                flex="1"
+                _pressed={{ bg: "gray.700" }}
+                borderRadius="0"
+                _text={{ fontSize: "lg" }}
+                py={{ base: "0", lg: "3" }}
+              >
+                Contact
+              </Button>
+              <Button
+                variant="outline"
+                // bg="black"
+                colorScheme="gray"
+                // _pressed={{ bg: "gray.200" }}
+                flex="1"
+                onPress={() => setShowModal(true)}
+                borderRadius="0"
+                _text={{ fontSize: "lg" }}
+                py={{ base: "2", lg: "3" }}
+              >
+                Cancel
+              </Button>
             </HStack>
-          </Box>
-          <Text>Arriving in 5 min</Text>
-          <HStack space="2">
-            <Button
-              bg="black"
-              flex="1"
-              _pressed={{ bg: "gray.700" }}
-              borderRadius="0"
-            >
-              Contact
-            </Button>
-            <Button
-              variant="outline"
-              // bg="black"
-              colorScheme="gray"
-              // _pressed={{ bg: "gray.200" }}
-              flex="1"
-              onPress={() => setShowModal(true)}
-              borderRadius="0"
-            >
-              Cancel
-            </Button>
-          </HStack>
-        </VStack>
+          </VStack>
+        </Box>
       </Box>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">

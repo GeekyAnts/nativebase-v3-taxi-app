@@ -64,80 +64,15 @@ function PickDrop({
   });
 
   return (
-    <Box bg="white" flex="1" safeAreaTop>
-      <Box maxWidth="768" w="100%" mx="auto">
-        <Box p="4">
-          {/* ========== */}
-          {/* <HStack>
-          <Box>
-            <Pressable onPress={() => navigation.navigate("home")}>
-              <ArrowBackIcon size="8" color="black" />
-            </Pressable>
-            <VStack alignItems="center" my="auto">
-              {Array.apply(0, Array(dropPoints)).map(function (x, i) {
-                return <CirclePoint key={i} />;
-              })}
-
-              <Box w="2" h="2" bg="black" />
-            </VStack>
-          </Box>
-          <Box flex="1">
-            <HStack alignItems="center" space="2" mx="auto">
-              <MaterialCommunityIcons
-                name="account-circle"
-                size={24}
-                color="gray"
-              />
-              <Text>For Me</Text>
-              <ChevronDownIcon size="sm" />
-            </HStack>
-            <VStack space="2" flex="1">
-              <Input
-                isRequired
-                variant="unstyled"
-                placeholder="From?"
-                bg="muted.100"
-                _focus={{
-                  bg: "muted.200",
-                }}
-                value={origin}
-                onChange={(event: any) => setOrigin(event.target.value)}
-              />
-              <Input
-                variant="unstyled"
-                bg="muted.100"
-                placeholder={dropPoints === 1 ? "Where to?" : ""}
-                _focus={{
-                  bg: "muted.200",
-                }}
-                value={destination}
-                onChange={(event: any) => setDestination(event.target.value)}
-              />
-              {Array.apply(0, Array(dropPoints - 1)).map(function (x, i) {
-                return <InputPoint key={i} />;
-              })}
-            </VStack>
-          </Box>
-          <VStack>
-            <IconButton
-              icon={<Entypo name="plus" size={24} color="black" />}
-              mt="auto"
-              onPress={() => setDropPoints(dropPoints + 1)}
-            ></IconButton>
-          </VStack>
-        </HStack> */}
-
-          {/* ========== */}
-          {/* <HStack alignItems="center">
-          <Pressable onPress={() => navigation.navigate("home")}>
-            <ArrowBackIcon size="8" color="black" />
-          </Pressable> */}
+    <Box
+      bg="white"
+      flex="1"
+      safeAreaTop
+      flexDir={{ base: "column", lg: "row" }}
+    >
+      <Box maxWidth="768" w="100%" mx="auto" flex="1">
+        <Box p="4" justifyContent="center">
           <HStack space="2" alignItems="center" justifyContent="center">
-            {/* <MaterialCommunityIcons
-            name="account-circle"
-            size={24}
-            color="gray"
-          /> */}
             <Pressable
               onPress={() => navigation.navigate("home")}
               position="absolute"
@@ -217,11 +152,15 @@ function PickDrop({
                 _pressed={{ bg: "gray.800" }}
                 alignSelf="center"
                 colorScheme="gray"
-                minW="200"
+                // minW="200"
+                width="100%"
+                _text={{ fontSize: "lg" }}
+                py="3"
+                borderRadius="0"
               >
                 Done
               </Button>
-              <Button
+              {/* <Button
                 bg="coolGray.200"
                 _pressed={{ bg: "coolGray.300" }}
                 // colorScheme="coolGray"
@@ -230,14 +169,19 @@ function PickDrop({
                 minW="200"
               >
                 Schedule for later
-              </Button>
+              </Button> */}
             </HStack>
           ) : (
             <></>
           )}
         </Box>
       </Box>
-      <Box flex="1" position="relative" shadow="5" mt={{ base: "0", md: "3" }}>
+      <Box
+        flex="1"
+        position="relative"
+        shadow="5"
+        mt={{ base: "0", md: "3", lg: "0" }}
+      >
         <ResponsiveMap />
 
         {isLargeScreen ? (
@@ -258,18 +202,6 @@ function PickDrop({
           >
             Done
           </Button>
-          //   <Button
-          //   bg="black"
-          //   mx="4"
-          //   onPress={() => navigation.navigate("enroute")}
-          //   _pressed={{ bg: "gray.700" }}
-          //   py="3"
-
-          // >
-          //   <Text color="white" fontSize="lg">
-          //     Confirm {selectedVehicle}
-          //   </Text>
-          // </Button>
         )}
       </Box>
     </Box>
@@ -326,3 +258,64 @@ const ResponsiveMap = Platform.select({
 });
 
 export default PickDrop;
+
+{
+  /* <HStack>
+          <Box>
+            <Pressable onPress={() => navigation.navigate("home")}>
+              <ArrowBackIcon size="8" color="black" />
+            </Pressable>
+            <VStack alignItems="center" my="auto">
+              {Array.apply(0, Array(dropPoints)).map(function (x, i) {
+                return <CirclePoint key={i} />;
+              })}
+
+              <Box w="2" h="2" bg="black" />
+            </VStack>
+          </Box>
+          <Box flex="1">
+            <HStack alignItems="center" space="2" mx="auto">
+              <MaterialCommunityIcons
+                name="account-circle"
+                size={24}
+                color="gray"
+              />
+              <Text>For Me</Text>
+              <ChevronDownIcon size="sm" />
+            </HStack>
+            <VStack space="2" flex="1">
+              <Input
+                isRequired
+                variant="unstyled"
+                placeholder="From?"
+                bg="muted.100"
+                _focus={{
+                  bg: "muted.200",
+                }}
+                value={origin}
+                onChange={(event: any) => setOrigin(event.target.value)}
+              />
+              <Input
+                variant="unstyled"
+                bg="muted.100"
+                placeholder={dropPoints === 1 ? "Where to?" : ""}
+                _focus={{
+                  bg: "muted.200",
+                }}
+                value={destination}
+                onChange={(event: any) => setDestination(event.target.value)}
+              />
+              {Array.apply(0, Array(dropPoints - 1)).map(function (x, i) {
+                return <InputPoint key={i} />;
+              })}
+            </VStack>
+          </Box>
+          <VStack>
+            <IconButton
+              icon={<Entypo name="plus" size={24} color="black" />}
+              mt="auto"
+              onPress={() => setDropPoints(dropPoints + 1)}
+            ></IconButton>
+          </VStack>
+        </HStack> */
+}
