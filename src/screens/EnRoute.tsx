@@ -18,6 +18,8 @@ import MapView, {
 } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { Platform } from "react-native";
+import WebEnRoute from "../components/WebEnRoute";
 
 const coordinates = [
   { latitude: 12.9698, longitude: 77.75 },
@@ -36,54 +38,33 @@ function EnRoute({
       <Box borderWidth="1" borderColor="warmGray.300" p="4" shadow="8">
         <Text fontSize="lg">Driver confirmed and en route</Text>
       </Box>
-      <MapView
-        style={{
-          flex: 1,
-          //   height: "70%",
-        }}
-        provider={PROVIDER_GOOGLE}
-        region={{
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.00121,
-          latitude: 12.9698,
-          longitude: 77.75,
-        }}
-      >
-        <Marker pinColor="black" coordinate={coordinates[0]}></Marker>
-
-        <Marker coordinate={coordinates[1]}></Marker>
-        <MapViewDirections
-          // lineDashPattern={[0]}
-          origin={coordinates[0]}
-          destination={coordinates[1]}
-          apikey={GOOGLE_MAPS_API_KEY}
-          strokeWidth={3}
-          strokeColor="hotpink"
-        />
-      </MapView>
-      <VStack my="2" p="4" space="4">
-        <Box width="100%">
-          <HStack justifyContent="space-between">
-            <Text fontSize="md">Driver's name</Text>
-
-            <Rating number={4} />
+      <Box flex="1">
+        <ResponsiveMap />
+      </Box>
+      <Box alignItems="center">
+        <VStack my="2" p="4" space="4" maxW="768" w="100%">
+          <Box width="100%">
+            <HStack justifyContent="space-between">
+              <Text fontSize="md">Driver's name</Text>
+              <Rating number={4} />
+            </HStack>
+          </Box>
+          <Text>Arriving in 5 min</Text>
+          <HStack space="2">
+            <Button bg="black" flex="1" _pressed={{ bg: "gray.700" }}>
+              Contact
+            </Button>
+            <Button
+              bg="black"
+              _pressed={{ bg: "gray.700" }}
+              flex="1"
+              onPress={() => setShowModal(true)}
+            >
+              Cancel
+            </Button>
           </HStack>
-        </Box>
-        <Text>Arriving in 5 min</Text>
-        <HStack space="2">
-          <Button bg="black" flex="1" _pressed={{ bg: "gray.700" }}>
-            Contact
-          </Button>
-          <Button
-            bg="black"
-            _pressed={{ bg: "gray.700" }}
-            flex="1"
-            onPress={() => setShowModal(true)}
-          >
-            Cancel
-          </Button>
-        </HStack>
-      </VStack>
+        </VStack>
+      </Box>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">
           <Modal.Header>Cancel Ride</Modal.Header>
@@ -155,5 +136,36 @@ const Rating = ({ number }: { number: Number }) => {
     </HStack>
   );
 };
+
+const ResponsiveMap = Platform.select({
+  native: () => (
+    <MapView
+      style={{
+        flex: 1,
+        //   height: "70%",
+      }}
+      provider={PROVIDER_GOOGLE}
+      region={{
+        latitudeDelta: 0.015,
+        longitudeDelta: 0.00121,
+        latitude: 12.9698,
+        longitude: 77.75,
+      }}
+    >
+      <Marker pinColor="black" coordinate={coordinates[0]}></Marker>
+
+      <Marker coordinate={coordinates[1]}></Marker>
+      <MapViewDirections
+        // lineDashPattern={[0]}
+        origin={coordinates[0]}
+        destination={coordinates[1]}
+        apikey={GOOGLE_MAPS_API_KEY}
+        strokeWidth={3}
+        strokeColor="hotpink"
+      />
+    </MapView>
+  ),
+  default: () => <WebEnRoute />,
+});
 
 export default EnRoute;

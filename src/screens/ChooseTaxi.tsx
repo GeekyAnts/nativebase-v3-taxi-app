@@ -69,14 +69,15 @@ function ChooseTaxi({
       >
         <ArrowBackIcon size="8" color="black" />
       </Pressable>
-      {/* <ScrollView> */}
-      <Box h="40%" overflow="hidden" shadow="5">
+
+      <Box h="40%" overflow="hidden" shadow="5" flex="1">
         <ResponsiveMap />
       </Box>
-      <HStack justifyContent="center" mt="6" mb="2">
-        <Text fontWeight="normal">20% promotion applied</Text>
-      </HStack>
-      <ScrollView h="100">
+      <Box maxWidth="768" w="100%" mx="auto" mb={{ base: "1", md: 4 }}>
+        <HStack justifyContent="center" mt="6" mb="2">
+          <Text fontWeight="normal">20% promotion applied</Text>
+        </HStack>
+
         <VStack>
           {vehicles.map((vehicle, idx) => {
             return (
@@ -129,26 +130,26 @@ function ChooseTaxi({
             );
           })}
         </VStack>
-      </ScrollView>
-      <Divider mt="0" />
-      <HStack p="4" alignItems="center" space="4">
-        {/* card image */}
-        {/* <FontAwesome name="credit-card" size={24} color="black" />*/}
-        <Text fontSize="md">Cash</Text>
 
-        <ChevronRightIcon size="sm" ml="auto" />
-      </HStack>
-      <Button
-        bg="black"
-        mx="4"
-        onPress={() => navigation.navigate("enroute")}
-        _pressed={{ bg: "gray.700" }}
-      >
-        <Text color="white" fontSize="lg">
-          Confirm {selectedVehicle}
-        </Text>
-      </Button>
-      {/* </ScrollView> */}
+        <Divider mt="0" />
+        <HStack p="4" alignItems="center" space="4">
+          {/* card image */}
+          {/* <FontAwesome name="credit-card" size={24} color="black" />*/}
+          <Text fontSize="md">Cash</Text>
+
+          <ChevronRightIcon size="sm" ml="auto" />
+        </HStack>
+        <Button
+          bg="black"
+          mx="4"
+          onPress={() => navigation.navigate("enroute")}
+          _pressed={{ bg: "gray.700" }}
+        >
+          <Text color="white" fontSize="lg">
+            Confirm {selectedVehicle}
+          </Text>
+        </Button>
+      </Box>
     </Box>
   );
 }
