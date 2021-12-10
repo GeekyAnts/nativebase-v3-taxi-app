@@ -44,10 +44,10 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   return (
     <Box
       flex="1"
-      width="100%"
       safeAreaTop
       flexDir="row"
       bg={{ base: "white", lg: "trueGray.100" }}
+      justifyContent="center"
     >
       {isLargeScreen ? (
         <Box w="300" bg="white">
@@ -57,8 +57,14 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         <></>
       )}
 
-      <ScrollView flex="1">
-        <Box maxW="768" w="100%" alignSelf="center" bg="white" h="100%">
+      <Box
+        maxW="768"
+        w="100%"
+        // alignSelf="center"
+        bg="white"
+        h="100%"
+      >
+        <ScrollView>
           <Pressable onPress={() => setSlideOpen(false)}>
             <VStack space="4" p="4">
               <HStack>
@@ -215,41 +221,34 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               </Heading>
               <Box
                 h={{ base: "200", md: "400" }}
+                flex="1"
                 w="100%"
                 rounded="lg"
                 overflow="hidden"
               >
-                {/* <MapView
-                  style={{
-                    flex: 1,
-                  }}
-                  provider={PROVIDER_GOOGLE}
-                  region={{
-                    latitudeDelta: 0.015,
-                    longitudeDelta: 0.0121,
-                    latitude: 12.9698,
-                    longitude: 77.75,
-                  }}
-                ></MapView> */}
                 <ResponsiveMap />
               </Box>
             </VStack>
           </Pressable>
-          <Slide in={isSlideOpen} placement="left" w={width} h="100">
-            <HStack w="100%" h="100%">
-              <Box w={{ base: "80%", lg: "25%" }} bg="white">
-                <Sidebar navigation={navigation} />
-              </Box>
-              <Pressable
-                w={{ base: "20%", lg: "75%" }}
-                onPress={() => setSlideOpen(false)}
-                opacity="0.5"
-                bg="black"
-              ></Pressable>
-            </HStack>
-          </Slide>
-        </Box>
-      </ScrollView>
+          {isLargeScreen ? (
+            <></>
+          ) : (
+            <Slide in={isSlideOpen} placement="left" w={width} h="100">
+              <HStack w="100%" h="100%">
+                <Box w={{ base: "80%", lg: "25%" }} bg="white">
+                  <Sidebar navigation={navigation} />
+                </Box>
+                <Pressable
+                  w={{ base: "20%", lg: "75%" }}
+                  onPress={() => setSlideOpen(false)}
+                  opacity="0.5"
+                  bg="black"
+                ></Pressable>
+              </HStack>
+            </Slide>
+          )}
+        </ScrollView>
+      </Box>
     </Box>
   );
 }
