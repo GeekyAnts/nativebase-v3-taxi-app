@@ -187,7 +187,7 @@ export default function WebChooseTaxi() {
           safeAreaBottom
           flex="1"
           space={{ base: "4", md: "0" }}
-          px={{ base: "0", md: "10", lg: "0" }}
+          // px={{ base: "0", md: "10", lg: "0" }}
           // pb={{ base: "4", md: "8" }}
           rounded={{ md: "lg" }}
           borderWidth={{ base: "0", md: "1" }}
