@@ -116,7 +116,7 @@ function ChooseTaxi({
               >
                 <HStack
                   bg={
-                    selectedVehicle === vehicle.name ? "blueGray.300" : "white"
+                    selectedVehicle === vehicle.name ? "blueGray.100" : "white"
                   }
                   p="2"
                   pr="4"
