@@ -26,7 +26,7 @@ function Welcome({
     lg: true,
   });
   return (
-    <Box flex="1" bg={{ base: "darkBlue.500" }}>
+    <Box flex="1" bg={{ base: "darkBlue.500", lg: "muted.900" }}>
       {isLargeScreen ? <Header navigation={navigation} /> : <></>}
 
       <VStack
