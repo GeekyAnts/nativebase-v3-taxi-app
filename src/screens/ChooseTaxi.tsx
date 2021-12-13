@@ -88,7 +88,7 @@ function ChooseTaxi({
         <ResponsiveMap />
       </Box>
       <Box
-        maxWidth="768"
+        maxWidth="600"
         w="100%"
         mx="auto"
         // mt={{ base: "0", lg: "3" }}
@@ -116,7 +116,7 @@ function ChooseTaxi({
               >
                 <HStack
                   bg={
-                    selectedVehicle === vehicle.name ? "warmGray.200" : "white"
+                    selectedVehicle === vehicle.name ? "blueGray.300" : "white"
                   }
                   p="2"
                   pr="4"
@@ -171,6 +171,8 @@ function ChooseTaxi({
           mx="4"
           onPress={() => navigation.navigate("enroute")}
           _pressed={{ bg: "gray.700" }}
+          _hover={{ bg: "gray.700" }}
+          colorScheme="gray"
           py="3"
           borderRadius="0"
         >

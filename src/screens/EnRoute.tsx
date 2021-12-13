@@ -54,9 +54,9 @@ function EnRoute({
 
         <Box
           alignItems="center"
-          _web={{
-            minW: "768",
-          }}
+          alignSelf={{ base: "center", lg: "flex-start" }}
+          maxW="600"
+          w="100%"
         >
           {isLargeScreen ? (
             <Box borderColor="warmGray.300" p="2">
@@ -65,8 +65,8 @@ function EnRoute({
           ) : (
             <></>
           )}
-          <VStack my="2" p="4" space="4" maxW="768" w="100%">
-            <Box width="100%">
+          <VStack my="2" p="4" space="4" width="100%">
+            <Box>
               <HStack justifyContent="space-between">
                 <Text fontSize="md">Driver's name</Text>
                 <Rating number={4} />
@@ -78,6 +78,7 @@ function EnRoute({
                 bg="black"
                 flex="1"
                 _pressed={{ bg: "gray.700" }}
+                colorScheme="gray"
                 borderRadius="0"
                 _text={{ fontSize: "lg" }}
                 py={{ base: "0", lg: "3" }}
@@ -146,6 +147,7 @@ function EnRoute({
               // bg="danger.600"
               // _pressed={{ bg: "danger.700" }}
               bg="black"
+              colorScheme="gray"
               _pressed={{ bg: "gray.700" }}
               flex="1"
               onPress={() => {

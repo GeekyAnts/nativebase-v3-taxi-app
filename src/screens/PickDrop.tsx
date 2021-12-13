@@ -70,7 +70,7 @@ function PickDrop({
       safeAreaTop
       flexDir={{ base: "column", lg: "row" }}
     >
-      <Box maxWidth="768" w="100%" mx="auto" flex={{ base: "0", lg: 1 }}>
+      <Box maxWidth="600" w="100%" mx="auto">
         <Box p="4" justifyContent="center">
           <HStack space="2" alignItems="center" justifyContent="center">
             <Pressable
