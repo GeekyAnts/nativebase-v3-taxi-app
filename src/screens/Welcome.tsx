@@ -14,6 +14,7 @@ import {
 import React from "react";
 import Header from "../components/Header";
 const logo = require("../../assets/taxi.png");
+const webLogo = require("../../assets/logo-web.jpg");
 
 function Welcome({
   navigation,
@@ -25,10 +26,33 @@ function Welcome({
     lg: true,
   });
   return (
-    <Box flex="1" bg="darkBlue.500">
+    <Box flex="1" bg={{ base: "darkBlue.500" }}>
       {isLargeScreen ? <Header navigation={navigation} /> : <></>}
 
-      <VStack alignItems="center" flex="1" justifyContent="center">
+      <VStack
+        alignItems="center"
+        flex="1"
+        justifyContent="center"
+        // bgImage={webLogo}
+        _web={{
+          bgImage: webLogo,
+          // bgSize: "12",
+          // bg: "red.100",
+        }}
+      >
+        {isLargeScreen ? (
+          <Image
+            source={webLogo}
+            w="100%"
+            h="100%"
+            opacity="0.2"
+            // zIndex="-1"
+            position="absolute"
+          />
+        ) : (
+          <></>
+        )}
+
         <Image
           source={logo}
           alt="logo"

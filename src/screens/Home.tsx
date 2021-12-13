@@ -64,8 +64,8 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         bg="white"
         h="100%"
       >
-        <ScrollView>
-          <Pressable onPress={() => setSlideOpen(false)}>
+        <Pressable onPress={() => setSlideOpen(false)}>
+          <ScrollView>
             <VStack space="4" p="4">
               <HStack>
                 <Pressable
@@ -229,25 +229,25 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 <ResponsiveMap />
               </Box>
             </VStack>
-          </Pressable>
-          {isLargeScreen ? (
-            <></>
-          ) : (
-            <Slide in={isSlideOpen} placement="left" w={width} h="100">
-              <HStack w="100%" h="100%">
-                <Box w={{ base: "80%", lg: "25%" }} bg="white">
-                  <Sidebar navigation={navigation} />
-                </Box>
-                <Pressable
-                  w={{ base: "20%", lg: "75%" }}
-                  onPress={() => setSlideOpen(false)}
-                  opacity="0.5"
-                  bg="black"
-                ></Pressable>
-              </HStack>
-            </Slide>
-          )}
-        </ScrollView>
+          </ScrollView>
+        </Pressable>
+        {isLargeScreen ? (
+          <></>
+        ) : (
+          <Slide in={isSlideOpen} placement="left" w={width} h="100">
+            <HStack w="100%" h="100%">
+              <Box w={{ base: "80%", lg: "25%" }} bg="white">
+                <Sidebar navigation={navigation} />
+              </Box>
+              <Pressable
+                w={{ base: "20%", lg: "75%" }}
+                onPress={() => setSlideOpen(false)}
+                opacity="0.5"
+                bg="black"
+              ></Pressable>
+            </HStack>
+          </Slide>
+        )}
       </Box>
     </Box>
   );

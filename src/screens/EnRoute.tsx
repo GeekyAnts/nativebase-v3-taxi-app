@@ -9,6 +9,7 @@ import {
   Modal,
   Pressable,
   Text,
+  useBreakpointValue,
   VStack,
 } from "native-base";
 import MapView, {
@@ -33,11 +34,19 @@ function EnRoute({
   navigation: NativeStackNavigationProp<any>;
 }) {
   const [showModal, setShowModal] = useState(false);
+  const isLargeScreen = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Box bg="white" flex="1" safeArea>
-      <Box borderColor="warmGray.300" p="2">
-        <Text fontSize="lg">Driver confirmed and en route</Text>
-      </Box>
+      {isLargeScreen ? (
+        <></>
+      ) : (
+        <Box borderColor="warmGray.300" p="2">
+          <Text fontSize="lg">Driver confirmed and en route</Text>
+        </Box>
+      )}
       <Box flex="1" flexDir={{ base: "column", lg: "row-reverse" }}>
         <Box flex="1" position="relative" shadow="5">
           <ResponsiveMap />
@@ -49,6 +58,13 @@ function EnRoute({
             minW: "768",
           }}
         >
+          {isLargeScreen ? (
+            <Box borderColor="warmGray.300" p="2">
+              <Text fontSize="lg">Driver confirmed and en route</Text>
+            </Box>
+          ) : (
+            <></>
+          )}
           <VStack my="2" p="4" space="4" maxW="768" w="100%">
             <Box width="100%">
               <HStack justifyContent="space-between">

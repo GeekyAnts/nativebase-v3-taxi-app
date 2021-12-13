@@ -79,6 +79,9 @@ function Sidebar({
                 bg: "light.200",
               }}
               _web={{ cursor: "pointer" }}
+              _hover={{
+                bg: "blue.300",
+              }}
             >
               <Text fontSize="md">{option.label}</Text>
             </Pressable>

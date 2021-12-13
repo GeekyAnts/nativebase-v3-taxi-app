@@ -8,7 +8,7 @@ function Header({
   navigation: NativeStackNavigationProp<any>;
 }) {
   return (
-    <HStack bg="black" p="4">
+    <HStack bg="black" p="4" zIndex="2">
       {/* <Box ml="auto">Login</Box> */}
       <Button
         ml="auto"
