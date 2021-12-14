@@ -140,7 +140,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               }}
             />
             <FormControl.ErrorMessage>
-              Enter valid number
+              Enter valid mobile number
             </FormControl.ErrorMessage>
           </FormControl>
         </HStack>
