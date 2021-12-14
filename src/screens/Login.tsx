@@ -54,6 +54,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   accessibilityLabel="More options menu"
                   flexDir="row"
                   {...triggerProps}
+                  alignSelf="flex-start"
                 >
                   {country === "US" ? (
                     <Image
