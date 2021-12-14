@@ -101,7 +101,11 @@ function ChooseTaxi({
             left="4"
             display={{ base: "none", lg: "flex" }}
           >
-            <ArrowBackIcon size="7" color="black" />
+            <ArrowBackIcon
+              size="7"
+              color="black"
+              display={{ base: "none", lg: "flex" }}
+            />
           </Pressable>
           <Text fontWeight="normal">20% promotion applied</Text>
         </HStack>
