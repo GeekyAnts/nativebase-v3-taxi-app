@@ -62,8 +62,8 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           <></>
         )}
 
-        <Stack direction={{ base: "column", lg: "row" }} flex="1">
-          <VStack space="4" p="4" flex="1" maxW="600">
+        <Stack direction={{ base: "column", lg: "row" }} flex="1" space="2">
+          <VStack space="4" p="4" _web={{ flex: 1 }} maxW="600">
             <HStack>
               <Pressable
                 onPress={() => setSlideOpen(!isSlideOpen)}
@@ -263,10 +263,15 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             space="4"
             p="4"
             flex="1"
-            mt={{ base: "20", lg: "0" }}
-            mb={{ base: "6", lg: "0" }}
+            // mt={{ base: "24", lg: "0" }}
+            // mb={{ base: "6", lg: "0" }}
           >
-            <Heading my="4" size="md" fontWeight="semibold">
+            <Heading
+              // mt={{ base: "12", lg: "3" }}
+              // mb="4"
+              size="md"
+              fontWeight="semibold"
+            >
               Around you
             </Heading>
             <Box flex="1" w="100%" rounded="lg" overflow="hidden">
