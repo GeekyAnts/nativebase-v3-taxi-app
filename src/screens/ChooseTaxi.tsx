@@ -112,7 +112,6 @@ function ChooseTaxi({
               <Pressable
                 onPress={() => setSelectedVehicle(vehicle.name)}
                 key={idx}
-                _web={{ cursor: "pointer" }}
               >
                 <HStack
                   bg={

@@ -61,7 +61,6 @@ function Sidebar({
           pt="1"
           flexDir="row"
           justifyContent="space-between"
-          _web={{ cursor: "pointer" }}
         >
           <Text color="warmGray.100" fontSize="md">
             Messages
@@ -81,7 +80,6 @@ function Sidebar({
               _hover={{
                 bg: "coolGray.200",
               }}
-              _web={{ cursor: "pointer" }}
             >
               <Text fontSize="md">{option.label}</Text>
             </Pressable>
@@ -96,7 +94,6 @@ function Sidebar({
             bg: "coolGray.200",
           }}
           onPress={() => navigation.navigate("Login")}
-          _web={{ cursor: "pointer" }}
         >
           <Text fontSize="md">Logout</Text>
         </Pressable>

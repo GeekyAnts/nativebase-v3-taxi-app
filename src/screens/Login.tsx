@@ -129,6 +129,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             }}
             fontSize="sm"
             h="37"
+            _web={{ overflowY: "hidden" }}
           />
         </HStack>
         <Text fontSize="xs" color="muted.500">
