@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
   Box,
@@ -16,12 +16,15 @@ import {
   useDisclose,
   Actionsheet,
   Menu,
+  FormControl,
 } from "native-base";
 
 function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const [country, setCountry] = useState("India");
   const [number, setNumber] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclose();
+  const [iserror, setIserror] = useState(false);
+  let regex = /^[0-9]{10}$/;
+
   return (
     <Box
       p="4"
@@ -81,7 +84,6 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           >
             <Menu.Item
               onPress={() => {
-                onClose();
                 setCountry("India");
               }}
             >
@@ -99,7 +101,6 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             </Menu.Item>
             <Menu.Item
               onPress={() => {
-                onClose();
                 setCountry("US");
               }}
             >
@@ -116,21 +117,31 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               </HStack>
             </Menu.Item>
           </Menu>
-          <Input
-            flex="1"
-            placeholder="10 Digit number"
-            keyboardType="numeric"
-            maxLength={10}
-            InputLeftElement={
-              <Text px="1">{country === "US" ? "+1" : "+91"}</Text>
-            }
-            _focus={{
-              borderColor: "black",
-            }}
-            fontSize="sm"
-            h="37"
-            _web={{ overflowY: "hidden" }}
-          />
+          <FormControl flex="1" isInvalid={iserror}>
+            <Input
+              // flex="1"
+              placeholder="10 Digit number"
+              keyboardType="numeric"
+              maxLength={10}
+              InputLeftElement={
+                <Text px="1">{country === "US" ? "+1" : "+91"}</Text>
+              }
+              _focus={{
+                borderColor: "black",
+              }}
+              fontSize="sm"
+              h="37"
+              _web={{ overflowY: "hidden" }}
+              value={number}
+              onChangeText={(text) => {
+                setNumber(text);
+                if (text.match(regex)) setIserror(false);
+              }}
+            />
+            <FormControl.ErrorMessage>
+              Enter valid number
+            </FormControl.ErrorMessage>
+          </FormControl>
         </HStack>
         <Text fontSize="xs" color="muted.500">
           If you continue, you may receive an SMS for verification. Message and
@@ -158,7 +169,12 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           px="4"
           _text={{ fontSize: "16" }}
           endIcon={<ArrowForwardIcon size="sm" />}
-          onPress={() => navigation.navigate("OTP")}
+          onPress={() => {
+            if (number.match(regex)) {
+              setNumber("");
+              navigation.navigate("OTP");
+            } else setIserror(true);
+          }}
           alignItems="center"
         >
           Next
