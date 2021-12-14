@@ -11,11 +11,11 @@ import {
   HamburgerIcon,
   Heading,
   HStack,
-  IconButton,
   Image,
+  Modal,
   Pressable,
-  ScrollView,
   Slide,
+  Stack,
   Text,
   useBreakpointValue,
   useDisclose,
@@ -37,141 +37,184 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const { isOpen, onOpen, onClose } = useDisclose();
   const [isSlideOpen, setSlideOpen] = useState(false);
   const { height, width } = useWindowDimensions();
+  const [isSidebar, setSidebar] = useState(false);
   const isLargeScreen = useBreakpointValue({
     base: false,
     lg: true,
   });
   return (
-    <Box
-      flex="1"
-      safeAreaTop
-      flexDir="row"
-      bg={{ base: "white", lg: "trueGray.100" }}
-      justifyContent="center"
-    >
+    <Box flex="1" safeAreaTop bg={{ base: "white", lg: "trueGray.100" }}>
       {isLargeScreen ? (
-        <Box w="300" bg="white">
-          <Sidebar navigation={navigation} />
-        </Box>
+        <HStack p="4" zIndex="2" bg="black">
+          <Pressable onPress={() => setSidebar(!isSidebar)}>
+            <HamburgerIcon color="white" />
+          </Pressable>
+        </HStack>
       ) : (
         <></>
       )}
+      <Box flexDir="row" flex="1">
+        {isLargeScreen ? (
+          <Box w="300" bg="white" display={isSidebar ? "flex" : "none"}>
+            <Sidebar navigation={navigation} />
+          </Box>
+        ) : (
+          <></>
+        )}
 
-      <Box
-        maxW="768"
-        w="100%"
-        // alignSelf="center"
-        bg="white"
-        h="100%"
-      >
-        <Pressable onPress={() => setSlideOpen(false)}>
-          <ScrollView>
-            <VStack space="4" p="4">
-              <HStack>
-                <Pressable
-                  onPress={() => setSlideOpen(!isSlideOpen)}
-                  display={{ base: "flex", lg: "none" }}
-                >
-                  <HamburgerIcon />
-                </Pressable>
-              </HStack>
-              <HStack
-                bg="slateGreen.100"
-                rounded="xl"
-                p="4"
-                alignItems="center"
-                // justifyContent="space-between"
+        <Stack direction={{ base: "column", lg: "row" }} flex="1">
+          <VStack space="4" p="4" flex="1" maxW="600">
+            <HStack>
+              <Pressable
+                onPress={() => setSlideOpen(!isSlideOpen)}
+                display={{ base: "flex", lg: "none" }}
               >
-                <Text
-                  color="light.300"
-                  fontSize="lg"
-                  fontWeight="semibold"
-                  w="50%"
-                >
-                  20% off on first 5 rides
-                </Text>
-                <Box ml="auto">
-                  <Ionicons name="pricetag" size={68} color="lightgreen" />
+                <HamburgerIcon />
+              </Pressable>
+            </HStack>
+            <HStack
+              bg="slateGreen.100"
+              rounded="xl"
+              p="4"
+              alignItems="center"
+              height="110"
+            >
+              <Text
+                color="light.300"
+                fontSize="lg"
+                fontWeight="semibold"
+                w="50%"
+              >
+                20% off on first 5 rides
+              </Text>
+              <Box ml="auto">
+                <Ionicons name="pricetag" size={68} color="lightgreen" />
+              </Box>
+            </HStack>
+            <HStack mt="2" space="3">
+              <VStack flex="1" position="relative" space="2">
+                <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                  <Image
+                    source={UberGo}
+                    alt="Alternate Text"
+                    width="20"
+                    height="20"
+                  />
                 </Box>
-              </HStack>
-              <HStack mt="2" space="3">
-                <VStack flex="1" position="relative" space="2">
-                  <Box bg="trueGray.200" alignItems="center" rounded="lg">
-                    <Image
-                      source={UberGo}
-                      alt="Alternate Text"
-                      // size="md"
-                      width="20"
-                      height="20"
-                    />
-                  </Box>
-                  <Text fontWeight="semibold" fontSize="md" textAlign="center">
-                    Rentals
-                  </Text>
-                </VStack>
-                <VStack flex="1" space="2">
-                  <Box bg="trueGray.200" alignItems="center" rounded="lg">
-                    <Image
-                      source={UberPremier}
-                      alt="Alternate Text"
-                      // size="md"
-                      width="20"
-                      height="20"
-                    />
-                  </Box>
-                  <Text fontWeight="semibold" fontSize="md" textAlign="center">
-                    Intercity
-                  </Text>
-                </VStack>
-                <VStack flex="1" space="2">
-                  <Box bg="trueGray.200" alignItems="center" rounded="lg">
-                    <Image
-                      source={Moto}
-                      alt="Alternate Text"
-                      // size="md"
-                      width="20"
-                      height="20"
-                    />
-                    {/* <Feather name="Moto" size={60} color="black" /> */}
-                  </Box>
-                  <Text fontWeight="semibold" fontSize="md" textAlign="center">
-                    Moped
-                  </Text>
-                </VStack>
-              </HStack>
-              <HStack bg="trueGray.200" p="2" alignItems="center">
-                <Pressable
-                  onPress={() => navigation.navigate("pickDrop")}
-                  flex="1"
-                  _web={{ cursor: "pointer" }}
-                >
-                  <Text fontSize="xl" pl="2" fontWeight="600">
-                    Where to?
-                  </Text>
-                </Pressable>
-                <Divider
-                  thickness="2"
-                  bg="trueGray.300"
-                  orientation="vertical"
-                  mr="2"
-                />
-                <Button
-                  startIcon={
-                    <AntDesign name="clockcircle" size={20} color="black" />
-                  }
-                  endIcon={<ChevronDownIcon size="4" color="black" />}
-                  _text={{ color: "black" }}
-                  bg="white"
-                  rounded="full"
-                  onPress={onOpen}
-                  _pressed={{
-                    bg: "trueGray.200",
-                  }}
-                  variant="unstyled"
-                  mx="2"
-                >
-                  Now
-                </Button>
+                <Text fontWeight="semibold" fontSize="md" textAlign="center">
+                  Rentals
+                </Text>
+              </VStack>
+              <VStack flex="1" space="2">
+                <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                  <Image
+                    source={UberPremier}
+                    alt="Alternate Text"
+                    width="20"
+                    height="20"
+                  />
+                </Box>
+                <Text fontWeight="semibold" fontSize="md" textAlign="center">
+                  Intercity
+                </Text>
+              </VStack>
+              <VStack flex="1" space="2">
+                <Box bg="trueGray.200" alignItems="center" rounded="lg">
+                  <Image
+                    source={Moto}
+                    alt="Alternate Text"
+                    width="20"
+                    height="20"
+                  />
+                </Box>
+                <Text fontWeight="semibold" fontSize="md" textAlign="center">
+                  Moped
+                </Text>
+              </VStack>
+            </HStack>
+            <HStack bg="trueGray.200" p="2" alignItems="center">
+              <Pressable
+                onPress={() => navigation.navigate("pickDrop")}
+                flex="1"
+              >
+                <Text fontSize="xl" pl="2" fontWeight="600">
+                  Where to?
+                </Text>
+              </Pressable>
+              <Divider
+                thickness="2"
+                bg="trueGray.300"
+                orientation="vertical"
+                mr="2"
+              />
+              <Button
+                startIcon={
+                  <AntDesign name="clockcircle" size={20} color="black" />
+                }
+                endIcon={<ChevronDownIcon size="4" color="black" />}
+                _text={{ color: "black" }}
+                bg="white"
+                rounded="full"
+                onPress={() => {
+                  onOpen();
+                }}
+                variant="unstyled"
+                mx="2"
+              >
+                Now
+              </Button>
+              {isLargeScreen ? (
+                <Modal isOpen={isOpen} onClose={onClose} size="lg">
+                  <Modal.Content maxWidth="400px">
+                    <Modal.CloseButton top="18" />
+                    <Modal.Header p="6">Schedule a Ride</Modal.Header>
+                    <Modal.Body px="0">
+                      <Pressable
+                        _pressed={{
+                          bg: "coolGray.300",
+                        }}
+                        _hover={{
+                          bg: "coolGray.200",
+                        }}
+                        p="3"
+                        px="6"
+                      >
+                        <Text>Wed,1 Dec</Text>
+                      </Pressable>
+                      <Divider my="1" />
+                      <Pressable
+                        _pressed={{
+                          bg: "coolGray.300",
+                        }}
+                        _hover={{
+                          bg: "coolGray.200",
+                        }}
+                        p="3"
+                        px="6"
+                      >
+                        <Text>11:05am - 11:15 am</Text>
+                      </Pressable>
+                    </Modal.Body>
+                    <Modal.Footer p="6">
+                      <Button
+                        w="100%"
+                        colorScheme="muted"
+                        bg="muted.800"
+                        _pressed={{ bg: "muted.900" }}
+                        _text={{
+                          fontSize: "md",
+                          fontWeight: "semibold",
+                        }}
+                        borderRadius="0"
+                        onPress={onClose}
+                        py="3"
+                      >
+                        Set pickup time
+                      </Button>
+                    </Modal.Footer>
+                  </Modal.Content>
+                </Modal>
+              ) : (
                 <Actionsheet isOpen={isOpen} onClose={onClose}>
                   <Actionsheet.Content>
                     <Box w="100%" px={4} alignItems="center">
@@ -190,8 +233,6 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                     <Divider />
                     <Box w="100%" px={4} mt="5">
                       <Button
-                        // colorScheme="black"
-                        // variant="unstyled"
                         bg="muted.800"
                         _pressed={{ bg: "muted.900" }}
                         _text={{
@@ -204,33 +245,36 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                     </Box>
                   </Actionsheet.Content>
                 </Actionsheet>
-              </HStack>
-              <HStack mt="4" space="2" alignItems="center">
-                <Circle bg="trueGray.200" p="2" mr="3">
-                  <FontAwesome name="star" size={18} color="black" />
-                </Circle>
-                <Pressable flexDir="row" flex="1" alignItems="center">
-                  <Text fontWeight="semibold" fontSize="lg">
-                    Choose a saved place
-                  </Text>
-                  <ChevronRightIcon ml="auto" size="sm" color="gray.400" />
-                </Pressable>
-              </HStack>
-              <Heading my="4" size="md" fontWeight="semibold">
-                Around you
-              </Heading>
-              <Box
-                h={{ base: "200", md: "400" }}
-                flex="1"
-                w="100%"
-                rounded="lg"
-                overflow="hidden"
-              >
-                <ResponsiveMap />
-              </Box>
-            </VStack>
-          </ScrollView>
-        </Pressable>
+              )}
+            </HStack>
+            <HStack mt="4" space="2" alignItems="center">
+              <Circle bg="trueGray.200" p="2" mr="3">
+                <FontAwesome name="star" size={18} color="black" />
+              </Circle>
+              <Pressable flexDir="row" flex="1" alignItems="center">
+                <Text fontWeight="semibold" fontSize="lg">
+                  Choose a saved place
+                </Text>
+                <ChevronRightIcon ml="auto" size="sm" color="gray.400" />
+              </Pressable>
+            </HStack>
+          </VStack>
+          <VStack
+            space="4"
+            p="4"
+            flex="1"
+            mt={{ base: "20", lg: "0" }}
+            mb={{ base: "6", lg: "0" }}
+          >
+            <Heading my="4" size="md" fontWeight="semibold">
+              Around you
+            </Heading>
+            <Box flex="1" w="100%" rounded="lg" overflow="hidden">
+              <ResponsiveMap />
+            </Box>
+          </VStack>
+        </Stack>
+
         {isLargeScreen ? (
           <></>
         ) : (
