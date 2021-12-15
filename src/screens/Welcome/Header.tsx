@@ -9,13 +9,11 @@ function Header({
 }) {
   return (
     <HStack bg="black" p="4" zIndex="2">
-      {/* <Box ml="auto">Login</Box> */}
       <Button
         ml="auto"
         onPress={() => navigation.navigate("Login")}
-        // colorScheme="white"
         bg="white"
-        // borderRadius="0"
+        colorScheme="dark"
         rounded="full"
         px="5"
       >

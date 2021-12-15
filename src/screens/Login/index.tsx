@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
   Box,
@@ -16,11 +16,19 @@ import {
   useDisclose,
   Actionsheet,
   Menu,
+  FormControl,
 } from "native-base";
+
+const UsFlag = require("../../../assets/us-flag-rect.png");
+const IndiaFlag = require("../../../assets/india-flag.png");
 
 function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const [country, setCountry] = useState("India");
-  const { isOpen, onOpen, onClose } = useDisclose();
+  const [number, setNumber] = useState("");
+  const [iserror, setIserror] = useState(false);
+
+  let regex = /^[0-9]{10}$/;
+
   return (
     <Box
       p="4"
@@ -50,10 +58,11 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   accessibilityLabel="More options menu"
                   flexDir="row"
                   {...triggerProps}
+                  alignSelf="flex-start"
                 >
                   {country === "US" ? (
                     <Image
-                      source={require("../../assets/us-flag-rect.png")}
+                      source={UsFlag}
                       alt="US flag"
                       key="US"
                       width="33"
@@ -63,7 +72,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                     />
                   ) : (
                     <Image
-                      source={require("../../assets/india-flag.png")}
+                      source={IndiaFlag}
                       alt="indian flag"
                       key="India"
                       width="30"
@@ -80,13 +89,12 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           >
             <Menu.Item
               onPress={() => {
-                onClose();
                 setCountry("India");
               }}
             >
               <HStack space="4" alignItems="center">
                 <Image
-                  source={require("../../assets/india-flag.png")}
+                  source={IndiaFlag}
                   alt="indian flag"
                   width="33"
                   h="21"
@@ -98,13 +106,12 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             </Menu.Item>
             <Menu.Item
               onPress={() => {
-                onClose();
                 setCountry("US");
               }}
             >
               <HStack space="4" alignItems="center">
                 <Image
-                  source={require("../../assets/us-flag-rect.png")}
+                  source={UsFlag}
                   alt="us flag"
                   width="33"
                   h="21"
@@ -115,20 +122,31 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               </HStack>
             </Menu.Item>
           </Menu>
-          <Input
-            flex="1"
-            placeholder="10 Digit number"
-            keyboardType="numeric"
-            maxLength={10}
-            InputLeftElement={
-              <Text px="1">{country === "US" ? "+1" : "+91"}</Text>
-            }
-            _focus={{
-              borderColor: "black",
-            }}
-            fontSize="sm"
-            h="37"
-          />
+          <FormControl flex="1" isInvalid={iserror}>
+            <Input
+              // flex="1"
+              placeholder="10 Digit number"
+              keyboardType="numeric"
+              maxLength={10}
+              InputLeftElement={
+                <Text px="1">{country === "US" ? "+1" : "+91"}</Text>
+              }
+              _focus={{
+                borderColor: "black",
+              }}
+              fontSize="sm"
+              h="37"
+              _web={{ overflowY: "hidden" }}
+              value={number}
+              onChangeText={(text) => {
+                setNumber(text);
+                if (text.match(regex)) setIserror(false);
+              }}
+            />
+            <FormControl.ErrorMessage>
+              Enter valid mobile number
+            </FormControl.ErrorMessage>
+          </FormControl>
         </HStack>
         <Text fontSize="xs" color="muted.500">
           If you continue, you may receive an SMS for verification. Message and
@@ -139,7 +157,9 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         <IconButton
           icon={<ArrowBackIcon size="sm" />}
           bg="gray.200"
-          _pressed={{ bg: "gray.300" }}
+          colorScheme="gray"
+          _hover={{ bg: "gray.300" }}
+          _pressed={{ bg: "gray.400" }}
           rounded="full"
           onPress={() => navigation.navigate("welcome")}
         ></IconButton>
@@ -154,7 +174,12 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           px="4"
           _text={{ fontSize: "16" }}
           endIcon={<ArrowForwardIcon size="sm" />}
-          onPress={() => navigation.navigate("OTP")}
+          onPress={() => {
+            if (number.match(regex)) {
+              setNumber("");
+              navigation.navigate("OTP");
+            } else setIserror(true);
+          }}
           alignItems="center"
         >
           Next

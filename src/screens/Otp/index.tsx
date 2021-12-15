@@ -113,7 +113,8 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         <IconButton
           icon={<ArrowBackIcon size="sm" />}
           bg="gray.200"
-          _pressed={{ bg: "gray.300" }}
+          _hover={{ bg: "gray.300" }}
+          _pressed={{ bg: "gray.400" }}
           rounded="full"
           onPress={() => navigation.navigate("Login")}
         ></IconButton>

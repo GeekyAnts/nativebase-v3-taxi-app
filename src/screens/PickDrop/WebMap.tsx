@@ -19,7 +19,7 @@ import { FontAwesome } from "@expo/vector-icons";
 const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
 const MAP_SCRIPT_WITH_API_KEY = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
 
-export default function WebAroundYou() {
+export default function WebMap() {
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapContainerRef = useRef<HTMLElement>(null);
 
@@ -48,11 +48,11 @@ export default function WebAroundYou() {
       });
 
       //@ts-ignore
-      //   new window.google.maps.Marker({
-      //     position: { lat: 12.9698, lng: 77.75 },
-      //     map: map,
-      //     title: "source",
-      //   });
+      new window.google.maps.Marker({
+        position: { lat: 12.9698, lng: 77.75 },
+        map: map,
+        title: "source",
+      });
     }
   }, [mapLoaded]);
 
@@ -79,7 +79,7 @@ export default function WebAroundYou() {
           <View flex="1" ref={mapContainerRef} />
         </VStack>
       ) : (
-        "Loading ..."
+        <Center mt="6">"Loading ..."</Center>
       )}
     </>
   );

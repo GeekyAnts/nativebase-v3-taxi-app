@@ -37,7 +37,7 @@ function Sidebar({
   navigation: NativeStackNavigationProp<any>;
 }) {
   return (
-    <Box>
+    <Box flex="1" bg="white">
       <VStack
         bg="black"
         space="4"
@@ -61,7 +61,6 @@ function Sidebar({
           pt="1"
           flexDir="row"
           justifyContent="space-between"
-          _web={{ cursor: "pointer" }}
         >
           <Text color="warmGray.100" fontSize="md">
             Messages
@@ -69,18 +68,17 @@ function Sidebar({
           <ChevronRightIcon size="sm" color="white" />
         </Pressable>
       </VStack>
-      <VStack space="2" w="100%" mt="1">
+      <VStack space="2" w="100%">
         {options.map((option, idx) => {
           return (
             <Pressable
               key={idx}
               p="4"
               _pressed={{
-                bg: "light.200",
+                bg: "coolGray.300",
               }}
-              _web={{ cursor: "pointer" }}
               _hover={{
-                bg: "blue.300",
+                bg: "coolGray.200",
               }}
             >
               <Text fontSize="md">{option.label}</Text>
@@ -90,10 +88,12 @@ function Sidebar({
         <Pressable
           p="4"
           _pressed={{
-            bg: "light.200",
+            bg: "coolGray.300",
+          }}
+          _hover={{
+            bg: "coolGray.200",
           }}
           onPress={() => navigation.navigate("Login")}
-          _web={{ cursor: "pointer" }}
         >
           <Text fontSize="md">Logout</Text>
         </Pressable>

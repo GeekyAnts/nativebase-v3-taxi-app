@@ -10,7 +10,6 @@ import {
   HStack,
   Image,
   Pressable,
-  ScrollView,
   Text,
   VStack,
 } from "native-base";
@@ -20,10 +19,9 @@ import MapView, {
   PROVIDER_GOOGLE,
   Circle as MapCircle,
 } from "react-native-maps";
-import { FontAwesome } from "@expo/vector-icons";
 import MapViewDirections from "react-native-maps-directions";
 import { Platform } from "react-native";
-import WebChooseTaxi from "../components/WebChooseTaxi";
+import WebMap from "./WebMap";
 
 const initialVehicles = [
   {
@@ -31,21 +29,21 @@ const initialVehicles = [
     timing: "5:58pm",
     amount: "28.00",
     oldAmount: "35.00",
-    image: require("../../assets/Moto.png"),
+    image: require("../../../assets/Moto.png"),
   },
   {
     name: "Car",
     timing: "6:00pm",
     amount: "171.61",
     oldAmount: "214.51",
-    image: require("../../assets/UberGo.png"),
+    image: require("../../../assets/UberGo.png"),
   },
   {
     name: "TookTook",
     timing: "5:58pm",
     amount: "57.73",
     oldAmount: "72.16",
-    image: require("../../assets/Auto.png"),
+    image: require("../../../assets/Auto.png"),
   },
 ];
 
@@ -88,7 +86,7 @@ function ChooseTaxi({
         <ResponsiveMap />
       </Box>
       <Box
-        maxWidth="768"
+        maxWidth="600"
         w="100%"
         mx="auto"
         // mt={{ base: "0", lg: "3" }}
@@ -101,7 +99,11 @@ function ChooseTaxi({
             left="4"
             display={{ base: "none", lg: "flex" }}
           >
-            <ArrowBackIcon size="7" color="black" />
+            <ArrowBackIcon
+              size="7"
+              color="black"
+              display={{ base: "none", lg: "flex" }}
+            />
           </Pressable>
           <Text fontWeight="normal">20% promotion applied</Text>
         </HStack>
@@ -112,11 +114,10 @@ function ChooseTaxi({
               <Pressable
                 onPress={() => setSelectedVehicle(vehicle.name)}
                 key={idx}
-                _web={{ cursor: "pointer" }}
               >
                 <HStack
                   bg={
-                    selectedVehicle === vehicle.name ? "warmGray.200" : "white"
+                    selectedVehicle === vehicle.name ? "blueGray.100" : "white"
                   }
                   p="2"
                   pr="4"
@@ -171,6 +172,8 @@ function ChooseTaxi({
           mx="4"
           onPress={() => navigation.navigate("enroute")}
           _pressed={{ bg: "gray.700" }}
+          _hover={{ bg: "gray.700" }}
+          colorScheme="gray"
           py="3"
           borderRadius="0"
         >
@@ -197,8 +200,6 @@ const ResponsiveMap = Platform.select({
         longitudeDelta: 0.0121,
         latitude: 12.9698,
         longitude: 77.75,
-        //  latitude: 12.91072,
-        //   longitude: 77.60173,
       }}
     >
       <Marker
@@ -235,5 +236,5 @@ const ResponsiveMap = Platform.select({
       />
     </MapView>
   ),
-  default: () => <WebChooseTaxi />,
+  default: () => <WebMap />,
 });

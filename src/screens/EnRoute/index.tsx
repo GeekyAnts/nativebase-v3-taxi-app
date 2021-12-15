@@ -6,6 +6,7 @@ import {
   Divider,
   HStack,
   Icon,
+  Image,
   Modal,
   Pressable,
   Text,
@@ -20,13 +21,14 @@ import MapView, {
 import MapViewDirections from "react-native-maps-directions";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
-import WebEnRoute from "../components/WebEnRoute";
+import WebMap from "./WebMap";
 
 const coordinates = [
   { latitude: 12.9698, longitude: 77.75 },
   { latitude: 12.9121, longitude: 77.6446 },
 ];
 const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
+const driverImage = require("../../../assets/driver.png");
 
 function EnRoute({
   navigation,
@@ -43,47 +45,65 @@ function EnRoute({
       {isLargeScreen ? (
         <></>
       ) : (
-        <Box borderColor="warmGray.300" p="2">
-          <Text fontSize="lg">Driver confirmed and en route</Text>
+        <Box zIndex="10">
+          <Box p="2" bg="white" shadow="2">
+            <Text fontSize="lg">Driver confirmed and en route</Text>
+          </Box>
         </Box>
       )}
+
       <Box flex="1" flexDir={{ base: "column", lg: "row-reverse" }}>
-        <Box flex="1" position="relative" shadow="5">
+        <Box flex="1" position="relative">
           <ResponsiveMap />
         </Box>
 
         <Box
           alignItems="center"
-          _web={{
-            minW: "768",
-          }}
+          alignSelf={{ base: "center", lg: "flex-start" }}
+          maxW="600"
+          w="100%"
         >
           {isLargeScreen ? (
-            <Box borderColor="warmGray.300" p="2">
-              <Text fontSize="lg">Driver confirmed and en route</Text>
-            </Box>
+            <>
+              <Box borderColor="warmGray.300" p="2">
+                <Text fontSize="lg">Driver confirmed and en route</Text>
+              </Box>
+              <Divider thickness="2" />
+            </>
           ) : (
             <></>
           )}
-          <VStack my="2" p="4" space="4" maxW="768" w="100%">
-            <Box width="100%">
-              <HStack justifyContent="space-between">
-                <Text fontSize="md">Driver's name</Text>
-                <Rating number={4} />
+          <VStack my="2" p="4" space="4" width="100%">
+            <Box>
+              <HStack alignItems="flex-start" space="5">
+                {/* <Avatar /> */}
+                <Image source={driverImage} size="12" rounded="full" />
+                <VStack mr="auto">
+                  <HStack alignItems="center" space="1">
+                    <Text fontSize="lg" fontWeight="semibold" mr="1" maxW="150">
+                      Driver's name
+                    </Text>
+                    <Text fontSize="md" fontWeight="semibold">
+                      4.8
+                    </Text>
+                    <FontAwesome name="star" size={14} color="black" />
+                  </HStack>
+                  <Text fontSize="md" color="warmGray.600">
+                    Vehicle's name
+                  </Text>
+                  {/* <Text fontWeight="semibold">Arriving in 5 min</Text> */}
+                </VStack>
+                <Box bg="trueGray.200" p="2" rounded="xs">
+                  5JFDKLS
+                </Box>
+                {/* <Rating number={4} /> */}
               </HStack>
             </Box>
-            <Text>Arriving in 5 min</Text>
+            <Text>
+              Driver has confirmed your booking. Sit back & relax. Your cab is{" "}
+              <Text fontWeight="600">arriving in 5 min.</Text>
+            </Text>
             <HStack space="2">
-              <Button
-                bg="black"
-                flex="1"
-                _pressed={{ bg: "gray.700" }}
-                borderRadius="0"
-                _text={{ fontSize: "lg" }}
-                py={{ base: "0", lg: "3" }}
-              >
-                Contact
-              </Button>
               <Button
                 variant="outline"
                 // bg="black"
@@ -96,6 +116,17 @@ function EnRoute({
                 py={{ base: "2", lg: "3" }}
               >
                 Cancel
+              </Button>
+              <Button
+                bg="black"
+                flex="1"
+                _pressed={{ bg: "gray.700" }}
+                colorScheme="gray"
+                borderRadius="0"
+                _text={{ fontSize: "lg" }}
+                py={{ base: "0", lg: "3" }}
+              >
+                Contact
               </Button>
             </HStack>
           </VStack>
@@ -128,8 +159,6 @@ function EnRoute({
           </Modal.Body>
           <Modal.Footer>
             <Button
-              // bg="black"
-              // _pressed={{ bg: "gray.700" }}
               colorScheme="gray"
               variant="outline"
               flex="1"
@@ -142,14 +171,13 @@ function EnRoute({
               NO
             </Button>
             <Button
-              //   colorScheme="red"
-              // bg="danger.600"
-              // _pressed={{ bg: "danger.700" }}
               bg="black"
+              colorScheme="gray"
               _pressed={{ bg: "gray.700" }}
               flex="1"
               onPress={() => {
                 navigation.navigate("chooseTaxi");
+                setShowModal(false);
               }}
               borderRadius="0"
             >
@@ -165,11 +193,11 @@ function EnRoute({
 const Rating = ({ number }: { number: Number }) => {
   return (
     <HStack alignItems="center">
-      <Text fontSize="md" mr="2">
+      <Text fontSize="md" mr="2" fontWeight="semibold">
         Rating
       </Text>
       {Array.apply(0, new Array(number)).map(function (x, i) {
-        return <FontAwesome name="star" size={18} color="black" />;
+        return <FontAwesome name="star" size={18} color="black" key={i} />;
       })}
     </HStack>
   );
@@ -180,7 +208,6 @@ const ResponsiveMap = Platform.select({
     <MapView
       style={{
         flex: 1,
-        //   height: "70%",
       }}
       provider={PROVIDER_GOOGLE}
       region={{
@@ -203,7 +230,7 @@ const ResponsiveMap = Platform.select({
       />
     </MapView>
   ),
-  default: () => <WebEnRoute />,
+  default: () => <WebMap />,
 });
 
 export default EnRoute;
