@@ -29,13 +29,13 @@ import MapView, {
   Circle as MapCircle,
 } from "react-native-maps";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "./Sidebar";
 import { Platform, useWindowDimensions } from "react-native";
-import WebAroundYou from "../components/WebAroundYou";
+import WebMap from "./WebMap";
 
-const UberGo = require("../../assets/UberGo.png");
-const UberPremier = require("../../assets/Uber_premier.png");
-const Moto = require("../../assets/Moto.png");
+const UberGo = require("../../../assets/UberGo.png");
+const UberPremier = require("../../../assets/Uber_premier.png");
+const Moto = require("../../../assets/Moto.png");
 
 function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const { isOpen, onOpen, onClose } = useDisclose();
@@ -326,7 +326,7 @@ const ResponsiveMap = Platform.select({
       ></MapCircle>
     </MapView>
   ),
-  default: () => <WebAroundYou />,
+  default: () => <WebMap />,
 });
 
 export default Home;

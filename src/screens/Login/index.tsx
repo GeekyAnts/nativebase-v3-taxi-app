@@ -19,10 +19,14 @@ import {
   FormControl,
 } from "native-base";
 
+const UsFlag = require("../../../assets/us-flag-rect.png");
+const IndiaFlag = require("../../../assets/india-flag.png");
+
 function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
   const [country, setCountry] = useState("India");
   const [number, setNumber] = useState("");
   const [iserror, setIserror] = useState(false);
+
   let regex = /^[0-9]{10}$/;
 
   return (
@@ -58,7 +62,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                 >
                   {country === "US" ? (
                     <Image
-                      source={require("../../assets/us-flag-rect.png")}
+                      source={UsFlag}
                       alt="US flag"
                       key="US"
                       width="33"
@@ -68,7 +72,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                     />
                   ) : (
                     <Image
-                      source={require("../../assets/india-flag.png")}
+                      source={IndiaFlag}
                       alt="indian flag"
                       key="India"
                       width="30"
@@ -90,7 +94,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             >
               <HStack space="4" alignItems="center">
                 <Image
-                  source={require("../../assets/india-flag.png")}
+                  source={IndiaFlag}
                   alt="indian flag"
                   width="33"
                   h="21"
@@ -107,7 +111,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             >
               <HStack space="4" alignItems="center">
                 <Image
-                  source={require("../../assets/us-flag-rect.png")}
+                  source={UsFlag}
                   alt="us flag"
                   width="33"
                   h="21"

@@ -12,9 +12,9 @@ import {
   VStack,
 } from "native-base";
 import React from "react";
-import Header from "../components/Header";
-const logo = require("../../assets/taxi.png");
-const webLogo = require("../../assets/logo-web.jpg");
+import Header from "./Header";
+const logo = require("../../../assets/taxi.png");
+const webLogo = require("../../../assets/logo-web.jpg");
 
 function Welcome({
   navigation,

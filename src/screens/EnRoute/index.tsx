@@ -21,14 +21,14 @@ import MapView, {
 import MapViewDirections from "react-native-maps-directions";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
-import WebEnRoute from "../components/WebEnRoute";
+import WebMap from "./WebMap";
 
 const coordinates = [
   { latitude: 12.9698, longitude: 77.75 },
   { latitude: 12.9121, longitude: 77.6446 },
 ];
 const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
-const driverImage = require("../../assets/driver.png");
+const driverImage = require("../../../assets/driver.png");
 
 function EnRoute({
   navigation,
@@ -230,7 +230,7 @@ const ResponsiveMap = Platform.select({
       />
     </MapView>
   ),
-  default: () => <WebEnRoute />,
+  default: () => <WebMap />,
 });
 
 export default EnRoute;

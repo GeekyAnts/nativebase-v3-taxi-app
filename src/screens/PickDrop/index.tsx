@@ -21,7 +21,7 @@ import MapView, {
 import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Platform } from "react-native";
-import WebPickDrop from "../components/WebPickDrop";
+import WebMap from "./WebMap";
 
 const CirclePoint = () => {
   return (
@@ -242,7 +242,7 @@ const ResponsiveMap = Platform.select({
   default: () => {
     return (
       <Box w="100%" h="100%">
-        <WebPickDrop />
+        <WebMap />
       </Box>
     );
   },
