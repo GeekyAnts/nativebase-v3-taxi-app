@@ -23,7 +23,11 @@ import {
 } from "native-base";
 
 import { AntDesign, FontAwesome, Ionicons, Feather } from "@expo/vector-icons";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, {
+  Marker,
+  PROVIDER_GOOGLE,
+  Circle as MapCircle,
+} from "react-native-maps";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Sidebar from "../components/Sidebar";
 import { Platform, useWindowDimensions } from "react-native";
@@ -315,7 +319,12 @@ const ResponsiveMap = Platform.select({
         latitude: 12.9698,
         longitude: 77.75,
       }}
-    ></MapView>
+    >
+      <MapCircle
+        center={{ latitude: 12.9698, longitude: 77.75 }}
+        radius={100}
+      ></MapCircle>
+    </MapView>
   ),
   default: () => <WebAroundYou />,
 });

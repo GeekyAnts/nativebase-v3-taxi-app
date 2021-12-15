@@ -18,6 +18,7 @@ import { FontAwesome } from "@expo/vector-icons";
 
 const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
 const MAP_SCRIPT_WITH_API_KEY = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
+const vehicle = require("../../assets/UberGo.png");
 
 export default function WebEnRoute() {
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -42,7 +43,7 @@ export default function WebEnRoute() {
     if (mapLoaded) {
       //@ts-ignore
       const map = new window.google.maps.Map(mapContainerRef.current, {
-        zoom: 15,
+        zoom: 17,
         mapTypeId: "terrain",
         center: { lat: 12.90852, lng: 77.60059 },
       });
@@ -157,11 +158,10 @@ export default function WebEnRoute() {
       new window.google.maps.Marker({
         position: pathCoords[0],
         map: map,
-        // icon: {
-        //   //   url: require("../components/IconRestaurant.png"),
-        //   size: new google.maps.Size(36, 50),
-        //   scaledSize: new google.maps.Size(36, 50),
-        // },
+        Icon: {
+          url: vehicle,
+          scaledSize: new google.maps.Size(50, 50),
+        },
         title: "source",
       });
 
@@ -169,12 +169,7 @@ export default function WebEnRoute() {
       new window.google.maps.Marker({
         position: pathCoords[pathCoords.length - 1],
         map: map,
-        // icon: {
-        //   //   url: require("../components/ImageRide.png"),
-        //   size: new google.maps.Size(36, 50),
-        //   scaledSize: new google.maps.Size(36, 50),
-        //   anchor: new google.maps.Point(10, 0),
-        // },
+
         title: "destination",
       });
     }

@@ -19,7 +19,7 @@ import { FontAwesome } from "@expo/vector-icons";
 const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
 const MAP_SCRIPT_WITH_API_KEY = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
 
-export default function WebChooseTaxi() {
+export default function WebMap() {
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapContainerRef = useRef<HTMLElement>(null);
 
@@ -157,11 +157,6 @@ export default function WebChooseTaxi() {
       new window.google.maps.Marker({
         position: pathCoords[0],
         map: map,
-        // icon: {
-        //   //   url: require("../components/IconRestaurant.png"),
-        //   size: new google.maps.Size(36, 50),
-        //   scaledSize: new google.maps.Size(36, 50),
-        // },
         title: "source",
       });
 
@@ -169,12 +164,6 @@ export default function WebChooseTaxi() {
       new window.google.maps.Marker({
         position: pathCoords[pathCoords.length - 1],
         map: map,
-        // icon: {
-        //   //   url: require("../components/ImageRide.png"),
-        //   size: new google.maps.Size(36, 50),
-        //   scaledSize: new google.maps.Size(36, 50),
-        //   anchor: new google.maps.Point(10, 0),
-        // },
         title: "destination",
       });
     }
