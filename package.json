@@ -47,5 +47,7 @@
   },
   "homepage": "./",
   "author": "Amar Somani",
+  "name": "taxi-app",
+  "version": "1.0.0",
   "private": true
 }

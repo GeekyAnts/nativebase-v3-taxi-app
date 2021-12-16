@@ -1,9 +1,3 @@
-# expo-template-native-base-typescript
+# Taxi App
 
-The official NativeBase TypeScript template for [Expo](https://docs.expo.io/)
-
-## Usage
-
-```sh
-expo init my-app --template expo-template-native-base-typescript
-```
+Automate your Business & manage your fleet operations by creating Your Taxi Dispatch App. Measure & manage your rides through a single dashboard.
