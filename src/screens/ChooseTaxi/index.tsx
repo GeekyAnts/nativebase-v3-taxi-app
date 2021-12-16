@@ -162,7 +162,7 @@ function ChooseTaxi({
         </VStack>
 
         <Divider mt="0" />
-        <HStack p="4" alignItems="center" space="4">
+        <HStack p="4" alignItems="center" space="4" my="2">
           <Text fontSize="md">Cash</Text>
 
           <ChevronRightIcon size="sm" ml="auto" />
@@ -193,6 +193,7 @@ const ResponsiveMap = Platform.select({
     <MapView
       style={{
         flex: 1,
+        minHeight: 120,
       }}
       provider={PROVIDER_GOOGLE}
       region={{
