@@ -11,6 +11,7 @@ import {
   HamburgerIcon,
   Heading,
   HStack,
+  Icon,
   Image,
   Modal,
   Pressable,
@@ -47,7 +48,8 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
     lg: true,
   });
   return (
-    <Box flex="1" safeAreaTop bg={{ base: "white", lg: "trueGray.100" }}>
+    <Box flex="1" bg={{ base: "white", lg: "trueGray.100" }}>
+      {/* for desktop */}
       {isLargeScreen ? (
         <HStack p="4" zIndex="2" bg="black">
           <Pressable onPress={() => setSidebar(!isSidebar)}>
@@ -57,7 +59,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
       ) : (
         <></>
       )}
-      <Box flexDir="row" flex="1">
+      <Box safeAreaTop flexDir="row" flex="1">
         {isLargeScreen ? (
           <Box w="300" bg="white" display={isSidebar ? "flex" : "none"}>
             <Sidebar navigation={navigation} />
@@ -253,7 +255,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             </HStack>
             <HStack mt="4" space="2" alignItems="center">
               <Circle bg="trueGray.200" p="2" mr="3">
-                <FontAwesome name="star" size={18} color="black" />
+                <Icon as={FontAwesome} name="star" size="xs" />
               </Circle>
               <Pressable flexDir="row" flex="1" alignItems="center">
                 <Text fontWeight="semibold" fontSize="lg">
@@ -263,19 +265,8 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               </Pressable>
             </HStack>
           </VStack>
-          <VStack
-            space="4"
-            p="4"
-            flex="1"
-            // mt={{ base: "24", lg: "0" }}
-            // mb={{ base: "6", lg: "0" }}
-          >
-            <Heading
-              // mt={{ base: "12", lg: "3" }}
-              // mb="4"
-              size="md"
-              fontWeight="semibold"
-            >
+          <VStack space="4" p="4" flex="1">
+            <Heading size="md" fontWeight="semibold">
               Around you
             </Heading>
             <Box flex="1" w="100%" rounded="lg" overflow="hidden">
@@ -283,25 +274,24 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             </Box>
           </VStack>
         </Stack>
-
-        {isLargeScreen ? (
-          <></>
-        ) : (
-          <Slide in={isSlideOpen} placement="left" w={width} h="100">
-            <HStack w="100%" h="100%">
-              <Box w={{ base: "80%", lg: "25%" }} bg="white">
-                <Sidebar navigation={navigation} />
-              </Box>
-              <Pressable
-                w={{ base: "20%", lg: "75%" }}
-                onPress={() => setSlideOpen(false)}
-                opacity="0.5"
-                bg="black"
-              ></Pressable>
-            </HStack>
-          </Slide>
-        )}
       </Box>
+      {isLargeScreen ? (
+        <></>
+      ) : (
+        <Slide in={isSlideOpen} placement="left" w={width} h="100">
+          <HStack w="100%" h="100%">
+            <Box w={{ base: "80%", lg: "25%" }} bg="white">
+              <Sidebar navigation={navigation} />
+            </Box>
+            <Pressable
+              w={{ base: "20%", lg: "75%" }}
+              onPress={() => setSlideOpen(false)}
+              opacity="0.5"
+              bg="black"
+            ></Pressable>
+          </HStack>
+        </Slide>
+      )}
     </Box>
   );
 }
@@ -311,6 +301,7 @@ const ResponsiveMap = Platform.select({
     <MapView
       style={{
         flex: 1,
+        minHeight: 120,
       }}
       provider={PROVIDER_GOOGLE}
       region={{
