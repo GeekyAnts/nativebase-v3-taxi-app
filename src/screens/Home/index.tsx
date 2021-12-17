@@ -69,7 +69,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
         )}
 
         <Stack direction={{ base: "column", lg: "row" }} flex="1" space="2">
-          <VStack space="4" p="4" _web={{ flex: 1 }} maxW="600">
+          <VStack space="4" p="4" w="100%" maxW="600">
             <HStack>
               <Pressable
                 onPress={() => setSlideOpen(!isSlideOpen)}
