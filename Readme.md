@@ -1,3 +1,3 @@
 # Taxi App
 
-Automate your Business & manage your fleet operations by creating Your Taxi Dispatch App. Measure & manage your rides through a single dashboard.
+A cross platform UI template to build a Taxi Booking App that provides all the necessary screens along with NativeBase and React Navigation.
