@@ -15,8 +15,9 @@ import {
 } from "native-base";
 
 import { FontAwesome } from "@expo/vector-icons";
+import Constants from "expo-constants";
 
-const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
+const GOOGLE_MAPS_API_KEY = Constants?.manifest?.extra?.MAP_API;
 const MAP_SCRIPT_WITH_API_KEY = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
 const vehicle = require("../../../assets/UberGo.png");
 

@@ -22,12 +22,13 @@ import MapViewDirections from "react-native-maps-directions";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
 import WebMap from "./WebMap";
+import Constants from "expo-constants";
 
 const coordinates = [
   { latitude: 12.9698, longitude: 77.75 },
   { latitude: 12.9121, longitude: 77.6446 },
 ];
-const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
+const GOOGLE_MAPS_API_KEY = Constants?.manifest?.extra?.MAP_API;
 const driverImage = require("../../../assets/driver.png");
 
 function EnRoute({

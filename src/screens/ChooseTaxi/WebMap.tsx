@@ -14,9 +14,9 @@ import {
   View,
 } from "native-base";
 
-import { FontAwesome } from "@expo/vector-icons";
+import Constants from "expo-constants";
 
-const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
+const GOOGLE_MAPS_API_KEY = Constants?.manifest?.extra?.MAP_API;
 const MAP_SCRIPT_WITH_API_KEY = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
 
 export default function WebMap() {
@@ -176,9 +176,6 @@ export default function WebMap() {
           safeAreaBottom
           flex="1"
           space={{ base: "4", md: "0" }}
-          // px={{ base: "0", md: "10", lg: "0" }}
-          // pb={{ base: "4", md: "8" }}
-
           borderWidth={{ base: "0", md: "1" }}
           _light={{
             bg: { md: "white", base: "primary.50" },
