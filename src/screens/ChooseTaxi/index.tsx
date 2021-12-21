@@ -22,6 +22,7 @@ import MapView, {
 import MapViewDirections from "react-native-maps-directions";
 import { Platform } from "react-native";
 import WebMap from "./WebMap";
+import Constants from "expo-constants";
 
 const initialVehicles = [
   {
@@ -52,7 +53,7 @@ const coordinates = [
   { latitude: 12.9121, longitude: 77.6446 },
 ];
 
-const GOOGLE_MAPS_API_KEY = "sduhbdsbfv-sdjdshvjhdfvb";
+const GOOGLE_MAPS_API_KEY = Constants?.manifest?.extra?.MAP_API;
 
 function ChooseTaxi({
   navigation,
