@@ -1,5 +1,5 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Box, Button, HStack } from "native-base";
+import { Button, HStack } from "native-base";
 import React from "react";
 
 function Header({

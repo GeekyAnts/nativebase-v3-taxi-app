@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
   Box,
@@ -13,8 +13,6 @@ import {
   Image,
   ChevronDownIcon,
   Pressable,
-  useDisclose,
-  Actionsheet,
   Menu,
   FormControl,
 } from "native-base";

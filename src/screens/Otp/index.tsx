@@ -38,7 +38,6 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
       <Box>
         <Text fontSize="md">
           Enter the 4 digit code sent to your mobile number
-          {/* {Number should be present dynamically} */}
         </Text>
         <HStack my="4" space="3">
           <Input

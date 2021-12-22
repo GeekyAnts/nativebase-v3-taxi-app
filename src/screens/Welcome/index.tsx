@@ -29,24 +29,13 @@ function Welcome({
     <Box flex="1" bg={{ base: "darkBlue.500", lg: "muted.900" }}>
       {isLargeScreen ? <Header navigation={navigation} /> : <></>}
 
-      <VStack
-        alignItems="center"
-        flex="1"
-        justifyContent="center"
-        // bgImage={webLogo}
-        _web={{
-          bgImage: webLogo,
-          // bgSize: "12",
-          // bg: "red.100",
-        }}
-      >
+      <VStack alignItems="center" flex="1" justifyContent="center">
         {isLargeScreen ? (
           <Image
             source={webLogo}
             w="100%"
             h="100%"
             opacity="0.2"
-            // zIndex="-1"
             position="absolute"
           />
         ) : (
@@ -67,12 +56,7 @@ function Welcome({
         >
           MY TAXI
         </Text>
-        <Text
-          fontSize={{ base: "lg", lg: "3xl" }}
-          // fontWeight="semibold"
-          color="white"
-          // textAlign="center"
-        >
+        <Text fontSize={{ base: "lg", lg: "3xl" }} color="white">
           MOVE SAFELY
         </Text>
       </VStack>
