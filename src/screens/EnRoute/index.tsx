@@ -92,12 +92,10 @@ function EnRoute({
                   <Text fontSize="md" color="warmGray.600">
                     Vehicle's name
                   </Text>
-                  {/* <Text fontWeight="semibold">Arriving in 5 min</Text> */}
                 </VStack>
                 <Box bg="trueGray.200" p="2" rounded="xs">
                   5JFDKLS
                 </Box>
-                {/* <Rating number={4} /> */}
               </HStack>
             </Box>
             <Text>
@@ -107,9 +105,7 @@ function EnRoute({
             <HStack space="2">
               <Button
                 variant="outline"
-                // bg="black"
                 colorScheme="gray"
-                // _pressed={{ bg: "gray.200" }}
                 flex="1"
                 onPress={() => setShowModal(true)}
                 borderRadius="0"

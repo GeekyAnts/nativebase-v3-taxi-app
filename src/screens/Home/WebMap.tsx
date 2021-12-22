@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-
 import { VStack, View } from "native-base";
-
 import Constants from "expo-constants";
 
 const GOOGLE_MAPS_API_KEY = Constants?.manifest?.extra?.MAP_API;

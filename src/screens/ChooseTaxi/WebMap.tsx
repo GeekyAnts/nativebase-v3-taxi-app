@@ -1,18 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import {
-  Button,
-  HStack,
-  VStack,
-  Text,
-  Box,
-  Stack,
-  Center,
-  Divider,
-  Avatar,
-  Icon,
-  View,
-} from "native-base";
+import { VStack, View, Center } from "native-base";
 
 import Constants from "expo-constants";
 
@@ -20,7 +8,9 @@ const GOOGLE_MAPS_API_KEY = Constants?.manifest?.extra?.MAP_API;
 const MAP_SCRIPT_WITH_API_KEY = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
 
 export default function WebMap() {
-  const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(
+    document.body.dataset.mapLoaded ? true : false
+  );
   const mapContainerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -189,7 +179,7 @@ export default function WebMap() {
           <View flex="1" ref={mapContainerRef} />
         </VStack>
       ) : (
-        "Loading ..."
+        <Center>Loading ...</Center>
       )}
     </>
   );

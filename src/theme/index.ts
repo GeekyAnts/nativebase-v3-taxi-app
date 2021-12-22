@@ -1,4 +1,4 @@
-import { theme, extendTheme } from "native-base";
+import {  extendTheme } from "native-base";
 
 export const TaxiTheme = extendTheme({
   
