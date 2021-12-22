@@ -32,6 +32,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Sidebar from "./Sidebar";
 import { Platform, useWindowDimensions } from "react-native";
 import WebMap from "./WebMap";
+import NativeMap from "../../components/NativeMap";
 
 const UberGo = require("../../../assets/UberGo.png");
 const UberPremier = require("../../../assets/Uber_premier.png");
@@ -308,24 +309,12 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
 
 const ResponsiveMap = Platform.select({
   native: () => (
-    <MapView
-      style={{
-        flex: 1,
-        minHeight: 120,
-      }}
-      provider={PROVIDER_GOOGLE}
-      region={{
-        latitudeDelta: 0.015,
-        longitudeDelta: 0.0121,
-        latitude: 12.9698,
-        longitude: 77.75,
-      }}
-    >
+    <NativeMap>
       <MapCircle
         center={{ latitude: 12.9698, longitude: 77.75 }}
         radius={100}
       ></MapCircle>
-    </MapView>
+    </NativeMap>
   ),
   default: () => <WebMap />,
 });

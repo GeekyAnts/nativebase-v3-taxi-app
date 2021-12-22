@@ -23,6 +23,7 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
 import WebMap from "./WebMap";
 import Constants from "expo-constants";
+import NativeMap from "../../components/NativeMap";
 
 const coordinates = [
   { latitude: 12.9698, longitude: 77.75 },
@@ -77,8 +78,12 @@ function EnRoute({
           <VStack my="2" p="4" space="4" width="100%">
             <Box>
               <HStack alignItems="flex-start" space="5">
-                {/* <Avatar /> */}
-                <Image source={driverImage} size="12" rounded="full" />
+                <Image
+                  source={driverImage}
+                  alt="driver image"
+                  size="12"
+                  rounded="full"
+                />
                 <VStack mr="auto">
                   <HStack alignItems="center" space="1">
                     <Text fontSize="lg" fontWeight="semibold" mr="1" maxW="150">
@@ -187,35 +192,10 @@ function EnRoute({
   );
 }
 
-const Rating = ({ number }: { number: Number }) => {
-  return (
-    <HStack alignItems="center">
-      <Text fontSize="md" mr="2" fontWeight="semibold">
-        Rating
-      </Text>
-      {Array.apply(0, new Array(number)).map(function (x, i) {
-        return <FontAwesome name="star" size={18} color="black" key={i} />;
-      })}
-    </HStack>
-  );
-};
-
 const ResponsiveMap = Platform.select({
   native: () => (
-    <MapView
-      style={{
-        flex: 1,
-      }}
-      provider={PROVIDER_GOOGLE}
-      region={{
-        latitudeDelta: 0.015,
-        longitudeDelta: 0.00121,
-        latitude: 12.9698,
-        longitude: 77.75,
-      }}
-    >
+    <NativeMap>
       <Marker pinColor="black" coordinate={coordinates[0]}></Marker>
-
       <Marker coordinate={coordinates[1]}></Marker>
       <MapViewDirections
         lineDashPattern={[0]}
@@ -225,7 +205,7 @@ const ResponsiveMap = Platform.select({
         strokeWidth={3}
         strokeColor="hotpink"
       />
-    </MapView>
+    </NativeMap>
   ),
   default: () => <WebMap />,
 });

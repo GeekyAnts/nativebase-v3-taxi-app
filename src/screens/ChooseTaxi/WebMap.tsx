@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-
 import { VStack, View, Center } from "native-base";
-
 import Constants from "expo-constants";
 
 const GOOGLE_MAPS_API_KEY = Constants?.manifest?.extra?.MAP_API;
@@ -15,7 +13,7 @@ export default function WebMap() {
 
   useEffect(() => {
     // Check if map script is already present in DOM
-    if (!document.body.dataset.mapLoaded) {
+    if (!mapLoaded) {
       const mapScript = document.createElement("script");
       mapScript.src = MAP_SCRIPT_WITH_API_KEY;
 
@@ -179,7 +177,7 @@ export default function WebMap() {
           <View flex="1" ref={mapContainerRef} />
         </VStack>
       ) : (
-        <Center>Loading ...</Center>
+        <Center mt="6">Loading ...</Center>
       )}
     </>
   );

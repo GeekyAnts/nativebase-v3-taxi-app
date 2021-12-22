@@ -22,6 +22,7 @@ import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Platform } from "react-native";
 import WebMap from "./WebMap";
+import NativeMap from "../../components/NativeMap";
 
 const CirclePoint = () => {
   return (
@@ -206,18 +207,7 @@ const ResponsiveMap = Platform.select({
       longitude: 77.75,
     });
     return (
-      <MapView
-        style={{
-          flex: 1,
-        }}
-        provider={PROVIDER_GOOGLE}
-        region={{
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
-          latitude: 12.9698,
-          longitude: 77.75,
-        }}
-      >
+      <NativeMap>
         <Marker
           coordinate={pin}
           pinColor="black"
@@ -236,7 +226,7 @@ const ResponsiveMap = Platform.select({
             longitude: 77.6446,
           }}
         ></Marker>
-      </MapView>
+      </NativeMap>
     );
   },
   default: () => {

@@ -14,7 +14,7 @@ export default function WebMap() {
 
   useEffect(() => {
     // Check if map script is already present in DOM
-    if (!document.body.dataset.mapLoaded) {
+    if (!mapLoaded) {
       const mapScript = document.createElement("script");
       mapScript.src = MAP_SCRIPT_WITH_API_KEY;
 

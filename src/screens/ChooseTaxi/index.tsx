@@ -24,6 +24,7 @@ import MapViewDirections from "react-native-maps-directions";
 import { Platform } from "react-native";
 import WebMap from "./WebMap";
 import Constants from "expo-constants";
+import NativeMap from "../../components/NativeMap";
 
 const initialVehicles = [
   {
@@ -201,19 +202,7 @@ export default ChooseTaxi;
 
 const ResponsiveMap = Platform.select({
   native: () => (
-    <MapView
-      style={{
-        flex: 1,
-        minHeight: 120,
-      }}
-      provider={PROVIDER_GOOGLE}
-      region={{
-        latitudeDelta: 0.015,
-        longitudeDelta: 0.0121,
-        latitude: 12.9698,
-        longitude: 77.75,
-      }}
-    >
+    <NativeMap>
       <Marker
         coordinate={{
           latitude: 12.91072,
@@ -244,7 +233,7 @@ const ResponsiveMap = Platform.select({
         strokeWidth={4}
         strokeColor="hotpink"
       />
-    </MapView>
+    </NativeMap>
   ),
   default: () => <WebMap />,
 });
