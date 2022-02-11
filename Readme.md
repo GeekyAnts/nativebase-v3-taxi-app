@@ -14,4 +14,4 @@ Demo Link: [taxi-app](https://madewithnativebase.com/projects/taxi-app)
 
 ### Contribution guidelines:
 
-Code-level contributions to Taxi app come in the form of pull requests. These are done by forking the repo and making changes locally. You can raise the PR against development branch.
+Code-level contributions to Taxi app come in the form of pull requests. These are done by forking the repo and making changes locally. You can raise a PR against development branch.
