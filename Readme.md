@@ -2,9 +2,9 @@
 
 A cross platform UI template to build a Taxi Booking App that provides all the necessary screens along with NativeBase and React Navigation.
 
-<div style={{ alignItems: 'center' }}>
+<p align="center">
     <img src="./assets/first.gif" width="200" alt="gif"/>
-</div>
+</p>
 
 ### Demo
 This is an design app, so APIs are not connected. You can add dummy data while checking it out.
