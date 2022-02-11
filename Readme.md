@@ -12,7 +12,17 @@ For instance, you can type any number on the OTP and mobile number field for goi
 
 Demo Link: [taxi-app](https://madewithnativebase.com/projects/taxi-app)
 
-### Contribution guidelines:
+### Contributors 
+
+#### Code Contributors
+
+This project exists thanks to all the people who contribute.
+
+<a href="https://github.com/GeekyAnts/nativebase-v3-taxi-app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=GeekyAnts/nativebase-v3-taxi-app" />
+</a>
+
+#### Contribution guidelines:
 
 Code-level contributions to Taxi app come in the form of pull requests. These are done by forking the repo and making changes locally. You can raise a PR against development branch. 
 
