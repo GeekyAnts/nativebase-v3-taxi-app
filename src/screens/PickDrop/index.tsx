@@ -13,12 +13,11 @@ import {
   VStack,
 } from "native-base";
 import React, { useState } from "react";
-import MapView, {
+import {
   Marker,
-  PROVIDER_GOOGLE,
   Circle as MapCircle,
 } from "react-native-maps";
-import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Entypo } from "@native-base/icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Platform } from "react-native";
 import WebMap from "./WebMap";

@@ -17,7 +17,6 @@ import {
 import MapView, {
   Callout,
   Marker,
-  PROVIDER_GOOGLE,
   Circle as MapCircle,
 } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
