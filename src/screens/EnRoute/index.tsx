@@ -13,13 +13,9 @@ import {
   useBreakpointValue,
   VStack,
 } from "native-base";
-import MapView, {
-  Marker,
-  Circle as MapCircle,
-  PROVIDER_GOOGLE,
-} from "react-native-maps";
+import { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@native-base/icons";
 import { Platform } from "react-native";
 import WebMap from "./WebMap";
 import Constants from "expo-constants";

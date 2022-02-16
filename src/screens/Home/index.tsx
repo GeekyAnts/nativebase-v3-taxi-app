@@ -23,11 +23,8 @@ import {
   VStack,
 } from "native-base";
 
-import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
-import MapView, {
-  PROVIDER_GOOGLE,
-  Circle as MapCircle,
-} from "react-native-maps";
+import { AntDesign, Ionicons, FontAwesome } from "@native-base/icons";
+import { Circle as MapCircle } from "react-native-maps";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Sidebar from "./Sidebar";
 import { Platform, useWindowDimensions } from "react-native";
