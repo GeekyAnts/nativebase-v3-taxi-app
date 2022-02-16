@@ -2,9 +2,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
   ArrowForwardIcon,
   Box,
-  Button,
-  Heading,
-  HStack,
   Image,
   Pressable,
   Text,
