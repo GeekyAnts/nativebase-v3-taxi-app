@@ -6,6 +6,7 @@ A cross platform UI template to build a Taxi Booking App that provides all the n
     <img src="./assets/first.gif" width="200" alt="gif"/>
 </p>
 
+
 ### Demo
 This is an design app, so APIs are not connected. You can add dummy data while checking it out.
 For instance, you can type any number on the OTP and mobile number field for going to next screen.
