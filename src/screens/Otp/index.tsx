@@ -8,6 +8,7 @@ import {
   HStack,
   IconButton,
   Input,
+  Pressable,
   Text,
   VStack,
 } from "native-base";
@@ -98,17 +99,11 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
             }}
           />
         </HStack>
-        <HStack my="2">
+        <Pressable my="2">
           <Badge rounded="xl">I haven't received a code (0:07)</Badge>
-        </HStack>
+        </Pressable>
       </Box>
-      <Box
-        flexDir="row"
-        justifyContent="space-between"
-        //   mt="auto"
-        mt="auto"
-        mb="6"
-      >
+      <Box flexDir="row" justifyContent="space-between" mt="auto" mb="6">
         <IconButton
           icon={<ArrowBackIcon size="sm" />}
           bg="gray.200"
@@ -116,16 +111,12 @@ function Otp({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           _pressed={{ bg: "gray.400" }}
           rounded="full"
           onPress={() => navigation.navigate("Login")}
-        ></IconButton>
+        />
         <Button
-          // bg="gray.800"
-          // _pressed={{ bg: "gray.900" }}
           colorScheme="trueGray"
           isDisabled={filled}
           bg="black"
-          _pressed={{
-            bg: "trueGray.700",
-          }}
+          _pressed={{ bg: "trueGray.700" }}
           rounded="full"
           px="4"
           _text={{ fontSize: "14" }}
