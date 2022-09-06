@@ -109,7 +109,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   <Box bg="trueGray.200" alignItems="center" rounded="lg">
                     <Image
                       source={UberGo}
-                      alt="Alternate Text"
+                      alt="Uber Go image"
                       width="20"
                       height="20"
                     />
@@ -122,7 +122,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   <Box bg="trueGray.200" alignItems="center" rounded="lg">
                     <Image
                       source={UberPremier}
-                      alt="Alternate Text"
+                      alt="Premier car image"
                       width="20"
                       height="20"
                     />
@@ -135,7 +135,7 @@ function Home({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
                   <Box bg="trueGray.200" alignItems="center" rounded="lg">
                     <Image
                       source={Moto}
-                      alt="Alternate Text"
+                      alt="Bike image"
                       width="20"
                       height="20"
                     />

@@ -16,6 +16,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.18.6",
     "@native-base/icons": "^0.0.10",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",

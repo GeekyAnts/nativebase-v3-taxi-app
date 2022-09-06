@@ -89,6 +89,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               onPress={() => {
                 setCountry("India");
               }}
+              key="India"
             >
               <HStack space="4" alignItems="center">
                 <Image
@@ -106,6 +107,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
               onPress={() => {
                 setCountry("US");
               }}
+              key="US"
             >
               <HStack space="4" alignItems="center">
                 <Image
@@ -160,7 +162,7 @@ function Login({ navigation }: { navigation: NativeStackNavigationProp<any> }) {
           _pressed={{ bg: "gray.400" }}
           rounded="full"
           onPress={() => navigation.navigate("welcome")}
-        ></IconButton>
+        />
         <Button
           bg="black"
           colorScheme="trueGray"
